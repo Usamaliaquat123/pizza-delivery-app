@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { styles } from "./Login.styles";
 class Login extends Component {
   constructor(props) {
@@ -10,9 +10,9 @@ class Login extends Component {
 
   render() {
     return (
-      <View>
-        <Text> Login </Text>
-      </View>
+      <ScrollView>
+        
+      </ScrollView>
     );
   }
 }

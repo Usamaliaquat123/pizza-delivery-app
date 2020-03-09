@@ -15,7 +15,7 @@ import Offline from './../containers/Offline/Offline';
   },
   {
     headerMode: 'none',
-    initialRouteName: 'Splash',
+    initialRouteName: 'Login',
   },
 );
 

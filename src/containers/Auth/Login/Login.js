@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView,Image } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { styles } from "./Login.styles";
+import  styles  from "./Login.styles";
+import { logo } from './../../../theme/images';
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +14,7 @@ class Login extends Component {
     return (
       <ScrollView>
         <KeyboardAwareScrollView>
-          <Text>asdsa</Text>
+               <Image source={logo} style={styles.logo} />
         </KeyboardAwareScrollView>
       </ScrollView>
     );

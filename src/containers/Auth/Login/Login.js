@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { styles } from "./Login.styles";
 class Login extends Component {
   constructor(props) {
@@ -11,7 +12,9 @@ class Login extends Component {
   render() {
     return (
       <ScrollView>
-        
+        <KeyboardAwareScrollView>
+          <Text>asdsa</Text>
+        </KeyboardAwareScrollView>
       </ScrollView>
     );
   }

@@ -84,7 +84,7 @@ class Login extends Component {
               />
             </LinearGradient>
             <View style={{alignSelf: 'center'}}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('HomeNav')}>
             
             
               <LinearGradient

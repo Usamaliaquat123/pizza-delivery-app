@@ -74,11 +74,35 @@ class Dashboard extends Component {
                   }}>
                   <Image
                     source={Img.dish}
-                    style={{alignSelf: 'center', resizeMode: 'contain'}}
                   />
                 </LinearGradient>
               </View>
             </ScrollView>
+            <View style={{ margin: 10 }}>
+              {/* products */}
+                <Text style={{ fontSize: 25, fontWeight: 'bold', color: "#372611", margin: 4 }}>More</Text>
+                <ScrollView showsHorizontalScrollIndicator={false}
+              horizontal={true}>
+                     <View style={{margin: 5}}>
+                <LinearGradient
+                  colors={['#E5E5E5', '#E5E5E5', '#E5E5E5']}
+                  start={{x: 0, y: 1}}
+                  end={{x: 1, y: 0}}
+                  style={{
+                    height: 215,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: 150,
+                    borderRadius: 18,
+                  }}>
+                  <Image
+                    source={Img.dish}
+                    style={{alignSelf: 'center', resizeMode: 'contain'}}
+                  />
+                </LinearGradient>
+               </View>
+                </ScrollView>
+            </View>
           </View>
         </ScrollView>
       </View>

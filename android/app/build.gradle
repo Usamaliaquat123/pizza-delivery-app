@@ -1,5 +1,5 @@
 apply plugin: "com.android.application"
-
+// apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 import com.android.build.OutputFile
 
 /**
@@ -81,6 +81,11 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
+// project.ext.vectoricons = [
+//     iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf', 'AntDesign.ttf', 'Entypo.ttf', 'Feather.ttf', 'FontAwesome.ttf', 'Zocial.ttf', 'Fontisto.ttf'] // Name of the font files you want to copy
+// ]
+
+// apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -180,6 +185,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    // compile project(':react-native-vector-icons')
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
     if (enableHermes) {
@@ -197,5 +203,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
-
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

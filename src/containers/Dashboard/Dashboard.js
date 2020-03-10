@@ -93,8 +93,11 @@ class Dashboard extends Component {
                     alignItems: 'center',
                     justifyContent: 'center',
                     width: 150,
-                    borderRadius: 18,
+                    // borderRadius: 18,
                   }}>
+                  <View style={{ backgroundColor: "#FE4A00", padding: 5, width: 60, marginTop: -40, borderRadius: 4  }}>
+                    <Text style={{ textAlign: 'center', fontWeight: 'bold', color: "#fff" }}>New</Text>
+                  </View>
                   <Image
                     source={Img.dish}
                     style={{alignSelf: 'center', resizeMode: 'contain'}}

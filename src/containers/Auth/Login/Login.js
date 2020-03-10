@@ -3,8 +3,8 @@ import {View, Text, ScrollView, Image} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import styles from './Login.styles';
 import {Img, jsons} from './../../../theme';
-import LinearGradient from 'react-native-linear-gradient'
-import { Input,Icon,Button  } from "react-native-elements";
+import LinearGradient from 'react-native-linear-gradient';
+import {Input, Icon, Button} from 'react-native-elements';
 import LottieView from 'lottie-react-native';
 // import { logo } from './../../../theme/Images';
 class Login extends Component {
@@ -26,15 +26,14 @@ class Login extends Component {
                 style={styles.logo}
               />
             </View>
-          
 
-  <LinearGradient
-                colors={['#FE5D03', '#F94D03', '#F94D03']}
-                start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
-                // start={{ x: 0.7, y: 1.2 }} end={{ x: 0.0, y: 0.7 }}
-                style={styles.outline}
-              >
-               <Input
+            <LinearGradient
+              colors={['#FE5D03', '#F94D03', '#F94D03']}
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 0}}
+              // start={{ x: 0.7, y: 1.2 }} end={{ x: 0.0, y: 0.7 }}
+              style={styles.outline}>
+              <Input
                 inputContainerStyle={styles.viewInput}
                 placeholder="+92300055125"
                 placeholderTextColor={'#F94D03'}
@@ -53,17 +52,15 @@ class Login extends Component {
                   />
                 }
               />
-                 </LinearGradient>
+            </LinearGradient>
 
-
-
-              <LinearGradient
-                colors={['#FE5D03', '#F94D03', '#F94D03']}
-                start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
-                // start={{ x: 0.7, y: 1.2 }} end={{ x: 0.0, y: 0.7 }}
-                style={styles.outline}
-              >
-               <Input
+            <LinearGradient
+              colors={['#FE5D03', '#F94D03', '#F94D03']}
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 0}}
+              // start={{ x: 0.7, y: 1.2 }} end={{ x: 0.0, y: 0.7 }}
+              style={styles.outline}>
+              <Input
                 inputContainerStyle={styles.viewInput}
                 placeholder="******"
                 placeholderTextColor={'#F94D03'}
@@ -81,21 +78,32 @@ class Login extends Component {
                   />
                 }
               />
-                 </LinearGradient>
-              <View style={{ alignSelf: 'center' }}>
-              
-             <LinearGradient
+            </LinearGradient>
+            <View style={{alignSelf: 'center'}}>
+              <LinearGradient
                 colors={['#FE5D03', '#F94D03', '#F94D03']}
-                start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
                 // start={{ x: 0.7, y: 1.2 }} end={{ x: 0.0, y: 0.7 }}
-                style={{ height: 48, width: 270, alignItems: 'center',
-                 justifyContent: 'center', width: 270, borderRadius: 18 }}
-              >
-                <Text style={{ color: 'white', fontWeight: 'bold' }}>LOGIN</Text>
+                style={{
+                  height: 48,
+                  width: 270,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 270,
+                  borderRadius: 18,
+                }}>
+                <Text style={{color: 'white', fontWeight: 'bold'}}>LOGIN</Text>
               </LinearGradient>
-              <Text style={{ textAlign: 'center', fontSize: 14, marginTop: 10 }}>If you don't have an account <Text style={{ color : '#F94D03',
-    fontWeight : 'bold'}} onPress={() => this.props.navigation.navigate('Register')}>Sign up</Text></Text>
-              </View>
+              <Text style={{textAlign: 'center', fontSize: 14, marginTop: 10}}>
+                If you don't have an account{' '}
+                <Text
+                  style={{color: '#F94D03', fontWeight: 'bold'}}
+                  onPress={() => this.props.navigation.navigate('Register')}>
+                  Sign up
+                </Text>
+              </Text>
+            </View>
           </View>
         </KeyboardAwareScrollView>
       </ScrollView>

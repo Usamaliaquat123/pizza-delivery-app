@@ -2,12 +2,12 @@ import {StyleSheet} from 'react-native';
 import {SCREEN_WIDTH, SCREEN_HEIGHT} from './../../../utils/constants';
 import {Colors} from './../../../theme';
 const styles = StyleSheet.create({
-     logo: {
+  logo: {
     alignSelf: 'center',
     width: 200,
     height: 200,
   },
-  
+
   viewInput: {
     // alignSelf: 'center',
     borderRadius: 50,
@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: SCREEN_WIDTH - 79.5,
   },
-})
+});
 
-
-export default styles
+export default styles;

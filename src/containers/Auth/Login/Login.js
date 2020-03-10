@@ -93,6 +93,8 @@ class Login extends Component {
               >
                 <Text style={{ color: 'white', fontWeight: 'bold' }}>LOGIN</Text>
               </LinearGradient>
+              <Text style={{ textAlign: 'center', fontSize: 14, marginTop: 10 }}>If you don't have an account <Text style={{ color : '#F94D03',
+    fontWeight : 'bold'}} onPress={() => this.props.navigation.navigate('Register')}>Sign up</Text></Text>
               </View>
           </View>
         </KeyboardAwareScrollView>

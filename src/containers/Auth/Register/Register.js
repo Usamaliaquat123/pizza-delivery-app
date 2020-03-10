@@ -29,7 +29,7 @@ class Register extends Component {
               />
             {/* </View> */}
           
-              <Text style={{ fontSize: 30, color: '#F94D03', fontWeight: 'bold', textAlign: 'center'}} >Register </Text>
+              <Text style={{ fontSize: 30, color: '#F94D03', fontWeight: 'bold', textAlign: 'center', marginTop: -20, marginBottom: 10}} >Register </Text>
   <LinearGradient
                 colors={['#FE5D03', '#F94D03', '#F94D03']}
                 start={{x: 0, y: 0}} end={{x: 1, y: 0}} 

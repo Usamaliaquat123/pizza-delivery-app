@@ -1,17 +1,37 @@
 import React, {Component} from 'react';
 import {Header, Card, Button, Icon} from 'react-native-elements';
-import {View, Text, ScrollView, Image} from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import {styles} from './Dashboard.styles';
 import {Colors, Img} from './../../theme';
 // import {Img, jsons} from './../../../theme';
 import LinearGradient from 'react-native-linear-gradient';
 import {SCREEN_WIDTH} from './../../utils/constants';
+
+
+
+
+// import { mysql } from "mysql";
+
+
+
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+  componentDidMount() {
+  // const sql_conn = mysql.createConnection({
+  //   host : 'localhost',
+  //   user : 'Softcob_pizza',
+  //   password: 'Frequency',
+  //   database: 'softcob_pizza'
+  // }).then(res => {
+  //   console.log(res),
+  // })
 
+  }
+  
   render() {
     return (
       <View>
@@ -20,7 +40,7 @@ class Dashboard extends Component {
           placement="center"
           leftComponent={{icon: 'menu', color: Colors.theme_color.orange}}
           // centerComponent={{ text: 'MY TITLE', style: { color: Colors.theme_color.orange, fontWeight: "bold" } }}
-          rightComponent={{icon: 'home', color: '#fff'}}
+          rightComponent={{icon: 'shopping-cart', color: Colors.theme_color.orange}}
         />
         <ScrollView>
           <View style={{backgroundColor: '#fff'}}>
@@ -73,11 +93,13 @@ class Dashboard extends Component {
                     borderRadius: 18,
                   }}>
                   <View style={{marginTop: -15, marginRight: 15}}>
+                    <TouchableOpacity onPress={() => this.setState({ addCart: true })}>
                     <Icon
                       name="shopping-cart"
                       type="font-awesome"
                       color="#fff"
                     />
+                    </TouchableOpacity>
                   </View>
                   <Image source={Img.dish} />
                 </LinearGradient>

@@ -5,6 +5,7 @@ import Splash from './../containers/Splash/Splash';
 import Login from './../containers/Auth/Login/Login';
 import Register from './../containers/Auth/Register/Register';
 import Offline from './../containers/Offline/Offline';
+import HomeNav from './HomeNav';
 
  const Auth = createStackNavigator(
   {
@@ -12,6 +13,7 @@ import Offline from './../containers/Offline/Offline';
     Login: {screen: Login},
     Register: {screen: Register},
     Offline: {screen: Offline},
+    HomeNav : { screen: HomeNav }
   },
   {
     headerMode: 'none',

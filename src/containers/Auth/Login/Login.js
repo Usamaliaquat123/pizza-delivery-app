@@ -1,23 +1,27 @@
 import React, {Component} from 'react';
-import {View, Text, ScrollView, Image} from 'react-native';
+import {View, Text, ScrollView, Image,TouchableOpacity} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import styles from './Login.styles';
 import {Img, jsons} from './../../../theme';
 import LinearGradient from 'react-native-linear-gradient';
 import {Input, Icon, Button} from 'react-native-elements';
 import LottieView from 'lottie-react-native';
-// import { logo } from './../../../theme/Images';
+import Modal from 'react-native-modalbox'
+import { Bars  } from 'react-native-loader'
 class Login extends Component {
   constructor(props) {
     console.log(Img);
     super(props);
-    this.state = {};
+    this.state = {
+      loading: false
+    };
   }
 
   render() {
     return (
       <ScrollView>
-        <KeyboardAwareScrollView>
+      {this.state.loading == false && (
+<KeyboardAwareScrollView>
           <View style={styles.container}>
             <View>
               <LottieView
@@ -80,6 +84,9 @@ class Login extends Component {
               />
             </LinearGradient>
             <View style={{alignSelf: 'center'}}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
+            
+            
               <LinearGradient
                 colors={['#FE5D03', '#F94D03', '#F94D03']}
                 start={{x: 0, y: 0}}
@@ -95,6 +102,7 @@ class Login extends Component {
                 }}>
                 <Text style={{color: 'white', fontWeight: 'bold'}}>LOGIN</Text>
               </LinearGradient>
+            </TouchableOpacity>
               <Text style={{textAlign: 'center', fontSize: 14, marginTop: 10}}>
                 If you don't have an account{' '}
                 <Text
@@ -106,11 +114,19 @@ class Login extends Component {
             </View>
           </View>
         </KeyboardAwareScrollView>
-        <Modal style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"} backdrop={true} isDisabled={this.state.isDisabled} coverScreen={true} backdropPressToClose={false}>
-          <View>
-            <Bars size={20} color="#FC3838"/>
-          </View>
-        </Modal>
+      )}
+      {this.state.loading == true && (
+
+
+    <View style={{flex: 1, justifyContent: 'center'}}>
+      <LottieView
+        autoPlay
+        source={jsons.loading}
+        // overlayColor="white"
+        style={{alignSelf: 'center', width: 100, height: 100}}
+      />
+    </View>
+      )}
       </ScrollView>
     );
   }

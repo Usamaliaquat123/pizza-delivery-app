@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { Header } from "react-native-elements";
+import { View, Text,ScrollView } from 'react-native';
 import {styles} from './Dashboard.styles'
+import Colors from './../../theme/Colors';
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +13,17 @@ class Dashboard extends Component {
   render() {
     return (
       <View>
-        <Text> Dashboard </Text>
+      <Header
+  backgroundColor="#fff"
+  placement="center"
+  leftComponent={{ icon: 'menu', color: Colors.theme_color.orange }}
+  // centerComponent={{ text: 'MY TITLE', style: { color: Colors.theme_color.orange, fontWeight: "bold" } }}
+  rightComponent={{ icon: 'home', color: '#fff' }}
+/>
+      <ScrollView>
+      
+        <Text>asda</Text>
+      </ScrollView>
       </View>
     );
   }

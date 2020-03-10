@@ -72,39 +72,77 @@ class Dashboard extends Component {
                     width: 150,
                     borderRadius: 18,
                   }}>
-                  <Image
-                    source={Img.dish}
-                  />
+                  <Image source={Img.dish} />
                 </LinearGradient>
               </View>
             </ScrollView>
-            <View style={{ margin: 10 }}>
+            <View style={{margin: 10}}>
               {/* products */}
-                <Text style={{ fontSize: 25, fontWeight: 'bold', color: "#372611", margin: 4 }}>More</Text>
-                <ScrollView showsHorizontalScrollIndicator={false}
-              horizontal={true}>
-                     <View style={{margin: 5}}>
-                <LinearGradient
-                  colors={['#E5E5E5', '#E5E5E5', '#E5E5E5']}
-                  start={{x: 0, y: 1}}
-                  end={{x: 1, y: 0}}
-                  style={{
-                    height: 215,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: 150,
-                    // borderRadius: 18,
-                  }}>
-                  <View style={{ backgroundColor: "#FE4A00", padding: 5, width: 60, marginTop: -40, borderRadius: 4  }}>
-                    <Text style={{ textAlign: 'center', fontWeight: 'bold', color: "#fff" }}>New</Text>
-                  </View>
-                  <Image
-                    source={Img.dish}
-                    style={{alignSelf: 'center', resizeMode: 'contain'}}
-                  />
-                </LinearGradient>
-               </View>
-                </ScrollView>
+              <Text
+                style={{
+                  fontSize: 25,
+                  fontWeight: 'bold',
+                  color: '#372611',
+                  margin: 4,
+                }}>
+                More
+              </Text>
+              <ScrollView
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}>
+                <View style={{margin: 5}}>
+                  <LinearGradient
+                    colors={['#E5E5E5', '#E5E5E5', '#E5E5E5']}
+                    start={{x: 0, y: 1}}
+                    end={{x: 1, y: 0}}
+                    style={{
+                      height: 215,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: 150,
+                      // borderRadius: 18,
+                    }}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        height: 30,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      <View
+                        style={{
+                          backgroundColor: '#FE4A00',
+                          padding: 5,
+                          width: 60,
+                          marginLeft: 35,
+                          marginTop: -18,
+                          marginBottom: 15,
+                          borderRadius: 4,
+                        }}>
+                        <Text
+                          style={{
+                            textAlign: 'center',
+                            fontWeight: 'bold',
+                            color: '#fff',
+                          }}>
+                          New
+                        </Text>
+                      </View>
+                      <View style={{marginTop: -25, marginLeft: 18}}>
+                        <Icon
+                          name="shoppingcart"
+                          type="antdesign"
+                          color="#FC8C00"
+                        />
+                      </View>
+                    </View>
+                    <Image
+                      source={Img.dish}
+                      style={{alignSelf: 'center', resizeMode: 'contain'}}
+                    />
+                  </LinearGradient>
+                </View>
+              </ScrollView>
             </View>
           </View>
         </ScrollView>

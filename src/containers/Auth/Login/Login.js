@@ -106,6 +106,11 @@ class Login extends Component {
             </View>
           </View>
         </KeyboardAwareScrollView>
+        <Modal style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"} backdrop={true} isDisabled={this.state.isDisabled} coverScreen={true} backdropPressToClose={false}>
+          <View>
+            <Bars size={20} color="#FC3838"/>
+          </View>
+        </Modal>
       </ScrollView>
     );
   }

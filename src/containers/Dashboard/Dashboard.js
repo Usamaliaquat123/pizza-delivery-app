@@ -67,11 +67,18 @@ class Dashboard extends Component {
                   // start={{ x: 0.7, y: 1.2 }} end={{ x: 0.0, y: 0.7 }}
                   style={{
                     height: 215,
-                    alignItems: 'center',
+                    alignItems: 'flex-end',
                     justifyContent: 'center',
                     width: 150,
                     borderRadius: 18,
                   }}>
+                  <View style={{marginTop: -15, marginRight: 15}}>
+                    <Icon
+                      name="shopping-cart"
+                      type="font-awesome"
+                      color="#fff"
+                    />
+                  </View>
                   <Image source={Img.dish} />
                 </LinearGradient>
               </View>

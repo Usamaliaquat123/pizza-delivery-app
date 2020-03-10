@@ -26,29 +26,47 @@ class Login extends Component {
                 style={styles.logo}
               />
             </View>
-             <Input
-             autoCompleteType={'tel'}
+          
+
+  <LinearGradient
+                colors={['#FE5D03', '#F94D03', '#F94D03']}
+                start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+                // start={{ x: 0.7, y: 1.2 }} end={{ x: 0.0, y: 0.7 }}
+                style={styles.outline}
+              >
+               <Input
                 inputContainerStyle={styles.viewInput}
-                placeholder="email@address.com"
-                placeholderTextColor={'#C7C7C7'}
+                placeholder="+92300055125"
+                placeholderTextColor={'#F94D03'}
                 autoCapitalize={'none'}
                 autoCorrect={false}
-                value={'232'}
+                value={''}
                 keyboardType="numeric"
                 inputStyle={styles.textInput}
                 onChangeText={text => this.setState({username: text})}
                 leftIcon={
                   <Icon
-                    name={'email'}
+                    name={'phone'}
                     underlayColor={'transparent'}
-                    color={'#C7C7C7'}
+                    color={'#FE5D03'}
+                    type={'entypo'}
                   />
                 }
               />
+                 </LinearGradient>
+
+
+
+              <LinearGradient
+                colors={['#FE5D03', '#F94D03', '#F94D03']}
+                start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+                // start={{ x: 0.7, y: 1.2 }} end={{ x: 0.0, y: 0.7 }}
+                style={styles.outline}
+              >
                <Input
                 inputContainerStyle={styles.viewInput}
                 placeholder="******"
-                placeholderTextColor={'#C7C7C7'}
+                placeholderTextColor={'#F94D03'}
                 autoCapitalize={'none'}
                 autoCorrect={false}
                 value={''}
@@ -59,15 +77,17 @@ class Login extends Component {
                   <Icon
                     name={'email'}
                     underlayColor={'transparent'}
-                    color={'#C7C7C7'}
+                    color={'#FE5D03'}
                   />
                 }
               />
+                 </LinearGradient>
               <View style={{ alignSelf: 'center' }}>
               
              <LinearGradient
-                colors={['#FC3838', '#F52B43', '#ED0D51']}
-                start={{ x: 0.7, y: 1.2 }} end={{ x: 0.0, y: 0.7 }}
+                colors={['#FE5D03', '#F94D03', '#F94D03']}
+                start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+                // start={{ x: 0.7, y: 1.2 }} end={{ x: 0.0, y: 0.7 }}
                 style={{ height: 48, width: 270, alignItems: 'center',
                  justifyContent: 'center', width: 270, borderRadius: 18 }}
               >

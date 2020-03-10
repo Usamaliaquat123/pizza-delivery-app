@@ -13,20 +13,33 @@ const styles = StyleSheet.create({
     height: SCREEN_HEIGHT,
   },
   viewInput: {
-    alignSelf: 'center',
+    // alignSelf: 'center',
     borderRadius: 50,
     borderWidth: 3,
-    backgroundColor: 'transparent',
+    backgroundColor: '#fff',
     borderBottomWidth: 3,
-    borderColor: Colors.theme_color.orange,
+    // borderColor: ,
+    borderColor: 'transparent',
+    marginTop: 0,
+    marginLeft: -10,
     height: 60,
     width: SCREEN_WIDTH - 80,
     marginBottom: 20,
-  }, 
-   textInput: {
+  },
+  textInput: {
     fontSize: 16,
     fontWeight: '400',
     color: Colors.theme_color.light_orange,
+  },
+  outline: {
+    alignSelf: 'center',
+    borderRadius: 50,
+    backgroundColor: '#fff',
+    // borderBottomWidth: 3,
+    // borderColor: ,
+    height: 60,
+    marginBottom: 20,
+    width: SCREEN_WIDTH - 79.5,
   },
 });
 

@@ -84,7 +84,7 @@ console.log(data);
               showsHorizontalScrollIndicator={false}
               horizontal={true}>
                 {this.state.featured.map(dishes => (
-               <View style={{margin: 5}}>
+               <TouchableOpacity style={{margin: 5}} onPress={() => this.props.navigation.navigate('ProductDetail',{product : dishes})}>
                 <LinearGradient
                   colors={['#FE4A00', '#F84D00', '#FC8C00']}
                   start={{x: 0, y: 1}}
@@ -108,7 +108,7 @@ console.log(data);
                   </View>
                   <Image source={Img.dish} />
                 </LinearGradient>
-              </View> 
+              </TouchableOpacity> 
                 ))}
             </ScrollView>
             <View style={{margin: 10}}>

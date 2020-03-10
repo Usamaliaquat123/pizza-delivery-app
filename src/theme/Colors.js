@@ -1,7 +1,7 @@
 const Colors = {
     background : '#FFFF',
     theme_color : {
-        orange: '#FF4800',
+        orange: '#F84D00',
         light_orange: '#F54E08'
     }
 }

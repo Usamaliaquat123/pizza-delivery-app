@@ -5,20 +5,22 @@ import {styles} from './Dashboard.styles';
 import {Colors, Img} from './../../theme';
 // import {Img, jsons} from './../../../theme';
 import LinearGradient from 'react-native-linear-gradient';
-import {SCREEN_WIDTH} from './../../utils/constants';
-
+import { SCREEN_WIDTH, STATUS_BAR_HEIGHT } from './../../utils/constants';
 
 
 
 // import { mysql } from "mysql";
-
+import data from './../mockdb/data';
 
 
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      featured : [],
+      food : []
+    };
   }
   componentDidMount() {
   // const sql_conn = mysql.createConnection({
@@ -29,17 +31,19 @@ class Dashboard extends Component {
   // }).then(res => {
   //   console.log(res),
   // })
-
+console.log(data);
+   this.setState({ featured : data.filter(data => data.featured == 1), food: data.filter(data => data.featured == 0) })
   }
   
+
   render() {
     return (
-      <View>
+      <>
         <Header
-          backgroundColor="#fff"
+          containerStyle={{  marginTop: Platform.OS === 'ios' ? 0 : -STATUS_BAR_HEIGHT,}}
+          backgroundColor="transparent"
           placement="center"
           leftComponent={{icon: 'menu', color: Colors.theme_color.orange}}
-          // centerComponent={{ text: 'MY TITLE', style: { color: Colors.theme_color.orange, fontWeight: "bold" } }}
           rightComponent={{icon: 'shopping-cart', color: Colors.theme_color.orange}}
         />
         <ScrollView>
@@ -79,9 +83,10 @@ class Dashboard extends Component {
             <ScrollView
               showsHorizontalScrollIndicator={false}
               horizontal={true}>
-              <View style={{margin: 5}}>
+                {this.state.featured.map(dishes => (
+               <View style={{margin: 5}}>
                 <LinearGradient
-                  colors={['#FE4A00', '#FD6F00', '#FC8C00']}
+                  colors={['#FE4A00', '#F84D00', '#FC8C00']}
                   start={{x: 0, y: 1}}
                   end={{x: 1, y: 0}}
                   // start={{ x: 0.7, y: 1.2 }} end={{ x: 0.0, y: 0.7 }}
@@ -103,7 +108,8 @@ class Dashboard extends Component {
                   </View>
                   <Image source={Img.dish} />
                 </LinearGradient>
-              </View>
+              </View> 
+                ))}
             </ScrollView>
             <View style={{margin: 10}}>
               {/* products */}
@@ -119,7 +125,8 @@ class Dashboard extends Component {
               <ScrollView
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}>
-                <View style={{margin: 5}}>
+               {this.state.food.map(food => (
+                  <View style={{margin: 5}}>
                   <LinearGradient
                     colors={['#E5E5E5', '#E5E5E5', '#E5E5E5']}
                     start={{x: 0, y: 1}}
@@ -158,11 +165,14 @@ class Dashboard extends Component {
                         </Text>
                       </View>
                       <View style={{marginTop: -25, marginLeft: 18}}>
+                      <TouchableOpacity onPress={() => console.log('fav')}>
+                      
                         <Icon
                           name="shoppingcart"
                           type="antdesign"
                           color="#FC8C00"
                         />
+                      </TouchableOpacity>
                       </View>
                     </View>
                     <Image
@@ -171,11 +181,31 @@ class Dashboard extends Component {
                     />
                   </LinearGradient>
                 </View>
+               ))}
               </ScrollView>
+             
             </View>
           </View>
         </ScrollView>
-      </View>
+        {/* button of order now */}
+         {/* <View style={{ alignSelf: "center", backgroundColor: 'transparent', marginBottom: 20 }}>
+              <LinearGradient
+                colors={['#F84D00', '#F84D00', '#FD6F00']}
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+                style={{
+                  height: 48,
+                  width: 270,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 270,
+                  borderRadius: 5,
+                  backgroundColor: 'transparent'
+                }}>
+                <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20}}>Order Now !</Text>
+              </LinearGradient>
+              </View> */}
+      </>
     );
   }
 }

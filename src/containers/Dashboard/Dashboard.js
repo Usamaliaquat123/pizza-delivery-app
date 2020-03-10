@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import {Header, Card, Button, Icon} from 'react-native-elements';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, Image} from 'react-native';
 import {styles} from './Dashboard.styles';
-import Colors from './../../theme/Colors';
+import {Colors, Img} from './../../theme';
+// import {Img, jsons} from './../../../theme';
+import LinearGradient from 'react-native-linear-gradient';
+import {SCREEN_WIDTH} from './../../utils/constants';
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -20,59 +23,63 @@ class Dashboard extends Component {
           rightComponent={{icon: 'home', color: '#fff'}}
         />
         <ScrollView>
-          <View>
-            <Text
-              style={{
-                textAlign: 'center',
-                color: Colors.theme_color.orange,
-                fontWeight: 'bold',
-                fontSize: 40,
-              }}>
-              Food Menu
-            </Text>
-            <View
-              style={{
-                borderBottomColor: Colors.theme_color.orange,
-                borderBottomWidth: 1,
-                width: 200,
-                alignSelf: 'center',
-              }}
-            />
-
-            <Text
-              style={{
-                textAlign: 'center',
-                fontSize: 17,
-                color: '#322514',
-                margin: 10,
-                opacity: 0.6,
-              }}>
-              Choose your best pizza have a great day !
-            </Text>
-          </View>
-          {/* Featured Pizza's */}
-
-          <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
-            <Card
-              title="HELLO WORLD"
-              // image={require('../images/pic2.jpg')}
-            >
-              <Text style={{marginBottom: 10}}>
-                The idea with React Native Elements is more about component
-                structure than actual design.
+          <View style={{backgroundColor: '#fff'}}>
+            <View>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  color: Colors.theme_color.orange,
+                  fontWeight: 'bold',
+                  fontSize: 40,
+                }}>
+                Food Menu
               </Text>
-              <Button
-                icon={<Icon name="code" color="#ffffff" />}
-                buttonStyle={{
-                  borderRadius: 0,
-                  marginLeft: 0,
-                  marginRight: 0,
-                  marginBottom: 0,
+              <View
+                style={{
+                  borderBottomColor: Colors.theme_color.orange,
+                  borderBottomWidth: 1,
+                  width: 200,
+                  alignSelf: 'center',
                 }}
-                title="VIEW NOW"
               />
-            </Card>
-          </ScrollView>
+
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontSize: 17,
+                  color: '#322514',
+                  margin: 10,
+                  opacity: 0.6,
+                }}>
+                Choose your best pizza have a great day !
+              </Text>
+            </View>
+            {/* Featured Pizza's */}
+
+            <ScrollView
+              showsHorizontalScrollIndicator={false}
+              horizontal={true}>
+              <View style={{margin: 5}}>
+                <LinearGradient
+                  colors={['#FE4A00', '#FD6F00', '#FC8C00']}
+                  start={{x: 0, y: 1}}
+                  end={{x: 1, y: 0}}
+                  // start={{ x: 0.7, y: 1.2 }} end={{ x: 0.0, y: 0.7 }}
+                  style={{
+                    height: 215,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: 150,
+                    borderRadius: 18,
+                  }}>
+                  <Image
+                    source={Img.dish}
+                    style={{alignSelf: 'center', resizeMode: 'contain'}}
+                  />
+                </LinearGradient>
+              </View>
+            </ScrollView>
+          </View>
         </ScrollView>
       </View>
     );

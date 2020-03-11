@@ -59,7 +59,7 @@ class Dashboard extends Component {
           }
           rightComponent={
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('cart')}>
+              onPress={() => this.props.navigation.navigate('Cart')}>
               <Icon
                 name="shopping-cart"
                 type="entypo"

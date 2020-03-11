@@ -36,18 +36,21 @@ class ProductDetail extends Component {
           }}
           backgroundColor="#E5E5E5"
           placement="center"
-          leftComponent={{
-            icon: 'left',
-            // name: 'antdesign',
-            color: '#372611',
-          }}
-          rightComponent={
-            <TouchableOpacity onPress={() => console.log('cart')}>
+          leftComponent={
+            (
+            <TouchableOpacity onPress={() => this.props.navigation.pop()}>
+                <Icon name="left" type="antdesign" color="#372611" />
+            </TouchableOpacity>
+          )
+          
+          
+          }
+          rightComponent={(
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('cart')}>
                 <Icon name="shopping-cart" type="entypo" color="#372611" />
             </TouchableOpacity>
-            
+          )
           }
-            // {icon: 'shopping-cart', color: '#372611'}}
         />
         <ScrollView>
           <View

@@ -6,11 +6,13 @@ import {Colors, Img} from './../../../theme';
 import {STATUS_BAR_HEIGHT, SCREEN_WIDTH} from './../../../utils/constants';
 import AsyncStorage from '@react-native-community/async-storage';
 import  LinearGradient  from 'react-native-linear-gradient';
+import data from './../../mockdb/data';
 class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
+      products : data,
+      count: 1,
     };
   }
 
@@ -22,15 +24,18 @@ class Cart extends Component {
       .catch(err => {
         console.log(err);
       });
+
+    for (let i = 0; i < this.state.products.length; i++) this.state.products[i]['quantity'] = 1  
+      
   }
 
-  // storeData = async () => {
-  //   try {
-  //     await AsyncStorage.setItem('@storage_Key', 'stored value')
-  //   } catch (e) {
-  //     // saving error
-  //   }
-  // }
+
+  decreamentItem() {
+
+  }
+  increamentItem() {
+
+  }
   render() {
     return (
       <>
@@ -45,7 +50,7 @@ class Cart extends Component {
               <Icon
                 name="restaurant-menu"
                 type="material"
-                color={Colors.theme_color.orange}
+                color={'#382715'}
               />
             </TouchableOpacity>
           }
@@ -55,7 +60,7 @@ class Cart extends Component {
               <Icon
                 name="shopping-cart"
                 type="entypo"
-                color={Colors.theme_color.orange}
+                color={'#382715'}
               />
             </TouchableOpacity>
           }
@@ -99,10 +104,13 @@ class Cart extends Component {
           </View>
 
 
-          <View
+
+
+        {this.state.products.map(products => (
+  <View
             style={{
               backgroundColor: '#E5E5E5',
-              height: 300,
+              height: 460,
               marginTop: 15,
       borderRadius: 40,
               width: SCREEN_WIDTH - 10,
@@ -117,13 +125,18 @@ class Cart extends Component {
             </View>
             {/* {this.state.product.offer != "" && ( */}
 
+
+
             <View
               style={{
-                flexDirection: 'row',
                 padding: 10,
                 justifyContent: 'center',
-                borderRadius: 10,
+                // borderRadius: 10,
               }}>
+
+              <Text style={{ fontSize: 25, fontWeight: 'bold', color: "#FE4A00", textAlign: "center"}}>{products.title}</Text>
+              
+            <View style={{ flexDirection: 'row', alignSelf: 'center',}}>
               <Icon name="tags" type="antdesign" color="#382715" size={35} />
               <Text
                 style={{
@@ -132,51 +145,32 @@ class Cart extends Component {
                   color: '#FE4A00',
                   marginTop: 5,
                 }}>
-                20% off
+                {products.offer}% off
               </Text>
+            </View>
+            <Text style={{ color: "#FE4A00", fontWeight: "bold", fontSize: 12, textAlign: "center" }}>{products.overview}</Text>
+            {/* quantity */}
+            <View style={{ flexDirection: "row", marginTop: 15, alignSelf: 'center', }}>
+                <Icon name="left" type="antdesign" color="#FE4A00" size={30} iconStyle={{ marginTop: 1 }} onPress={() => this.decreamentItem(products._id)} />
+
+                <Text style={{ color: "#FE4A00", fontSize: 18, fontWeight: "bold", marginLeft: 20, marginRight: 20 }}>{products.quantity}</Text>
+                <Icon name="right" type="antdesign" color="#FE4A00" size={30} iconStyle={{ marginTop: 1, }} onPress={() => this.increamentItem(products._id)} />
+            </View>
+
+            <View style={{ padding: 10, backgroundColor: "#FE4A00", color: "#fff", alignSelf: "center", borderRadius: 10, marginTop: 10 }}>
+                <Text style={{ color: "#fff", fontWeight: "bold" }}>Rs {products.price}</Text>
+            </View>
             </View>
             {/* )} */}
           </View>
+        ))}
+        
 
-          <View
-            style={{
-              backgroundColor: '#E5E5E5',
-              height: 300,
-              marginTop: 15,
-      borderRadius: 40,
-              width: SCREEN_WIDTH - 10,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <View style={{ alignSelf: 'flex-end', marginRight: 20, marginTop: 10}}>
-            <Icon name="cross" type="entypo" size={30} color="#382715" />
-            </View>
-            <View style={{ alignItems: 'center',}}>
-            <Image source={Img.hd_dish} />
-            </View>
-            {/* {this.state.product.offer != "" && ( */}
 
-            <View
-              style={{
-                flexDirection: 'row',
-                padding: 10,
-                justifyContent: 'center',
-                borderRadius: 10,
-              }}>
-              <Icon name="tags" type="antdesign" color="#382715" size={35} />
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: 'bold',
-                  color: '#FE4A00',
-                  marginTop: 5,
-                }}>
-                20% off
-              </Text>
-            </View>
-            {/* )} */}
-          </View>
-<View
+
+
+
+        <View
                 style={{
                   alignSelf: 'center',
                   backgroundColor: 'transparent',

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, ScrollView, Image,} from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import {styles} from './ProductDetail.styles';
 import {Header,Icon,Badge} from 'react-native-elements';
 import {STATUS_BAR_HEIGHT, SCREEN_WIDTH} from './../../../utils/constants';
@@ -41,7 +41,13 @@ class ProductDetail extends Component {
             // name: 'antdesign',
             color: '#372611',
           }}
-          rightComponent={{icon: 'shopping-cart', color: '#372611'}}
+          rightComponent={
+            <TouchableOpacity onPress={() => console.log('cart')}>
+                <Icon name="shopping-cart" type="entypo" color="#372611" />
+            </TouchableOpacity>
+            
+          }
+            // {icon: 'shopping-cart', color: '#372611'}}
         />
         <ScrollView>
           <View

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, ScrollView, Image} from 'react-native';
 import {styles} from './ProductDetail.styles';
-import {Header} from 'react-native-elements';
+import {Header,Badge} from 'react-native-elements';
 import {STATUS_BAR_HEIGHT, SCREEN_WIDTH} from './../../../utils/constants';
 import {Colors, Img} from './../../../theme';
 import LinearGradient from 'react-native-linear-gradient';
@@ -77,6 +77,8 @@ class ProductDetail extends Component {
                 }}>
                 {this.state.product.overview}
               </Text>
+              <View style={{ marginTop: 30 }}>
+              
               <LinearGradient
                 colors={['#FE4A00', '#F84D00', '#FC8C00']}
                 start={{x: 0, y: 0}}
@@ -84,7 +86,7 @@ class ProductDetail extends Component {
                 style={{
                   alignItems: 'center',
                   justifyContent: 'center',
-                  borderRadius: 5,
+                  borderRadius: 10,
                   backgroundColor: '#fff',
                   // borderBottomWidth: 3,
                   // borderColor: ,
@@ -95,7 +97,7 @@ class ProductDetail extends Component {
                 <View
                   style={{
                     backgroundColor: '#fff',
-                    borderRadius: 5,
+                    borderRadius: 10,
                     padding: 10,
                     height: 45,
                     width: 145,
@@ -103,7 +105,7 @@ class ProductDetail extends Component {
                   <Text
                     style={{
                       color: '#FE4A00',
-                      fontSize: 15,
+                      fontSize: 20,
                       fontWeight: 'bold',
                       textAlign: 'center',
                     }}>
@@ -111,6 +113,17 @@ class ProductDetail extends Component {
                   </Text>
                 </View>
               </LinearGradient>
+              </View>
+
+              <View style={{  flexDirection: 'row',justifyContent: 'center',}}>
+              
+                {this.state.product.items.map(tags => (
+
+              <Badge value={<Text style={{ margin: 20, fontSize: 15, color: '#fff' }}>My Custom Badge</Text>} style={{ padding: 20 }} status="error" />
+                ))}
+              
+              </View>
+          {/* Badges */}
             </View>
           </View>
         </ScrollView>

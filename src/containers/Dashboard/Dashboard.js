@@ -128,8 +128,13 @@ console.log(data);
                 More
               </Text>
               <ScrollView
-                showsHorizontalScrollIndicator={false}
-                horizontal={true}>
+                // showsHorizontalScrollIndicator={false}
+                // horizontal={true}>
+                >
+                <View style={{ flexDirection: "row" }}>
+
+
+
                {this.state.food.map(food => (
                   <View style={{margin: 5}}>
                   <LinearGradient
@@ -187,6 +192,7 @@ console.log(data);
                   </LinearGradient>
                 </View>
                ))}
+                </View>
               </ScrollView>
              
             </View>

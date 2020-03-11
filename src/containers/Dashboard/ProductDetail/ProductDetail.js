@@ -37,8 +37,8 @@ class ProductDetail extends Component {
           backgroundColor="#E5E5E5"
           placement="center"
           leftComponent={{
-            icon: 'arrowleft',
-            name: 'antdesign',
+            icon: 'left',
+            // name: 'antdesign',
             color: '#372611',
           }}
           rightComponent={{icon: 'shopping-cart', color: '#372611'}}

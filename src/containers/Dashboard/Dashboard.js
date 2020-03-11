@@ -196,8 +196,6 @@ class Dashboard extends Component {
                               backgroundColor: '#FE4A00',
                               padding: 5,
                               alignSelf: 'center',
-                              // width: 60,
-                              // marginLeft: 35,
                               marginTop: -20, 
                               marginBottom: 15,
                               borderRadius: 4,
@@ -230,7 +228,6 @@ class Dashboard extends Component {
                           )}
 
                            {item.offer != "" && (
-
                              <View style={{marginTop: -20 }}>
                             <TouchableOpacity
                               onPress={() => console.log('fav')}>
@@ -242,16 +239,6 @@ class Dashboard extends Component {
                             </TouchableOpacity>
                           </View>
                           )}
-                          {/* <View style={{marginTop: -20 ,marginRight: -60}}>
-                            <TouchableOpacity
-                              onPress={() => console.log('fav')}>
-                              <Icon
-                                name="shoppingcart"
-                                type="antdesign"
-                                color="#FC8C00"
-                              />
-                            </TouchableOpacity>
-                          </View> */}
                         </View>
                         <Image
                           source={Img.dish}

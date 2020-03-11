@@ -11,8 +11,21 @@ class ProductDetail extends Component {
     super(props);
     this.state = {
       product: this.props.navigation.getParam('product'),
+      productItem: []
     };
   }
+
+  componentDidMount() {
+    console.log(this.state.product.items)
+    const spc = this.state.product.items.trim(' ')
+    const ArrItem  = spc.split(',')
+    // const ArrItem = this.state.product.items
+    console.log(ArrItem);
+    
+    this.setState({ productItem : ArrItem})
+
+  }
+  
 
   render() {
     return (
@@ -109,7 +122,7 @@ class ProductDetail extends Component {
                       fontWeight: 'bold',
                       textAlign: 'center',
                     }}>
-                    ${this.state.product.price}
+                    Rs {this.state.product.price}
                   </Text>
                 </View>
               </LinearGradient>
@@ -117,9 +130,9 @@ class ProductDetail extends Component {
 
               <View style={{  flexDirection: 'row',justifyContent: 'center',}}>
               
-                {this.state.product.items.map(tags => (
-              <Badge value={<Text style={{ color: '#E5E5E5', fontWeight: 'bold' }}>{tags}</Text>} badgeStyle ={{ padding: 15, backgroundColor: '#FE4A00', fontWeight: 'bold' }}/>
-                ))}
+                {this.state.productItem.map(tags => (
+                <Badge value={<Text style={{ color: '#E5E5E5', fontWeight: 'bold' }}>{tags}</Text>} badgeStyle ={{ padding: 15, backgroundColor: '#FE4A00', fontWeight: 'bold' }}/> 
+               ))}
                {/* button of order now */}
               </View>
                {/* button of order now */}

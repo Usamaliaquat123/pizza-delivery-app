@@ -11,6 +11,7 @@ import { SCREEN_WIDTH, STATUS_BAR_HEIGHT } from './../../utils/constants';
 
 // import { mysql } from "mysql";
 import data from './../mockdb/data';
+import Api from './../../Services/Api';
 
 
 
@@ -23,6 +24,10 @@ class Dashboard extends Component {
     };
   }
   componentDidMount() {
+
+    Api.products().then(res =>{ this.setState({ featured: res.data }) 
+    console.log(res.data);
+    }).catch(err => console.log(err))
   // const sql_conn = mysql.createConnection({
   //   host : 'localhost',
   //   user : 'Softcob_pizza',

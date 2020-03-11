@@ -187,24 +187,7 @@ console.log(data);
             </View>
           </View>
         </ScrollView>
-        {/* button of order now */}
-         {/* <View style={{ alignSelf: "center", backgroundColor: 'transparent', marginBottom: 20 }}>
-              <LinearGradient
-                colors={['#F84D00', '#F84D00', '#FD6F00']}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}
-                style={{
-                  height: 48,
-                  width: 270,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: 270,
-                  borderRadius: 5,
-                  backgroundColor: 'transparent'
-                }}>
-                <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20}}>Order Now !</Text>
-              </LinearGradient>
-              </View> */}
+       
       </>
     );
   }

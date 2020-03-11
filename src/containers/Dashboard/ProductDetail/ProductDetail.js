@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text, ScrollView, Image} from 'react-native';
+import {View, Text, ScrollView, Image,} from 'react-native';
 import {styles} from './ProductDetail.styles';
-import {Header,Badge} from 'react-native-elements';
+import {Header,Icon,Badge} from 'react-native-elements';
 import {STATUS_BAR_HEIGHT, SCREEN_WIDTH} from './../../../utils/constants';
 import {Colors, Img} from './../../../theme';
 import LinearGradient from 'react-native-linear-gradient';
@@ -118,10 +118,34 @@ class ProductDetail extends Component {
               <View style={{  flexDirection: 'row',justifyContent: 'center',}}>
               
                 {this.state.product.items.map(tags => (
-
-              <Badge value={<Text style={{ margin: 20, fontSize: 15, color: '#fff' }}>My Custom Badge</Text>} style={{ padding: 20 }} status="error" />
+              <Badge value={<Text style={{ color: '#E5E5E5', fontWeight: 'bold' }}>{tags}</Text>} badgeStyle ={{ padding: 15, backgroundColor: '#FE4A00', fontWeight: 'bold' }}/>
                 ))}
-              
+               {/* button of order now */}
+              </View>
+               {/* button of order now */}
+         <View style={{ alignSelf: "center", backgroundColor: 'transparent', marginBottom: 20 }}>
+              <LinearGradient
+                colors={['#FE4A00', '#FE4A00', '#FD6F00']}
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+                style={{
+                  marginTop: 10,
+                  height: 48,
+                  width: 270,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 270,
+                  borderRadius: 10,
+                  backgroundColor: 'transparent',
+                  flexDirection: 'row',
+                }}>
+                <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20}}>Order Now </Text>
+                  <Icon
+                      name="shopping-cart"
+                      type="font-awesome"
+                      color="#fff"
+                    />
+              </LinearGradient>
               </View>
           {/* Badges */}
             </View>

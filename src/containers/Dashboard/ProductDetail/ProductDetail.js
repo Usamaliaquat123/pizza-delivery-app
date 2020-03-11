@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
+import {View, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
 import {styles} from './ProductDetail.styles';
-import {Header,Icon,Badge} from 'react-native-elements';
+import {Header, Icon, Badge} from 'react-native-elements';
 import {STATUS_BAR_HEIGHT, SCREEN_WIDTH} from './../../../utils/constants';
 import {Colors, Img} from './../../../theme';
 import LinearGradient from 'react-native-linear-gradient';
@@ -11,21 +11,19 @@ class ProductDetail extends Component {
     super(props);
     this.state = {
       product: this.props.navigation.getParam('product'),
-      productItem: []
+      productItem: [],
     };
   }
 
   componentDidMount() {
-    console.log(this.state.product.items)
-    const spc = this.state.product.items.trim(' ')
-    const ArrItem  = spc.split(',')
+    console.log(this.state.product.items);
+    const spc = this.state.product.items.trim(' ');
+    const ArrItem = spc.split(',');
     // const ArrItem = this.state.product.items
     console.log(ArrItem);
-    
-    this.setState({ productItem : ArrItem})
 
+    this.setState({productItem: ArrItem});
   }
-  
 
   render() {
     return (
@@ -37,19 +35,15 @@ class ProductDetail extends Component {
           backgroundColor="#E5E5E5"
           placement="center"
           leftComponent={
-            (
             <TouchableOpacity onPress={() => this.props.navigation.pop()}>
-                <Icon name="left" type="antdesign" color="#372611" />
+              <Icon name="left" type="antdesign" color="#372611" />
             </TouchableOpacity>
-          )
-          
-          
           }
-          rightComponent={(
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('cart')}>
-                <Icon name="shopping-cart" type="entypo" color="#372611" />
+          rightComponent={
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('cart')}>
+              <Icon name="shopping-cart" type="entypo" color="#372611" />
             </TouchableOpacity>
-          )
           }
         />
         <ScrollView>
@@ -64,6 +58,13 @@ class ProductDetail extends Component {
               justifyContent: 'center',
             }}>
             <Image source={Img.hd_dish} />
+            {this.state.product.offer != "" && (
+
+            <View style={{ flexDirection: 'row', padding: 10, justifyContent: 'center', borderRadius: 10 }}>
+                <Icon name="tags" type="antdesign" color="#382715" size={35} />
+                <Text style={{ fontSize: 20, fontWeight: 'bold', color:"#FE4A00", marginTop:5,  }}>{this.state.product.offer}% off</Text>
+              </View>
+            )}
           </View>
           {/* content */}
           <View style={{alignItems: 'center', marginTop: 5}}>
@@ -99,77 +100,90 @@ class ProductDetail extends Component {
                 }}>
                 {this.state.product.overview}
               </Text>
-              <View style={{ marginTop: 30 }}>
-              
-              <LinearGradient
-                colors={['#FE4A00', '#F84D00', '#FC8C00']}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}
-                style={{
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: 10,
-                  backgroundColor: '#fff',
-                  // borderBottomWidth: 3,
-                  // borderColor: ,
-                  height: 50,
-                  marginBottom: 20,
-                  width: 150,
-                }}>
-                <View
+              <View style={{marginTop: 30}}>
+                <LinearGradient
+                  colors={['#FE4A00', '#F84D00', '#FC8C00']}
+                  start={{x: 0, y: 0}}
+                  end={{x: 1, y: 0}}
                   style={{
-                    backgroundColor: '#fff',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     borderRadius: 10,
-                    padding: 10,
-                    height: 45,
-                    width: 145,
+                    backgroundColor: '#fff',
+                    // borderBottomWidth: 3,
+                    // borderColor: ,
+                    height: 50,
+                    marginBottom: 20,
+                    width: 150,
                   }}>
-                  <Text
+                  <View
                     style={{
-                      color: '#FE4A00',
-                      fontSize: 20,
-                      fontWeight: 'bold',
-                      textAlign: 'center',
+                      backgroundColor: '#fff',
+                      borderRadius: 10,
+                      padding: 10,
+                      height: 45,
+                      width: 145,
                     }}>
-                    Rs {this.state.product.price}
-                  </Text>
-                </View>
-              </LinearGradient>
+                    <Text
+                      style={{
+                        color: '#FE4A00',
+                        fontSize: 20,
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                      }}>
+                      Rs {this.state.product.price}
+                    </Text>
+                  </View>
+                </LinearGradient>
               </View>
 
-              <View style={{  flexDirection: 'row',justifyContent: 'center',}}>
-              
+              <View style={{flexDirection: 'row', justifyContent: 'center'}}>
                 {this.state.productItem.map(tags => (
-                <Badge value={<Text style={{ color: '#E5E5E5', fontWeight: 'bold' }}>{tags}</Text>} badgeStyle ={{ padding: 15, backgroundColor: '#FE4A00', fontWeight: 'bold' }}/> 
-               ))}
-               {/* button of order now */}
+                  <Badge
+                    value={
+                      <Text style={{color: '#E5E5E5', fontWeight: 'bold'}}>
+                        {tags}
+                      </Text>
+                    }
+                    badgeStyle={{
+                      padding: 15,
+                      backgroundColor: '#FE4A00',
+                      fontWeight: 'bold',
+                    }}
+                  />
+                ))}
+                {/* button of order now */}
               </View>
-               {/* button of order now */}
-         <View style={{ alignSelf: "center", backgroundColor: 'transparent', marginBottom: 20 }}>
-              <LinearGradient
-                colors={['#FE4A00', '#FE4A00', '#FD6F00']}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}
+              {/* button of order now */}
+              <View
                 style={{
-                  marginTop: 10,
-                  height: 48,
-                  width: 270,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: 270,
-                  borderRadius: 10,
+                  alignSelf: 'center',
                   backgroundColor: 'transparent',
-                  flexDirection: 'row',
+                  marginBottom: 20,
                 }}>
-                <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20}}>Order Now </Text>
-                  <Icon
-                      name="shopping-cart"
-                      type="font-awesome"
-                      color="#fff"
-                    />
-              </LinearGradient>
+                <LinearGradient
+                  colors={['#FE4A00', '#FE4A00', '#FD6F00']}
+                  start={{x: 0, y: 0}}
+                  end={{x: 1, y: 0}}
+                  style={{
+                    marginTop: 10,
+                    height: 48,
+                    width: 270,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: 270,
+                    borderRadius: 10,
+                    backgroundColor: 'transparent',
+                    flexDirection: 'row',
+                  }}>
+                  <Text
+                    style={{color: 'white', fontWeight: 'bold', fontSize: 20}}>
+                    Order Now{' '}
+                  </Text>
+                  <Icon name="shopping-cart" type="font-awesome" color="#fff" />
+                </LinearGradient>
               </View>
-          {/* Badges */}
+              {/* Badges */}
             </View>
           </View>
         </ScrollView>

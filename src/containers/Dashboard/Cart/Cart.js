@@ -17,15 +17,15 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('cart')
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // AsyncStorage.getItem('cart')
+    //   .then(res => {
+    //     console.log(res);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
 
-    for (let i = 0; i < this.state.products.length; i++) this.state.products[i]['quantity'] = 1  
+    // for (let i = 0; i < this.state.products.length; i++) {this.state.products[i]['quantity'] = 1  }
       
   }
 
@@ -33,8 +33,15 @@ class Cart extends Component {
   decreamentItem() {
 
   }
-  increamentItem() {
-
+  increamentItem(id) {
+      for (let i = 0; i < this.state.products.length; i++) {
+        if (this.state.products[i]._id == id) {
+          this.setState({
+            
+          })
+          this.state.products[i]['quantity'] += 1
+        }
+      }
   }
   render() {
     return (

@@ -13,6 +13,7 @@ class Cart extends Component {
     this.state = {
       products : data,
       count: 1,
+      total: 0
     };
   }
 
@@ -25,13 +26,30 @@ class Cart extends Component {
     //     console.log(err);
     //   });
 
-    // for (let i = 0; i < this.state.products.length; i++) {this.state.products[i]['quantity'] = 1  }
+    for (let i = 0; i < this.state.products.length; i++) {
+      this.state.products[i]['orignal_price'] = this.state.products[i]['price'] 
+      this.state.total += this.state.products[i]['orignal_price']
+      this.setState({ })
+     }
       
   }
 
 
-  decreamentItem() {
-
+  decreamentItem(id) {
+   for (let i = 0; i < this.state.products.length; i++) {
+        if (this.state.products[i]._id == id) {
+          if(this.state.products[i]['quantity'] == 1){
+            return null
+          }
+          this.setState({
+            
+          })
+          this.state.products[i]['quantity'] -= 1
+          console.log(this.state.products[i]['price']);
+          this.state.products[i]['price'] -= this.state.products[i]['orignal_price']
+          this.state.total -= this.state.products[i]['orignal_price']
+        }
+      }
   }
   increamentItem(id) {
       for (let i = 0; i < this.state.products.length; i++) {
@@ -41,8 +59,8 @@ class Cart extends Component {
           })
           this.state.products[i]['quantity'] += 1
           console.log(this.state.products[i]['price']);
-          
-          this.state.products[i]['price'] += this.state.products[i]['price']
+          this.state.total += this.state.products[i]['orignal_price']
+          this.state.products[i]['price'] += this.state.products[i]['orignal_price']
         }
       }
   }
@@ -175,7 +193,10 @@ class Cart extends Component {
           </View>
         ))}
         
+<View style={{ alignSelf: "center", marginTop: 15 }}>
+    <Text style={{ fontWeight: "bold", fontSize: 45, textAlign: "center", color:"#382715" }}>Total {'  '} Rs {this.state.total}</Text>
 
+</View>
 
 
 

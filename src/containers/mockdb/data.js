@@ -36,7 +36,7 @@ const data = [
     {
         _id: 28,
         title : "Cheese pizza",
-        price : "65.00",
+        price : 65,
         overview: 'Lorem Ipsum is simply dummy text of the printing',
         offer : 45,
         featured: 1,
@@ -47,7 +47,7 @@ const data = [
     {
         _id: 29,
         title : "Cheese pizza",
-        price : "65.00",
+        price : 65,
         offer : 65,
         overview: 'Lorem Ipsum is simply dummy text of the printing',
         featured: 0,

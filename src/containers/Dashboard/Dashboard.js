@@ -10,11 +10,9 @@ import {
 } from 'react-native';
 import {styles} from './Dashboard.styles';
 import {Colors, Img} from './../../theme';
-// import {Img, jsons} from './../../../theme';
 import LinearGradient from 'react-native-linear-gradient';
 import {SCREEN_WIDTH, STATUS_BAR_HEIGHT} from './../../utils/constants';
 
-// import { mysql } from "mysql";
 import data from './../mockdb/data';
 import Api from './../../Services/Api';
 

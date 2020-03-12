@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import  LinearGradient  from 'react-native-linear-gradient';
 import data from './../../mockdb/data';
 import Api from './../../../Services/Api';
+import Modal from "react-native-modalbox";
 class Cart extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,8 @@ class Cart extends Component {
       total: 0,
       user_id : 12,
       productIds: [],
-      quantity: []
+      quantity: [],
+      errMsg: ""
     };
   }
 
@@ -29,7 +31,7 @@ class Cart extends Component {
     //   .catch(err => {
     //     console.log(err);
     //   });
-
+    // this.refs.modal3.open()
     for (let i = 0; i < this.state.products.length; i++) {
       this.state.products[i]['orignal_price'] = this.state.products[i]['price'] 
       this.state.total += this.state.products[i]['orignal_price']
@@ -82,10 +84,20 @@ class Cart extends Component {
       quantity: this.state.quantity.toString()
     }
     console.log(params);
-    Api.cart(params).then(res => console.log(res)).catch(err =>  console.log(err))
-    this.state.productIds = []
+    Api.cart(params).then(res => {
+      if(res.status == "Ok"){
+      this.refs.modal3.close()
+  this.state.productIds = []
     this.state.quantity = []
-    // Api.cart()
+      }else{
+        this.refs.errModal.open()
+        this.setState({
+           errMsg: "looks like you are not connected to Internet..."
+        })
+      }
+    }).catch(err =>  console.log(err))
+  
+    
   }
   render() {
     return (
@@ -225,7 +237,7 @@ class Cart extends Component {
 
 
         <TouchableOpacity
-        onPress={() => this.paymentProceed(this.state.total)}
+        onPress={() => this.refs.modal3.open()}
                 style={{
                   alignSelf: 'center',
                   backgroundColor: 'transparent',
@@ -254,6 +266,69 @@ class Cart extends Component {
                 </LinearGradient>
               </TouchableOpacity>
 
+
+          <Modal style={{    
+    alignItems: 'center',
+       marginTop : 30,
+    height: 200,
+    width: 300,
+    borderRadius: 30,
+    backgroundColor : '#fff' }} position={"center"} ref={"modal3"} backdrop={true} isDisabled={this.state.isDisabled} coverScreen={true} backdropPressToClose={true}>
+           
+           <View style={{ margin: 20 }}>
+           
+            <Icon
+                name="restaurant-menu"
+                type="material"
+                size={50}
+                color={'#312717'}
+              />
+              <Text style={{marginTop: 15, textAlign: "center", fontSize: 15, fontWeight: 'bold', color: "#FD5D00" }}>Are you sure you want to place your order...!</Text>
+              <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}>
+                <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#FD5D00", justifyContent: 'center', padding: 12, marginRight: 10 }} onPress={() => this.refs.modal3.close()}>
+                  <Text style={{ color:"#fff", fontSize: 13 }}>No i don't</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#FD5D00", justifyContent: 'center', padding: 12, marginLeft: 10 }} onPress={() => {this.paymentProceed(this.state.total)
+                this.refs.modal3.close()
+                }}>
+                  <Text style={{ color:"#fff", fontSize: 13 }}>Place Now..!</Text>
+                </TouchableOpacity>
+              </View>
+           </View>
+           
+          </Modal>
+
+
+                <Modal style={{    
+    alignItems: 'center',
+       marginTop : 30,
+    height: 200,
+    width: 300,
+    borderRadius: 30,
+    backgroundColor : '#fff' }} position={"center"} ref={"errModal"} backdrop={true} isDisabled={this.state.isDisabled} coverScreen={true} backdropPressToClose={true}>
+           
+           <View style={{ margin: 20 }}>
+           
+            <Icon
+                name="disconnect"
+                type="antdesign"
+                size={50}
+                color={'#312717'}
+              />
+              <Text style={{marginTop: 15, textAlign: "center", fontSize: 15, fontWeight: 'bold', color: "#FD5D00" }}>{this.state.errMsg}</Text>
+              <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}>
+                <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#FD5D00", justifyContent: 'center', padding: 12, marginRight: 10 }} onPress={() => this.refs.errModal.close()}>
+                  <Text style={{ color:"#fff", fontSize: 13 }}>Retry internety connection...</Text>
+                </TouchableOpacity>
+                {/* <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#FD5D00", justifyContent: 'center', padding: 12, marginLeft: 10 }} onPress={() => {this.paymentProceed(this.state.total)
+                this.refs.modal3.close()
+                }}>
+                  <Text style={{ color:"#fff", fontSize: 13 }}>Place Now..!</Text>
+                </TouchableOpacity> */}
+              </View>
+           </View>
+           
+          </Modal>
 
 
 

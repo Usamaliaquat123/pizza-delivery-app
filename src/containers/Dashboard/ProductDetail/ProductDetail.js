@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {View, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
 import {styles} from './ProductDetail.styles';
-import {Header, Icon, Badge,ButtonGroup} from 'react-native-elements';
+import {Header, Icon, Badge, ButtonGroup} from 'react-native-elements';
 import {STATUS_BAR_HEIGHT, SCREEN_WIDTH} from './../../../utils/constants';
 import {Colors, Img} from './../../../theme';
 import LinearGradient from 'react-native-linear-gradient';
 import LottieView from 'lottie-react-native';
-import Modal from "react-native-modalbox";
+import Modal from 'react-native-modalbox';
 import jsons from './../../../theme/Json';
 class ProductDetail extends Component {
   constructor(props) {
@@ -16,9 +16,8 @@ class ProductDetail extends Component {
       productItem: [],
       selectedIndex: 2,
       orignalPrice: 0,
-
     };
-      this.pizzaSizes = this.pizzaSizes.bind(this)
+    this.pizzaSizes = this.pizzaSizes.bind(this);
   }
 
   componentDidMount() {
@@ -28,49 +27,45 @@ class ProductDetail extends Component {
     const ArrItem = spc.split(',');
     // const ArrItem = this.state.product.items
     console.log(ArrItem);
-    this.state.product['quantity'] = 1
-    this.state.product['orignalPrice'] = this.state.product['price']
+    this.state.product['quantity'] = 1;
+    this.state.product['orignalPrice'] = this.state.product['price'];
 
     //  this.state.orignalPrice = this.state.product['price']
-     console.log(this.state.product['price'])
+    console.log(this.state.product['price']);
     this.setState({productItem: ArrItem});
   }
-decreamentItem(id){
-  if(this.state.product['quantity'] == 1){
-    return null
+  decreamentItem(id) {
+    if (this.state.product['quantity'] == 1) {
+      return null;
+    }
+    this.setState({});
+    this.state.product['quantity'] -= 1;
+    this.state.product['price'] -= this.state.product['orignalPrice'];
   }
-  this.setState({ })
-  this.state.product['quantity'] -= 1
-  this.state.product['price']  -= this.state.product['orignalPrice'] 
+  increamentItem(id) {
+    console.log(id);
+    this.setState({});
+    this.state.product['quantity'] += 1;
+    console.log(parseInt(this.state.product['price']));
+    var iniPrice = parseInt(this.state.product['price']);
+    var orignalPrice = parseInt(this.state.product['orignalPrice']);
+    iniPrice += orignalPrice;
+    this.state.product['price'] = iniPrice;
+  }
+  addCart() {
+    this.refs.addCartConfirm.close();
 
-}
-increamentItem(id){
-  console.log(id)
-  this.setState({ })
-  this.state.product['quantity'] += 1
-  console.log(  parseInt(this.state.product['price']));
-  var iniPrice = parseInt(this.state.product['price'])
-  var orignalPrice = parseInt(this.state.product['orignalPrice'])
-  iniPrice += orignalPrice
-  this.state.product['price'] = iniPrice
-}
-addCart(){
-    this.refs.addCartConfirm.close()
-    
-    this.props.navigation.navigate('Cart')
-}
+    this.props.navigation.navigate('Cart');
+  }
 
-
-
-pizzaSizes(selectedIndex){
-  this.setState({selectedIndex:selectedIndex })
-  console.log(selectedIndex);
-
-}
+  pizzaSizes(selectedIndex) {
+    this.setState({selectedIndex: selectedIndex});
+    console.log(selectedIndex);
+  }
 
   render() {
-      const buttons = ['Hello', 'World', 'Buttons']
-  const { selectedIndex } = this.state
+    const buttons = ['Hello', 'World', 'Buttons'];
+    const {selectedIndex} = this.state;
     return (
       <>
         <Header
@@ -103,11 +98,24 @@ pizzaSizes(selectedIndex){
               justifyContent: 'center',
             }}>
             <Image source={Img.hd_dish} />
-            {this.state.product.offer != "" && (
-
-            <View style={{ flexDirection: 'row', padding: 10, justifyContent: 'center', borderRadius: 10 }}>
+            {this.state.product.offer != '' && (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  padding: 10,
+                  justifyContent: 'center',
+                  borderRadius: 10,
+                }}>
                 <Icon name="tags" type="antdesign" color="#382715" size={35} />
-                <Text style={{ fontSize: 20, fontWeight: 'bold', color:"#FE4A00", marginTop:5,  }}>{this.state.product.offer}% off</Text>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                    color: '#FE4A00',
+                    marginTop: 5,
+                  }}>
+                  {this.state.product.offer}% off
+                </Text>
               </View>
             )}
           </View>
@@ -200,27 +208,61 @@ pizzaSizes(selectedIndex){
                 {/* button of order now */}
               </View>
 
-                <View style={{ flexDirection: "row", marginTop: 15, alignSelf: 'center', }}>
-                <Icon name="left" type="antdesign" color="#FE4A00" size={30} iconStyle={{ marginTop: 1 }} onPress={() => this.decreamentItem(this.state.product.id)} />
+              <View
+                style={{
+                  flexDirection: 'row',
+                  marginTop: 15,
+                  alignSelf: 'center',
+                }}>
+                <Icon
+                  name="left"
+                  type="antdesign"
+                  color="#FE4A00"
+                  size={30}
+                  iconStyle={{marginTop: 1}}
+                  onPress={() => this.decreamentItem(this.state.product.id)}
+                />
 
-                <Text style={{ color: "#FE4A00", fontSize: 18, fontWeight: "bold", marginLeft: 20, marginRight: 20 }}>{this.state.product.quantity}</Text>
-                <Icon name="right" type="antdesign" color="#FE4A00" size={30} iconStyle={{ marginTop: 1, }} onPress={() => this.increamentItem(this.state.product.id)} />
-            </View>
-            <View>
-            <ButtonGroup
-      onPress={this.pizzaSizes}
-      selectedIndex={selectedIndex}
-      buttons={['S', 'M', 'L', 'XL','XXL']}
-      // buttonStyle={{ borderColor: "transparent" }}
-      textStyle={{ color:"#312717", opacity: .5 }}
-      // innerBorderStyle={{ borderColor: "transparent" }}
-      selectedButtonStyle={{ backgroundColor: "#FE4A00" }}
-      containerStyle={{height: 40, width: 200, borderColor: "#FE4A00", margin: 10, borderRadius: 10}}
-    />
-            </View>
+                <Text
+                  style={{
+                    color: '#FE4A00',
+                    fontSize: 18,
+                    fontWeight: 'bold',
+                    marginLeft: 20,
+                    marginRight: 20,
+                  }}>
+                  {this.state.product.quantity}
+                </Text>
+                <Icon
+                  name="right"
+                  type="antdesign"
+                  color="#FE4A00"
+                  size={30}
+                  iconStyle={{marginTop: 1}}
+                  onPress={() => this.increamentItem(this.state.product.id)}
+                />
+              </View>
+              <View>
+                <ButtonGroup
+                  onPress={this.pizzaSizes}
+                  selectedIndex={selectedIndex}
+                  buttons={['S', 'M', 'L', 'XL', 'XXL']}
+                  // buttonStyle={{ borderColor: "transparent" }}
+                  textStyle={{color: '#312717', opacity: 0.5}}
+                  // innerBorderStyle={{ borderColor: "transparent" }}
+                  selectedButtonStyle={{backgroundColor: '#FE4A00'}}
+                  containerStyle={{
+                    height: 40,
+                    width: 200,
+                    borderColor: '#FE4A00',
+                    margin: 10,
+                    borderRadius: 10,
+                  }}
+                />
+              </View>
               {/* button of order now */}
               <TouchableOpacity
-                onPress={() => this.refs.addCartConfirm.open() }
+                onPress={() => this.refs.addCartConfirm.open()}
                 style={{
                   alignSelf: 'center',
                   backgroundColor: 'transparent',
@@ -251,38 +293,92 @@ pizzaSizes(selectedIndex){
               {/* Badges */}
             </View>
           </View>
-          <Modal style={{    
-    alignItems: 'center',
-       marginTop : 30,
-    height: 200,
-    width: 300,
-    borderRadius: 30,
-    backgroundColor : '#fff' }} position={"center"} ref={"addCartConfirm"} backdrop={true} isDisabled={this.state.isDisabled} coverScreen={true} backdropPressToClose={true}>
-           
-           <View style={{ margin: 20 }}>
-           
-            <LottieView
+          <Modal
+            style={{
+              alignItems: 'center',
+              marginTop: 30,
+              height: 200,
+              width: 300,
+              borderRadius: 30,
+              backgroundColor: '#fff',
+            }}
+            position={'center'}
+            ref={'addCartConfirm'}
+            backdrop={true}
+            isDisabled={this.state.isDisabled}
+            coverScreen={true}
+            backdropPressToClose={true}>
+            <View style={{margin: 20}}>
+              <LottieView
                 autoPlay
                 source={jsons.cart}
-                style={{  
-    width: 400,
-    marginTop: -78,
-    height: 400, }}
+                style={{
+                  width: 400,
+                  marginTop: -78,
+                  height: 400,
+                }}
               />
-              <Text style={{marginTop: -250, textAlign: "center", fontSize: 15, fontWeight: 'bold', color: "#312717" }}>Your Order has been added to cart</Text>
-              <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}>
-                <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#312717", justifyContent: 'center', padding: 12, marginRight: 10, flexDirection: 'row', }} onPress={() => { this.refs.addCartConfirm.open()
-                 this.props.navigation.navigate('HomeNav')}}>
-                  <Text style={{ color:"#fff", fontSize: 13, marginRight: 3 }}>Continue shopping</Text>
-                  <Icon name='shoppingcart' type="antdesign" size={20} color="#fff"  /> 
+              <Text
+                style={{
+                  marginTop: -250,
+                  textAlign: 'center',
+                  fontSize: 15,
+                  fontWeight: 'bold',
+                  color: '#312717',
+                }}>
+                Your Order has been added to cart
+              </Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignSelf: 'center',
+                  marginTop: 10,
+                }}>
+                <TouchableOpacity
+                  style={{
+                    borderRadius: 15,
+                    backgroundColor: '#312717',
+                    justifyContent: 'center',
+                    padding: 12,
+                    marginRight: 10,
+                    flexDirection: 'row',
+                  }}
+                  onPress={() => {
+                    this.refs.addCartConfirm.close();
+                    this.props.navigation.pop();
+                  }}>
+                  <Text style={{color: '#fff', fontSize: 13, marginRight: 3}}>
+                    Continue shopping
+                  </Text>
+                  <Icon
+                    name="shoppingcart"
+                    type="antdesign"
+                    size={20}
+                    color="#fff"
+                  />
                 </TouchableOpacity>
-                <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#312717", justifyContent: 'center', padding: 12, marginLeft: 10, flexDirection: 'row',}} onPress={() => this.addCart()}>
-                  <Text style={{ color:"#fff", fontSize: 13, marginRight: 3 }}>cart</Text>
-                  <Icon name='shopping-bag' type="entypo" size={20} color="#fff"  /> 
+                <TouchableOpacity
+                  style={{
+                    borderRadius: 15,
+                    backgroundColor: '#312717',
+                    justifyContent: 'center',
+                    padding: 12,
+                    marginLeft: 10,
+                    flexDirection: 'row',
+                  }}
+                  onPress={() => this.addCart()}>
+                  <Text style={{color: '#fff', fontSize: 13, marginRight: 3}}>
+                    cart
+                  </Text>
+                  <Icon
+                    name="shopping-bag"
+                    type="entypo"
+                    size={20}
+                    color="#fff"
+                  />
                 </TouchableOpacity>
               </View>
-           </View>
-           
+            </View>
           </Modal>
         </ScrollView>
       </>

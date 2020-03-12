@@ -271,7 +271,7 @@ pizzaSizes(selectedIndex){
               />
               <Text style={{marginTop: -250, textAlign: "center", fontSize: 15, fontWeight: 'bold', color: "#312717" }}>Your Order has been added to cart</Text>
               <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}>
-                <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#312717", justifyContent: 'center', padding: 12, marginRight: 10, flexDirection: 'row', }} onPress={() =>{ this.refs.addCartConfirm.open()
+                <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#312717", justifyContent: 'center', padding: 12, marginRight: 10, flexDirection: 'row', }} onPress={() => { this.refs.addCartConfirm.open()
                  this.props.navigation.navigate('HomeNav')}}>
                   <Text style={{ color:"#fff", fontSize: 13, marginRight: 3 }}>Continue shopping</Text>
                   <Icon name='shoppingcart' type="antdesign" size={20} color="#fff"  /> 

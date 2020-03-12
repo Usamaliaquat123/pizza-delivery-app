@@ -7,13 +7,17 @@ import {STATUS_BAR_HEIGHT, SCREEN_WIDTH} from './../../../utils/constants';
 import AsyncStorage from '@react-native-community/async-storage';
 import  LinearGradient  from 'react-native-linear-gradient';
 import data from './../../mockdb/data';
+import Api from './../../../Services/Api';
 class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
       products : data,
       count: 1,
-      total: 0
+      total: 0,
+      user_id : 12,
+      productIds: [],
+      quantity: []
     };
   }
 
@@ -63,6 +67,25 @@ class Cart extends Component {
           this.state.products[i]['price'] += this.state.products[i]['orignal_price']
         }
       }
+  }
+  paymentProceed(data) {
+    console.log(data);
+    
+    const totalPrice = data;
+    for (let i = 0; i < this.state.products.length; i++) {
+        this.state.productIds.push(this.state.products[i]._id)    
+        this.state.quantity.push(this.state.products[i].quantity)    
+    }
+    const params = {
+      user_id: this.state.user_id,
+      item_id: this.state.productIds.toString(),
+      quantity: this.state.quantity.toString()
+    }
+    console.log(params);
+    Api.cart(params).then(res => console.log(res)).catch(err =>  console.log(err))
+    this.state.productIds = []
+    this.state.quantity = []
+    // Api.cart()
   }
   render() {
     return (
@@ -201,7 +224,8 @@ class Cart extends Component {
 
 
 
-        <View
+        <TouchableOpacity
+        onPress={() => this.paymentProceed(this.state.total)}
                 style={{
                   alignSelf: 'center',
                   backgroundColor: 'transparent',
@@ -228,7 +252,7 @@ class Cart extends Component {
                   </Text>
                   <Icon name="shopping-cart" type="font-awesome" color="#fff" />
                 </LinearGradient>
-              </View>
+              </TouchableOpacity>
 
 
 

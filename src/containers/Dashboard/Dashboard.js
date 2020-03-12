@@ -22,9 +22,15 @@ class Dashboard extends Component {
     this.state = {
       featured: [],
       food: [],
+      // totalCart: 0
     };
   }
   componentDidMount() {
+
+    // for (let i = 0; i < data.length; i++) {
+      
+      
+    // }
     Api.products()
       .then(res => {
         console.log(res.data);
@@ -48,6 +54,7 @@ class Dashboard extends Component {
           placement="center"
           leftComponent={
             <TouchableOpacity onPress={() => this.props.navigation.pop()}>
+
               <Icon
                 name="restaurant-menu"
                 type="material"

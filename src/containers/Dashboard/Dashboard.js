@@ -42,7 +42,9 @@ class Dashboard extends Component {
       })
       .catch(err => console.log(err));
   }
-
+addCart(id){
+    
+}
   render() {
     return (
       <>
@@ -164,7 +166,7 @@ class Dashboard extends Component {
                         }}>
                         <TouchableOpacity
                           style={{marginRight: 15}}
-                          onPress={() => this.setState({addCart: true})}>
+                          onPress={() => this.addCart(dishes.id)}>
                           <Icon
                             name="shopping-cart"
                             type="font-awesome"

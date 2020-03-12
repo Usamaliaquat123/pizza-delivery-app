@@ -56,7 +56,9 @@ class ProductDetail extends Component {
   }
   addCart() {
     this.refs.addCartConfirm.close();
-    AsyncStorage.getItem('cartItem')
+    AsyncStorage.getItem('cartItem').then(item => {
+      console.log(item)
+    }) 
     this.props.navigation.navigate('Cart');
   }
 

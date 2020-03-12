@@ -8,6 +8,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import LottieView from 'lottie-react-native';
 import Modal from 'react-native-modalbox';
 import jsons from './../../../theme/Json';
+import {AsyncStorage} from 'react-native';
+
 class ProductDetail extends Component {
   constructor(props) {
     super(props);
@@ -54,7 +56,7 @@ class ProductDetail extends Component {
   }
   addCart() {
     this.refs.addCartConfirm.close();
-
+    AsyncStorage.getItem('cartItem')
     this.props.navigation.navigate('Cart');
   }
 

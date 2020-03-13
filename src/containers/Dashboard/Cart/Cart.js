@@ -89,6 +89,7 @@ class Cart extends Component {
       this.refs.modal3.close()
   this.state.productIds = []
     this.state.quantity = []
+    console.log(res)
       }else{
         this.refs.errModal.open()
         this.setState({

@@ -34,10 +34,12 @@ const Api = {
   cart: params => {
     const parm = {
        user_id: params.user_id,
-          item_id: params.item_id,
-          quantity: params.quantity,
+        item_id: params.item_id,
+        quantity: params.quantity,
     }
+
     return Api.post('insert_orders.php', parm);
+console.log(parm);
   },
   
   createUser: params => {

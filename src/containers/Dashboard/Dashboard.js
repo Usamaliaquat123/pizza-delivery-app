@@ -16,6 +16,7 @@ import {SCREEN_WIDTH, STATUS_BAR_HEIGHT} from './../../utils/constants';
 import data from './../mockdb/data';
 import Api from './../../Services/Api';
 import AsyncStorage from '@react-native-community/async-storage';
+const base = "http://pizza.softcob.com/img/menu_pic/"
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -234,7 +235,7 @@ class Dashboard extends Component {
                         </TouchableOpacity>
                       </View>
                     </View>
-                    <Image source={Img.dish} />
+                    <Image   style={{width: 100, height: 100}} source={{uri: base + dishes.picture}} />
                   </LinearGradient>
                 </TouchableOpacity>
               ))}

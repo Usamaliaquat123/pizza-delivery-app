@@ -15,21 +15,20 @@ import {SCREEN_WIDTH, STATUS_BAR_HEIGHT} from './../../utils/constants';
 
 import data from './../mockdb/data';
 import Api from './../../Services/Api';
-
+import AsyncStorage from '@react-native-community/async-storage';
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       featured: [],
       food: [],
+      cart: [],
       // totalCart: 0
     };
   }
   componentDidMount() {
-
     // for (let i = 0; i < data.length; i++) {
-      
-      
+
     // }
     Api.products()
       .then(res => {
@@ -42,9 +41,70 @@ class Dashboard extends Component {
       })
       .catch(err => console.log(err));
   }
-addCart(id){
+  filterArr(id){
+    return new Promise((resolve, reject) => {
+        for (let i = 0; i < this.state.cart.length; i++) {
+          if(this.state.cart[i].id == id) {
+            return resolve(true)
+            }else{
+              return reject(false)
+            }
+        }
+    })
+  }
+  addCart(dish) {
+    console.log(dish);
+    // AsyncStorage.setItem('cart', dish);
+    // this.state.cart.map(dishz => {
+    //   if(dishz.id == dish.id) {return dishz.splice(i, 1);}else{return this.state.cart.push(dishz);}
+      
+    // })
+    // this.state.cart.map(dishz => {
+    //   if(dishz.id != dish.id) return this.state.cart.push(dishz);
+    // })
+    this.state.cart.push(dish);
+    console.log(this.state.cart)
+    // if(this.state.cart.length == 0) return this.state.cart.push(dish)
+
+
+    // this.state.cart.filter(filt => {
+    //   if(filt.id == dish.id) return null
+    //   this.state.cart.push(dish);
+    // console.log(this.state.cart);
+
+    // })
+
+    // for (let i = 0; i < this.state.cart.length; i++) {
+    //   // const element = this.state.cart[i];
+    //   if (this.state.cart[i].id == dish.id) return null;
+
+    //   console.log(this.state.cart);
+    // }
+
+    // AsyncStorage.setItem('cart','').then(dish => {
+    //   console.log(dish);
+
+    // })
+    // AsyncStorage.getItem('cart').then((r) => {
+
+    //     console.log(r);
+    //     if(r == null){
+    //       this.state.cart.push(dish)
+    //       AsyncStorage.setItem('cart',JSON.stringify(this.state.cart)) 
+    //     }else{
+    //       // AsyncStorage.setItem('cart', )
+    //       console.log(r)
+    //     } 
+    // })
+
+
+  this.filterArr(dish.id).then(res => console.log(res)).catch(err => console.log(err))
     
-}
+  }
+
+  
+
+
   render() {
     return (
       <>
@@ -56,7 +116,6 @@ addCart(id){
           placement="center"
           leftComponent={
             <TouchableOpacity onPress={() => this.props.navigation.pop()}>
-
               <Icon
                 name="restaurant-menu"
                 type="material"
@@ -166,7 +225,7 @@ addCart(id){
                         }}>
                         <TouchableOpacity
                           style={{marginRight: 15}}
-                          onPress={() => this.addCart(dishes.id)}>
+                          onPress={() => this.addCart(dishes)}>
                           <Icon
                             name="shopping-cart"
                             type="font-awesome"

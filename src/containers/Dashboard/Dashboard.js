@@ -15,8 +15,8 @@ import {SCREEN_WIDTH, STATUS_BAR_HEIGHT} from './../../utils/constants';
 
 import data from './../mockdb/data';
 import Api from './../../Services/Api';
-import AsyncStorage from '@react-native-community/async-storage';
-const base = "http://pizza.softcob.com/img/menu_pic/"
+// import AsyncStorage from '@react-native-community/async-storage';
+const base = 'http://pizza.softcob.com/img/menu_pic/';
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -28,83 +28,69 @@ class Dashboard extends Component {
     };
   }
   componentDidMount() {
+    // AsyncStorage.getItem('cart').then(r => console.log(r))
     // for (let i = 0; i < data.length; i++) {
-
     // }
     Api.products()
       .then(res => {
         console.log(res.data);
-
+        const arr = res.data.filter(data => data.featured == 1)
+        for (let i = 0; i < arr.length; i++) {
+          arr[i]['cart'] = false
+        }
+        const arrs = res.data.filter(data => data.featured == 0)
+        for (let i = 0; i < arrs.length; i++) {
+          arrs[i]['cart'] = false
+        }
         this.setState({
           featured: res.data.filter(data => data.featured == 1),
           food: res.data.filter(data => data.featured == 0),
         });
+
+
+        console.log(this.state.featured)
+        console.log(this.state.food)
       })
       .catch(err => console.log(err));
   }
-  filterArr(id){
-    return new Promise((resolve, reject) => {
-        for (let i = 0; i < this.state.cart.length; i++) {
-          if(this.state.cart[i].id == id) {
-            return resolve(true)
-            }else{
-              return reject(false)
-            }
-        }
-    })
-  }
-  addCart(dish) {
-    console.log(dish);
-    // AsyncStorage.setItem('cart', dish);
-    // this.state.cart.map(dishz => {
-    //   if(dishz.id == dish.id) {return dishz.splice(i, 1);}else{return this.state.cart.push(dishz);}
-      
-    // })
-    // this.state.cart.map(dishz => {
-    //   if(dishz.id != dish.id) return this.state.cart.push(dishz);
-    // })
-    this.state.cart.push(dish);
-    console.log(this.state.cart)
-    // if(this.state.cart.length == 0) return this.state.cart.push(dish)
 
+  addCart(dish, type) {
+    if(type == "featured"){
+      for (let i = 0; i < this.state.featured.length; i++) {
+          if(this.state.featured[i].id == dish.id){
+            this.state.featured[i]['cart'] = true
+            this.setState({ })
+          }
+      }
+    }else{
+      for (let i = 0; i < this.state.food.length; i++) {
+          if(this.state.food[i].id == dish.id){
+            this.state.food[i]['cart'] = true
+            this.setState({ })
+          }
+      }
 
-    // this.state.cart.filter(filt => {
-    //   if(filt.id == dish.id) return null
-    //   this.state.cart.push(dish);
-    // console.log(this.state.cart);
-
-    // })
-
-    // for (let i = 0; i < this.state.cart.length; i++) {
-    //   // const element = this.state.cart[i];
-    //   if (this.state.cart[i].id == dish.id) return null;
-
-    //   console.log(this.state.cart);
-    // }
-
-    // AsyncStorage.setItem('cart','').then(dish => {
-    //   console.log(dish);
-
-    // })
-    // AsyncStorage.getItem('cart').then((r) => {
-
-    //     console.log(r);
-    //     if(r == null){
-    //       this.state.cart.push(dish)
-    //       AsyncStorage.setItem('cart',JSON.stringify(this.state.cart)) 
-    //     }else{
-    //       // AsyncStorage.setItem('cart', )
-    //       console.log(r)
-    //     } 
-    // })
-
-
-  this.filterArr(dish.id).then(res => console.log(res)).catch(err => console.log(err))
-    
+    }
   }
 
-  
+  removeCart(dishes,type){
+    if (type == "featured") {
+      for (let i = 0; i < this.state.featured.length; i++) {
+          if(this.state.featured[i].id == dishes.id){
+            this.state.featured[i]['cart'] = false
+            this.setState({ })
+          }
+      }
+    }else{
+      for (let i = 0; i < this.state.food.length; i++) {
+          if(this.state.food[i].id == dishes.id){
+            this.state.food[i]['cart'] = false
+            this.setState({ })
+          }
+      }
+    }
 
+  }
 
   render() {
     return (
@@ -224,18 +210,35 @@ class Dashboard extends Component {
                         style={{
                           marginLeft: 'auto',
                         }}>
+                        {dishes.cart == true && (
                         <TouchableOpacity
                           style={{marginRight: 15}}
-                          onPress={() => this.addCart(dishes)}>
+                          onPress={() => this.removeCart(dishes,"featured")}>
                           <Icon
                             name="shopping-cart"
-                            type="font-awesome"
+                            type="entypo"
                             color="#fff"
                           />
                         </TouchableOpacity>
+                        )} 
+                        {dishes.cart == false && (
+                        <TouchableOpacity
+                          style={{marginRight: 15}}
+                          onPress={() => this.addCart(dishes, "featured")}>
+                          <Icon
+                            name="shoppingcart"
+                            type="antdesign"
+                            color="#fff"
+                          />
+                        </TouchableOpacity>
+                        )}
+                       
                       </View>
                     </View>
-                    <Image   style={{width: 100, height: 100}} source={{uri: base + dishes.picture}} />
+                    <Image
+                      // style={{width: 100, height: 100}}
+                     source={Img.dish}
+                    />
                   </LinearGradient>
                 </TouchableOpacity>
               ))}
@@ -306,31 +309,58 @@ class Dashboard extends Component {
                               </View>
                             )}
                           </View>
+                          {/* Styling diff */}
                           {item.offer == '' && (
                             <View style={{marginRight: -60}}>
                               <View style={{marginTop: -20}}>
+                              {item.cart == false && (
                                 <TouchableOpacity
-                                  onPress={() => console.log('fav')}>
+                                  onPress={() => this.addCart(item)}>
                                   <Icon
                                     name="shoppingcart"
                                     type="antdesign"
                                     color="#FC8C00"
                                   />
                                 </TouchableOpacity>
+                              )}
+                              {item.cart == true && (
+                                <TouchableOpacity
+                                  onPress={() => this.removeCart(item)}>
+                                  <Icon
+                                    name="shopping-cart"
+                                    type="entypo"
+                                    color="#FC8C00"
+                                  />
+                                </TouchableOpacity>
+                              )}
                               </View>
                             </View>
                           )}
 
+                          {/* Styling diff */}
                           {item.offer != '' && (
                             <View style={{marginTop: -20}}>
-                              <TouchableOpacity
-                                onPress={() => console.log('fav')}>
-                                <Icon
-                                  name="shoppingcart"
-                                  type="antdesign"
-                                  color="#FC8C00"
-                                />
-                              </TouchableOpacity>
+                             {item.cart == false && (
+                                <TouchableOpacity
+                                  onPress={() => this.addCart(item)}>
+                                  <Icon
+                                    name="shoppingcart"
+                                    type="antdesign"
+                                    color="#FC8C00"
+                                  />
+                                </TouchableOpacity>
+                               )} 
+                             {item.cart == true && (
+                                <TouchableOpacity
+                                  onPress={() => this.removeCart(item)}>
+                                  <Icon
+                                    name="shopping-cart"
+                                    type="entypo"
+                                    color="#FC8C00"
+                                  />
+                                </TouchableOpacity>
+                               )} 
+                              
                             </View>
                           )}
                         </View>
@@ -345,9 +375,7 @@ class Dashboard extends Component {
                 />
 
                 <View style={{flexDirection: 'row'}}>
-                  {/* {this.state.food.map(food => (
-                  
-                  ))} */}
+                
                 </View>
               </ScrollView>
             </View>

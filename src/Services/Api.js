@@ -14,9 +14,10 @@ const Api = {
       fetch(Api.base + '/' + method, {
         method: 'POST',
         body: JSON.stringify({
-          user_id: params.user_id,
-          item_id: params.item_id,
-          quantity: params.quantity,
+          username: params.username,
+          phone: params.contact,
+          adress: params.address,
+          password: params.pass
         }),
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
@@ -31,8 +32,23 @@ const Api = {
   },
 
   cart: params => {
-    return Api.post('insert_orders.php', params);
+    const parm = {
+       user_id: params.user_id,
+          item_id: params.item_id,
+          quantity: params.quantity,
+    }
+    return Api.post('insert_orders.php', parm);
   },
+  
+  createUser: params => {
+    //  const parm = {
+    //      username: params.username,
+    //       phone: params.contact,
+    //       adress: params.address,
+    //       password: params.pass,
+    // }
+    return Api.post('user_insert.php', params);
+  }
 };
 
 export default Api;

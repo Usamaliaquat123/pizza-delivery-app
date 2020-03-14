@@ -24,6 +24,7 @@ class Cart extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.navigation.getParam('cartItem'))
     // AsyncStorage.getItem('cart')
     //   .then(res => {
     //     console.log(res);

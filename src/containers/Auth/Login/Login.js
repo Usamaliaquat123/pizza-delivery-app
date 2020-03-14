@@ -9,6 +9,7 @@ import LottieView from 'lottie-react-native';
 import Modal from 'react-native-modalbox'
 import { Bars  } from 'react-native-loader'
 import Api from './../../../Services/Api';
+import  AsyncStorage  from '@react-native-community/async-storage';
 class Login extends Component {
   constructor(props) {
     console.log(Img);
@@ -24,6 +25,9 @@ class Login extends Component {
 
 
 componentDidMount() {
+  AsyncStorage.getItem('username').then(res => {
+    console.log(res)
+  })
   Api.fetchUser().then(res => this.setState({ users: res.data }))
 }
 authenticate(){
@@ -34,7 +38,11 @@ authenticate(){
   }else{
     this.state.users.map(res => {
       if(res.phone  == this.state.phonenumber && res.password == this.state.password){
+        AsyncStorage.setItem('username',res.username)
           this.props.navigation.navigate('HomeNav')
+      }else{
+         this.setState({errMsg : "Please check your credientials" })
+    this.refs.errModal.open()
       }
     })
   }

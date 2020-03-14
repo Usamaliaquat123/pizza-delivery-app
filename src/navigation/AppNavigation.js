@@ -17,7 +17,7 @@ import HomeNav from './HomeNav';
   },
   {
     headerMode: 'none',
-    initialRouteName: 'Login',
+    initialRouteName: 'HomeNav',
   },
 );
 

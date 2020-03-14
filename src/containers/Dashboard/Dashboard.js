@@ -5,8 +5,10 @@ import {
   Text,
   ScrollView,
   Image,
+  Alert ,
   TouchableOpacity,
   FlatList,
+
 } from 'react-native';
 import {styles} from './Dashboard.styles';
 import {Colors, Img} from './../../theme';
@@ -15,7 +17,7 @@ import {SCREEN_WIDTH, STATUS_BAR_HEIGHT} from './../../utils/constants';
 import { connect } from "react-redux";
 import data from './../mockdb/data';
 import Api from './../../Services/Api';
-// import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 import { setAllFeaturedProducts,setAllNormalProducts } from './../../actions';
 const  base = 'http://pizza.softcob.com/img/menu_pic/'; 
 class Dashboard extends Component {
@@ -57,6 +59,11 @@ class Dashboard extends Component {
     this.props.setAllFeaturedProducts()
     // this.props.setAllNormalProducts()
   })
+  AsyncStorage.getItem('username').then(res => {
+    console.log(res)
+
+  })
+
   }
 
   addCart(dish, type) {
@@ -97,6 +104,20 @@ class Dashboard extends Component {
 
   }
 
+  goToCart(){
+    for (const food of this.state.food) {
+      if(food.cart == true){
+        this.state.cart.push(food)
+      }
+    }
+     for (const featured of this.state.featured) {
+      if(featured.cart == true){
+        this.state.cart.push(featured)
+      }
+    }
+    this.props.navigation.navigate('Cart', {cartItem : this.state.cart })
+  }
+
   render() {
     const {featuredProducts } = this.props
     console.log(featuredProducts)
@@ -120,7 +141,7 @@ class Dashboard extends Component {
           }
           rightComponent={
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Cart')}>
+              onPress={() => this.goToCart()}>
               <Icon
                 name="shopping-cart"
                 type="entypo"

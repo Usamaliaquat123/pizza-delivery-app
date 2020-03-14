@@ -9,6 +9,7 @@ import  LinearGradient  from 'react-native-linear-gradient';
 import data from './../../mockdb/data';
 import Api from './../../../Services/Api';
 import Modal from "react-native-modalbox";
+const  base = 'http://pizza.softcob.com/img/menu_pic/'; 
 class Cart extends Component {
   constructor(props) {
     super(props);
@@ -132,7 +133,7 @@ class Cart extends Component {
           }
         />
         <ScrollView>
-          <View
+          {/* <View
             style={{
               backgroundColor: '#E5E5E5',
               borderBottomLeftRadius: 40,
@@ -167,7 +168,7 @@ class Cart extends Component {
               </Text>
             </View>
             {/* )} */}
-          </View>
+          {/* </View>  */}
 
 
 
@@ -187,7 +188,7 @@ class Cart extends Component {
             <Icon name="cross" type="entypo" size={30} color="#382715" />
             </View>
             <View style={{ alignItems: 'center',}}>
-            <Image source={Img.hd_dish} />
+            <Image source={{uri:base+products.picture  }} style={{ width: 200, height: 200 }} />
             </View>
             {/* {this.state.product.offer != "" && ( */}
 

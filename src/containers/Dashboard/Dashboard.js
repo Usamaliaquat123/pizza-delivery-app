@@ -265,8 +265,7 @@ class Dashboard extends Component {
                       </View>
                     </View>
                     <Image
-                      // style={{width: 100, height: 100}}
-                     source={Img.dish}
+                       source={{uri:base+dishes.picture  }} style={{ width: 140, height: 140 ,marginLeft: 5  }}
                     />
                   </LinearGradient>
                 </TouchableOpacity>
@@ -394,8 +393,7 @@ class Dashboard extends Component {
                           )}
                         </View>
                         <Image
-                          source={Img.dish}
-                          style={{alignSelf: 'center', resizeMode: 'contain'}}
+                          source={{uri:base+item.picture  }} style={{ width: 146, height: 146 }}
                         />
                       </LinearGradient>
                     </TouchableOpacity>

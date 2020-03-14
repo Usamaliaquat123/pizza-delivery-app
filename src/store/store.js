@@ -1,13 +1,13 @@
 import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import reducers from "../reducers";
-import {offline} from '@redux-offline/redux-offline';
-import offlineConfig from '@redux-offline/redux-offline/lib/defaults';
+// import {offline} from '@redux-offline/redux-offline';
+// import offlineConfig from '@redux-offline/redux-offline/lib/defaults';
 
 const Store = createStore(
     reducers,
     {},
-     compose(applyMiddleware(thuck), offline(offlineConfig)),     
+    //  compose(applyMiddleware(thuck), offline(offlineConfig)),     
 )
 
 

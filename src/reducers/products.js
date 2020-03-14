@@ -1,4 +1,4 @@
-import {  } from "../actions/types";
+import { ADD_FEATURED_PRODUCTS,ADD_NORMAL_PRODUCTS } from './../actions/types';
 const INITIAL_STATE = {
     featuredProducts: [],
     normalProd: []

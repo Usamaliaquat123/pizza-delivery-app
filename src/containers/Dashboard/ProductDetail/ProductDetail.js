@@ -16,6 +16,7 @@ class ProductDetail extends Component {
     this.state = {
       product: this.props.navigation.getParam('product'),
       productItem: [],
+      cart : [],
       selectedIndex: 2,
       orignalPrice: 0,
     };
@@ -23,6 +24,12 @@ class ProductDetail extends Component {
   }
 
   componentDidMount() {
+    const prmCart = this.props.navigation.getParam('cartItem')
+    console.log(prmCart);
+    
+    if(prmCart.length != 0){
+      this.state.cart.push(this.props.navigation.getParam('cartItem'))
+    }
     // this.refs.addCartConfirm.open()
     console.log(this.state.product.items);
     const spc = this.state.product.items.trim(' ');
@@ -54,12 +61,28 @@ class ProductDetail extends Component {
     iniPrice += orignalPrice;
     this.state.product['price'] = iniPrice;
   }
-  addCart() {
+  addCart(product) {
+    // this.state.cart.push(product)
+    console.log(this.state.cart)
+    if(this.state.cart == null){
+      console.log('crt')
+      this.state.cart.push(product)
+      console.log(this.state.cart);
+      
+    this.props.navigation.navigate('Cart',{cartItem : this.state.cart} );
+    }else{
+       this.state.cart.push(product)
+      console.log(this.state.cart);
+      console.log('cr')
+      // this.state.cart.
+    this.props.navigation.navigate('Cart',{cartItem : this.state.cart} );
+
+    }
     this.refs.addCartConfirm.close();
-    AsyncStorage.getItem('cartItem').then(item => {
-      console.log(item)
-    }) 
-    this.props.navigation.navigate('Cart');
+    // AsyncStorage.getItem('cartItem').then(item => {
+    //   console.log(item)
+    // }) 
+    
   }
 
   pizzaSizes(selectedIndex) {
@@ -372,7 +395,7 @@ class ProductDetail extends Component {
                     marginLeft: 10,
                     flexDirection: 'row',
                   }}
-                  onPress={() => this.addCart()}>
+                  onPress={() => this.addCart(this.state.product)}>
                   <Text style={{color: '#fff', fontSize: 13, marginRight: 3}}>
                     cart
                   </Text>

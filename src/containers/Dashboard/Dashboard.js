@@ -103,9 +103,8 @@ class Dashboard extends Component {
     }
 
   }
-
-  goToCart(){
-    for (const food of this.state.food) {
+productDetailItem(dishes){
+   for (const food of this.state.food) {
       if(food.cart == true){
         this.state.cart.push(food)
       }
@@ -115,6 +114,26 @@ class Dashboard extends Component {
         this.state.cart.push(featured)
       }
     }
+    console.log(this.state.cart);
+    
+   this.props.navigation.navigate('ProductDetail', {
+      product: dishes,
+      cartItem : this.state.cart 
+   })
+}
+  goToCart(){
+    for (const food of this.state.food) {
+      if(food.cart == true){
+      
+        this.state.cart.push(food)
+      }
+    }
+     for (const featured of this.state.featured) {
+      if(featured.cart == true){
+        this.state.cart.push(featured)
+      }
+    }
+    
     this.props.navigation.navigate('Cart', {cartItem : this.state.cart })
   }
 
@@ -190,10 +209,7 @@ class Dashboard extends Component {
               {this.state.featured.map(dishes => (
                 <TouchableOpacity
                   style={{margin: 5}}
-                  onPress={() =>
-                    this.props.navigation.navigate('ProductDetail', {
-                      product: dishes,
-                    })
+                  onPress={() => this.productDetailItem(dishes)
                   }>
                   <LinearGradient
                     colors={['#FE4A00', '#F84D00', '#FC8C00']}
@@ -291,11 +307,7 @@ class Dashboard extends Component {
                   numColumns={2}
                   renderItem={({item}) => (
                     <TouchableOpacity
-                      onPress={() =>
-                        this.props.navigation.navigate('ProductDetail', {
-                          product: item,
-                        })
-                      }
+                      onPress={() =>this.productDetailItem(item)}
                       style={{margin: 5}}>
                       <LinearGradient
                         colors={['#E5E5E5', '#E5E5E5', '#E5E5E5']}

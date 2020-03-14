@@ -32,14 +32,18 @@ class Cart extends Component {
     //   })
     //   .catch(err => {
     //     console.log(err);
+    console.log()
     //   });
     // this.refs.modal3.open()
+    if(this.state.products != null ){
+
     for (let i = 0; i < this.state.products.length; i++) {
       this.state.products[i]['quantity'] = 1
       this.state.products[i]['orignal_price'] = this.state.products[i]['price'] 
       this.state.total += this.state.products[i]['orignal_price']
       this.setState({ })
      }
+    }
       
   }
 
@@ -171,9 +175,9 @@ class Cart extends Component {
           {/* </View>  */}
 
 
-
-
-        {this.state.products.map(products => (
+          {this.state.products != null && (
+            <View>
+              {this.state.products.map(products => (
   <View
             style={{
               backgroundColor: '#E5E5E5',
@@ -231,6 +235,11 @@ class Cart extends Component {
             {/* )} */}
           </View>
         ))}
+            
+            </View>
+          )}
+
+      
         
 <View style={{ alignSelf: "center", marginTop: 15 }}>
     <Text style={{ fontWeight: "bold", fontSize: 45, textAlign: "center", color:"#382715" }}>Total {'  '} Rs {this.state.total}</Text>

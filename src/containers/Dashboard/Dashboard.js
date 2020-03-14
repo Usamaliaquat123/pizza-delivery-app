@@ -12,11 +12,12 @@ import {styles} from './Dashboard.styles';
 import {Colors, Img} from './../../theme';
 import LinearGradient from 'react-native-linear-gradient';
 import {SCREEN_WIDTH, STATUS_BAR_HEIGHT} from './../../utils/constants';
-
+import { connect } from "react-redux";
 import data from './../mockdb/data';
 import Api from './../../Services/Api';
 // import AsyncStorage from '@react-native-community/async-storage';
-const base = 'http://pizza.softcob.com/img/menu_pic/';
+import { setAllFeaturedProducts,setAllNormalProducts } from './../../actions/products';
+const  base = 'http://pizza.softcob.com/img/menu_pic/'; 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -31,27 +32,27 @@ class Dashboard extends Component {
     // AsyncStorage.getItem('cart').then(r => console.log(r))
     // for (let i = 0; i < data.length; i++) {
     // }
-    Api.products()
-      .then(res => {
-        console.log(res.data);
-        const arr = res.data.filter(data => data.featured == 1)
-        for (let i = 0; i < arr.length; i++) {
-          arr[i]['cart'] = false
-        }
-        const arrs = res.data.filter(data => data.featured == 0)
-        for (let i = 0; i < arrs.length; i++) {
-          arrs[i]['cart'] = false
-        }
-        this.setState({
-          featured: res.data.filter(data => data.featured == 1),
-          food: res.data.filter(data => data.featured == 0),
-        });
+    // Api.products()
+    //   .then(res => {
+    //     console.log(res.data);
+    //     const arr = res.data.filter(data => data.featured == 1)
+    //     for (let i = 0; i < arr.length; i++) {
+    //       arr[i]['cart'] = false
+    //     }
+    //     const arrs = res.data.filter(data => data.featured == 0)
+    //     for (let i = 0; i < arrs.length; i++) {
+    //       arrs[i]['cart'] = false
+    //     }
+    //     this.setState({
+    //       featured: res.data.filter(data => data.featured == 1),
+    //       food: res.data.filter(data => data.featured == 0),
+    //     });
 
 
-        console.log(this.state.featured)
-        console.log(this.state.food)
-      })
-      .catch(err => console.log(err));
+    //     console.log(this.state.featured)
+    //     console.log(this.state.food)
+    //   })
+    //   .catch(err => console.log(err));
   }
 
   addCart(dish, type) {
@@ -93,6 +94,7 @@ class Dashboard extends Component {
   }
 
   render() {
+    const { featuredProducts,normProducts } = this.props
     return (
       <>
         <Header
@@ -158,7 +160,7 @@ class Dashboard extends Component {
             <ScrollView
               showsHorizontalScrollIndicator={false}
               horizontal={true}>
-              {this.state.featured.map(dishes => (
+              {featuredProducts.map(dishes => (
                 <TouchableOpacity
                   style={{margin: 5}}
                   onPress={() =>
@@ -259,7 +261,7 @@ class Dashboard extends Component {
               // horizontal={true}>
               >
                 <FlatList
-                  data={this.state.food}
+                  data={normProducts}
                   numColumns={2}
                   renderItem={({item}) => (
                     <TouchableOpacity
@@ -386,4 +388,19 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+
+function mapStateToProps(state){
+  return {
+    featuredProducts : state.products.setAllFeaturedProducts,
+    normProducts : state.products.setAllNormalProducts,
+  }
+}
+function mapDispatchToProps(){
+  return {
+    setAllFeaturedProducts,
+    setAllNormalProducts
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

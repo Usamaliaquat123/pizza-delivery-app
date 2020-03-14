@@ -11,17 +11,21 @@ const Api = {
   },
   post: (method, params) => {
     return new Promise((resolve, reject) => {
+      console.log(method);
+      console.log(params);
+      
       fetch(Api.base + '/' + method, {
         method: 'POST',
         body: JSON.stringify({
           username: params.username,
-          phone: params.contact,
+          phone: params.phone,
           adress: params.address,
-          password: params.pass
+          password: params.password
         }),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
+        // headers: {
+        //   Accept: 'application/json',
+        //   'Content-type': 'application/json; charset=UTF-8',
+        // },
       }).then(res => {
         resolve(res.json());
       }).catch(err => console.log(err));
@@ -31,7 +35,7 @@ const Api = {
     return Api.call('menu.php');
   },
 
-  cart: params => {
+cart: params => {
     const parm = {
        user_id: params.user_id,
         item_id: params.item_id,

@@ -110,7 +110,7 @@ class Dashboard extends Component {
           backgroundColor="transparent"
           placement="center"
           leftComponent={
-            <TouchableOpacity onPress={() => this.props.navigation.pop()}>
+            <TouchableOpacity >
               <Icon
                 name="restaurant-menu"
                 type="material"

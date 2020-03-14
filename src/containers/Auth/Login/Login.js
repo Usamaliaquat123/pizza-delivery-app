@@ -62,7 +62,6 @@ class Login extends Component {
               colors={['#FE5D03', '#F94D03', '#F94D03']}
               start={{x: 0, y: 0}}
               end={{x: 1, y: 0}}
-              // start={{ x: 0.7, y: 1.2 }} end={{ x: 0.0, y: 0.7 }}
               style={styles.outline}>
               <Input
                 inputContainerStyle={styles.viewInput}
@@ -91,7 +90,6 @@ class Login extends Component {
                 colors={['#FE5D03', '#F94D03', '#F94D03']}
                 start={{x: 0, y: 0}}
                 end={{x: 1, y: 0}}
-                // start={{ x: 0.7, y: 1.2 }} end={{ x: 0.0, y: 0.7 }}
                 style={{
                   height: 48,
                   width: 270,

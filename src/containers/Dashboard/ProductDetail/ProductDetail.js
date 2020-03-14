@@ -194,10 +194,11 @@ class ProductDetail extends Component {
                 </LinearGradient>
               </View>
 
-              <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+              <View style={{ justifyContent: 'center'}}>
                 {this.state.productItem.map(tags => (
                   <Badge
-                    value={
+                  containerStyle={{ marginTop: 5}}
+                    value={ 
                       <Text style={{color: '#E5E5E5', fontWeight: 'bold'}}>
                         {tags}
                       </Text>
@@ -208,6 +209,7 @@ class ProductDetail extends Component {
                       fontWeight: 'bold',
                     }}
                   />
+
                 ))}
                 {/* button of order now */}
               </View>
@@ -247,7 +249,7 @@ class ProductDetail extends Component {
                 />
               </View>
               <View>
-                <ButtonGroup
+                {/* <ButtonGroup
                   onPress={this.pizzaSizes}
                   selectedIndex={selectedIndex}
                   buttons={['S', 'M', 'L', 'XL', 'XXL']}
@@ -262,7 +264,7 @@ class ProductDetail extends Component {
                     margin: 10,
                     borderRadius: 10,
                   }}
-                />
+                /> */}
               </View>
               {/* button of order now */}
               <TouchableOpacity

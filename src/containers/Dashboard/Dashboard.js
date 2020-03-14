@@ -16,7 +16,7 @@ import { connect } from "react-redux";
 import data from './../mockdb/data';
 import Api from './../../Services/Api';
 // import AsyncStorage from '@react-native-community/async-storage';
-import { setAllFeaturedProducts,setAllNormalProducts } from './../../actions/products';
+import { setAllFeaturedProducts,setAllNormalProducts } from './../../actions';
 const  base = 'http://pizza.softcob.com/img/menu_pic/'; 
 class Dashboard extends Component {
   constructor(props) {
@@ -32,27 +32,31 @@ class Dashboard extends Component {
     // AsyncStorage.getItem('cart').then(r => console.log(r))
     // for (let i = 0; i < data.length; i++) {
     // }
-    // Api.products()
-    //   .then(res => {
-    //     console.log(res.data);
-    //     const arr = res.data.filter(data => data.featured == 1)
-    //     for (let i = 0; i < arr.length; i++) {
-    //       arr[i]['cart'] = false
-    //     }
-    //     const arrs = res.data.filter(data => data.featured == 0)
-    //     for (let i = 0; i < arrs.length; i++) {
-    //       arrs[i]['cart'] = false
-    //     }
-    //     this.setState({
-    //       featured: res.data.filter(data => data.featured == 1),
-    //       food: res.data.filter(data => data.featured == 0),
-    //     });
+    Api.products()
+      .then(res => {
+        console.log(res.data);
+        const arr = res.data.filter(data => data.featured == 1)
+        for (let i = 0; i < arr.length; i++) {
+          arr[i]['cart'] = false
+        }
+        const arrs = res.data.filter(data => data.featured == 0)
+        for (let i = 0; i < arrs.length; i++) {
+          arrs[i]['cart'] = false
+        }
+        this.setState({
+          featured: res.data.filter(data => data.featured == 1),
+          food: res.data.filter(data => data.featured == 0),
+        });
 
 
     //     console.log(this.state.featured)
     //     console.log(this.state.food)
     //   })
     //   .catch(err => console.log(err));
+
+    this.props.setAllFeaturedProducts()
+    // this.props.setAllNormalProducts()
+  })
   }
 
   addCart(dish, type) {
@@ -94,7 +98,9 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { featuredProducts,normProducts } = this.props
+    const {featuredProducts } = this.props
+    console.log(featuredProducts)
+    // console.log(normProducts)
     return (
       <>
         <Header
@@ -160,7 +166,7 @@ class Dashboard extends Component {
             <ScrollView
               showsHorizontalScrollIndicator={false}
               horizontal={true}>
-              {featuredProducts.map(dishes => (
+              {this.state.featured.map(dishes => (
                 <TouchableOpacity
                   style={{margin: 5}}
                   onPress={() =>
@@ -261,7 +267,7 @@ class Dashboard extends Component {
               // horizontal={true}>
               >
                 <FlatList
-                  data={normProducts}
+                  data={this.state.food}
                   numColumns={2}
                   renderItem={({item}) => (
                     <TouchableOpacity
@@ -388,19 +394,40 @@ class Dashboard extends Component {
   }
 }
 
-
-function mapStateToProps(state){
-  return {
-    featuredProducts : state.products.setAllFeaturedProducts,
-    normProducts : state.products.setAllNormalProducts,
-  }
-}
-function mapDispatchToProps(){
-  return {
-    setAllFeaturedProducts,
-    setAllNormalProducts
-  }
-}
+export default Dashboard
+// function mapStateToProps(state){
+//   return {
+//     featuredProducts : state.products.featuredProducts,
+//     // normProducts : state.products.normalProd,
+//   }
+// }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
+
+// export default connect(mapStateToProps, {
+//     setAllFeaturedProducts,
+//     setAllNormalProducts
+//   })(Dashboard)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

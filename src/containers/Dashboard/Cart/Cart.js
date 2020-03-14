@@ -13,7 +13,7 @@ class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      products : data,
+      products : this.props.navigation.getParam('cartItem'),
       count: 1,
       total: 0,
       user_id : 12,
@@ -24,7 +24,7 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.navigation.getParam('cartItem'))
+    // console.log(this.props.navigation.getParam('cartItem'))
     // AsyncStorage.getItem('cart')
     //   .then(res => {
     //     console.log(res);
@@ -34,6 +34,7 @@ class Cart extends Component {
     //   });
     // this.refs.modal3.open()
     for (let i = 0; i < this.state.products.length; i++) {
+      this.state.products[i]['quantity'] = 1
       this.state.products[i]['orignal_price'] = this.state.products[i]['price'] 
       this.state.total += this.state.products[i]['orignal_price']
       this.setState({ })

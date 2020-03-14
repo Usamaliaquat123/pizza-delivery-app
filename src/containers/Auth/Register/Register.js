@@ -199,6 +199,7 @@ registerNow(){
               </Text>
             </View>
           </View>
+          
            <Modal style={{    
     alignItems: 'center',
        marginTop : 30,

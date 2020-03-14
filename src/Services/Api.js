@@ -4,28 +4,30 @@ const Api = {
 
   call: (method, param) => {
     return new Promise((resolve, reject) => {
+      if(param == "auth"){
+       fetch(Api.base + '/' + method)
+        .then(res => resolve(res.json()))
+        .catch(err => reject(err));
+      }else{
+
       fetch(Api.base + '/' + method)
         .then(res => resolve(res.json()))
         .catch(err => reject(err));
+      }
     });
   },
   post: (method, params) => {
     return new Promise((resolve, reject) => {
       console.log(method);
       console.log(params);
+      console.log(params.username);
       
       fetch(Api.base + '/' + method, {
         method: 'POST',
-        body: JSON.stringify({
-          username: params.username,
-          phone: params.phone,
-          adress: params.address,
-          password: params.password
-        }),
-        // headers: {
-        //   Accept: 'application/json',
-        //   'Content-type': 'application/json; charset=UTF-8',
-        // },
+        headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
+    }),
+        body: `username=${params.username}&phone=${params.phone}&adress=${params.address}&password=${params.password}`,
       }).then(res => {
         resolve(res.json());
       }).catch(err => console.log(err));
@@ -54,6 +56,10 @@ console.log(parm);
     //       password: params.pass,
     // }
     return Api.post('user_insert.php', params);
+  },
+
+  fetchUser : params => {
+    return Api.call('fetch_user.php', "auth")
   }
 };
 

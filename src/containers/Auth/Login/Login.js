@@ -8,15 +8,37 @@ import {Input, Icon, Button} from 'react-native-elements';
 import LottieView from 'lottie-react-native';
 import Modal from 'react-native-modalbox'
 import { Bars  } from 'react-native-loader'
+import Api from './../../../Services/Api';
 class Login extends Component {
   constructor(props) {
     console.log(Img);
     super(props);
     this.state = {
-      loading: false
+      loading: false,
+      users : [],
+      phonenumber : '',
+      password: '',
+      errMsg : ''
     };
   }
 
+
+componentDidMount() {
+  Api.fetchUser().then(res => this.setState({ users: res.data }))
+}
+authenticate(){
+  if(this.state.phonenumber == "" && this.state.password == ""){
+    this.setState({errMsg : "Please check your credientials" })
+    this.refs.errModal.open()
+    
+  }else{
+    this.state.users.map(res => {
+      if(res.phone  == this.state.phonenumber && res.password == this.state.password){
+          this.props.navigation.navigate('HomeNav')
+      }
+    })
+  }
+}
   render() {
     return (
       <ScrollView>
@@ -43,10 +65,10 @@ class Login extends Component {
                 placeholderTextColor={'#F94D03'}
                 autoCapitalize={'none'}
                 autoCorrect={false}
-                value={''}
+                value={this.state.phonenumber}
                 keyboardType="numeric"
                 inputStyle={styles.textInput}
-                onChangeText={text => this.setState({username: text})}
+                onChangeText={text => this.setState({phonenumber: text})}
                 leftIcon={
                   <Icon
                     name={'phone'}
@@ -69,10 +91,10 @@ class Login extends Component {
                 placeholderTextColor={'#F94D03'}
                 autoCapitalize={'none'}
                 autoCorrect={false}
-                value={''}
+                value={this.state.password}
                 keyboardType="text"
                 inputStyle={styles.textInput}
-                onChangeText={text => this.setState({username: text})}
+                onChangeText={text => this.setState({password: text})}
                 leftIcon={
                   <Icon
                     name={'email'}
@@ -83,7 +105,7 @@ class Login extends Component {
               />
             </LinearGradient>
             <View style={{alignSelf: 'center'}}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('HomeNav')}>
+            <TouchableOpacity onPress={() => this.authenticate()}>
             
             
               <LinearGradient
@@ -125,6 +147,39 @@ class Login extends Component {
       />
     </View>
       )}
+
+
+         
+           <Modal style={{    
+    alignItems: 'center',
+       marginTop : 30,
+    height: 200,
+    width: 300,
+    borderRadius: 30,
+    backgroundColor : '#fff' }} position={"center"} ref={"errModal"} backdrop={true} isDisabled={this.state.isDisabled} coverScreen={true} backdropPressToClose={true}>
+           
+           <View style={{ margin: 20 }}>
+           
+            <Icon
+                name="user"
+                type="antdesign"
+                size={50}
+                color={'#312717'}
+              />
+              <Text style={{marginTop: 15, textAlign: "center", fontSize: 15, fontWeight: 'bold', color: "#FD5D00" }}>{this.state.errMsg}</Text>
+              <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}>
+                <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#FD5D00", justifyContent: 'center', padding: 12, marginRight: 10 }} onPress={() => this.refs.errModal.close()}>
+                  <Text style={{ color:"#fff", fontSize: 13 }}>Check credientials</Text>
+                </TouchableOpacity>
+                {/* <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#FD5D00", justifyContent: 'center', padding: 12, marginLeft: 10 }} onPress={() => {this.paymentProceed(this.state.total)
+                this.refs.modal3.close()
+                }}>
+                  <Text style={{ color:"#fff", fontSize: 13 }}>Place Now..!</Text>
+                </TouchableOpacity> */}
+              </View>
+           </View>
+           
+          </Modal>
       </ScrollView>
     );
   }

@@ -5,12 +5,17 @@ import { ADD_FEATURED_PRODUCTS, ADD_NORMAL_PRODUCTS, SET_ERROR } from './types';
 
 export function setAllFeaturedProducts() {
     return dispatch => {
-
-        Api.products().then(products => 
+        console.log();
+        
+        Api.products().then(products => {
+            console.log(products);
+            
             dispatch({
                 type: ADD_FEATURED_PRODUCTS,
                 payload: products.data
-            }))
+            })
+            
+            })
         // return Api.products().then(products => {
         // products.data.filter(data => data.featured == 1)
         // for (let i = 0; i < arr.length; i++) {

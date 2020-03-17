@@ -109,7 +109,7 @@ class ProductDetail extends Component {
 // export default Dashboard
 function mapStateToProps(state){
   return {
-    getCartItem : state.products.cartItem,
+    getCartItem : state.cart.cartItem,
   }
 }
 

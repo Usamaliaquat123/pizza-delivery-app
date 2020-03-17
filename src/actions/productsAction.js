@@ -1,5 +1,5 @@
 import Api from './../Services/Api';
-import { ADD_FEATURED_PRODUCTS, ADD_NORMAL_PRODUCTS, SET_ERROR } from './types';
+import { ADD_FEATURED_PRODUCTS, ADD_NORMAL_PRODUCTS, SET_ERROR, SET_CART_ITEM } from './types';
 
 
 
@@ -44,3 +44,7 @@ export function setAllNormalProducts(){
         // }))
     }
 }
+export const setCartItem = data => ({
+    type : SET_CART_ITEM,
+    data,
+});

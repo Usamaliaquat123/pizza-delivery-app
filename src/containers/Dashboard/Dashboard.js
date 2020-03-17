@@ -294,6 +294,7 @@ productDetailItem(dishes){
                 <FlatList
                   data={this.state.food}
                   numColumns={2}
+                  style={{ width: SCREEN_WIDTH -20 }}
                   renderItem={({item}) => (
                     <TouchableOpacity
                       onPress={() =>this.productDetailItem(item)}

@@ -77,6 +77,12 @@ class Cart extends Component {
         }
       }
   }
+
+
+  delProductToCart(products){
+    console.log(products);
+    
+  }
   paymentProceed(data) {
     console.log(data);
     
@@ -152,9 +158,9 @@ class Cart extends Component {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <View style={{ alignSelf: 'flex-end', marginRight: 20, marginTop: 10}}>
+            <TouchableOpacity onPress={() => this.delProductToCart(products)} style={{ alignSelf: 'flex-end', marginRight: 20, marginTop: 10}}>
             <Icon name="cross" type="entypo" size={30} color="#382715" />
-            </View>
+            </TouchableOpacity>
             <View style={{ alignItems: 'center',}}>
             <Image source={{uri:base+products.picture  }} style={{ width: 200, height: 200 }} />
             </View>

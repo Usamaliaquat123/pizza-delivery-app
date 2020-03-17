@@ -9,6 +9,8 @@ import  LinearGradient  from 'react-native-linear-gradient';
 import data from './../../mockdb/data';
 import Api from './../../../Services/Api';
 import Modal from "react-native-modalbox";
+import { setCartItem } from './../../../actions';
+import { connect } from 'react-redux';
 const  base = 'http://pizza.softcob.com/img/menu_pic/'; 
 class Cart extends Component {
   constructor(props) {
@@ -115,6 +117,9 @@ class Cart extends Component {
     
   }
   render() {
+      const {getCartItem } = this.props
+        console.log(getCartItem);
+        
     return (
       <>
         <Header
@@ -322,4 +327,19 @@ class Cart extends Component {
   }
 }
 
-export default Cart;
+
+// export default Dashboard
+function mapStateToProps(state){
+  return {
+    getCartItem : state.cart.cartItem,
+  }
+}
+
+export default connect(mapStateToProps, {
+    setCartItem,
+  })(Cart)
+
+
+
+
+

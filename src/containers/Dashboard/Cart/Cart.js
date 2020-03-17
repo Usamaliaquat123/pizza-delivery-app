@@ -137,42 +137,6 @@ class Cart extends Component {
           }
         />
         <ScrollView>
-          {/* <View
-            style={{
-              backgroundColor: '#E5E5E5',
-              borderBottomLeftRadius: 40,
-              borderBottomRightRadius: 40,
-              height: 300,
-              width: SCREEN_WIDTH - 10,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <View style={{ alignSelf: 'flex-end', marginRight: 10}}>
-            <Icon name="cross" type="entypo" size={30} color="#382715" />
-            </View>
-            <View style={{ alignItems: 'center',}}>
-            <Image source={Img.hd_dish} />
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                padding: 10,
-                justifyContent: 'center',
-                borderRadius: 10,
-              }}>
-              <Icon name="tags" type="antdesign" color="#382715" size={35} />
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: 'bold',
-                  color: '#FE4A00',
-                  marginTop: 5,
-                }}>
-                20% off
-              </Text>
-            </View>
-            {/* )} */}
-          {/* </View>  */}
 
 
           {this.state.products != null && (

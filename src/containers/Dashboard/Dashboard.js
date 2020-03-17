@@ -107,9 +107,10 @@ productDetailItem(dishes){
   }
 
   render() {
-    const {featuredProducts, normProducts } = this.props
+    const {featuredProducts, normProducts,getCartItem } = this.props
     console.log(featuredProducts)
     console.log(normProducts)
+    console.log(getCartItem)
     return (
       <>
         <Header
@@ -400,6 +401,7 @@ function mapStateToProps(state){
   return {
     featuredProducts : state.products.featuredProducts,
     normProducts : state.products.normalProd,
+    getCartItem : state.cart.cartItem,
   }
 }
 

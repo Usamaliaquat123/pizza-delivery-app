@@ -31,29 +31,9 @@ class Dashboard extends Component {
     };
   }
   componentDidMount() {
-    Api.products()
-      .then(res => {
-        console.log(res.data);
-        const arr = res.data.filter(data => data.featured == 1)
-        for (let i = 0; i < arr.length; i++) {
-          arr[i]['cart'] = false
-        }
-        const arrs = res.data.filter(data => data.featured == 0)
-        for (let i = 0; i < arrs.length; i++) {
-          arrs[i]['cart'] = false
-        }
-        this.setState({
-          featured: res.data.filter(data => data.featured == 1),
-          food: res.data.filter(data => data.featured == 0),
-        });
-
-  })
     this.props.setAllFeaturedProducts()
     this.props.setAllNormalProducts()
-  // AsyncStorage.getItem('username').then(res => {
-  //   console.log(res)
-
-  // })
+ 
 
   }
 
@@ -197,7 +177,7 @@ productDetailItem(dishes){
             <ScrollView
               showsHorizontalScrollIndicator={false}
               horizontal={true}>
-              {this.state.featured.map(dishes => (
+              {featuredProducts.map(dishes => (
                 <TouchableOpacity
                   style={{margin: 5}}
                   onPress={() => this.productDetailItem(dishes)
@@ -294,7 +274,7 @@ productDetailItem(dishes){
               // horizontal={true}>
               >
                 <FlatList
-                  data={this.state.food}
+                  data={normProducts}
                   numColumns={2}
                   style={{ width: SCREEN_WIDTH -20 }}
                   renderItem={({item}) => (

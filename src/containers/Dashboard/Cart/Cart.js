@@ -59,8 +59,8 @@ class Cart extends Component {
           })
           this.state.products[i]['quantity'] -= 1
           console.log(this.state.products[i]['price']);
-          this.state.products[i]['price'] -= this.state.products[i]['orignal_price']
-          this.state.total -= this.state.products[i]['orignal_price']
+          this.state.products[i]['price'] -= parseInt(this.state.products[i]['orignal_price'])
+          this.state.total -= parseInt(this.state.products[i]['orignal_price'])
         }
       }
   }
@@ -72,8 +72,9 @@ class Cart extends Component {
           })
           this.state.products[i]['quantity'] += 1
           console.log(this.state.products[i]['price']);
-          this.state.total +=  this.state.products[i]['orignal_price']
-          this.state.products[i]['price'] +=  parseInt(this.state.products[i]['orignal_price'])
+          let orgnalPrce = parseInt(this.state.products[i]['orignal_price'])
+          this.state.total +=  orgnalPrce
+          this.state.products[i]['price'] +=  orgnalPrce
         }
       }
   }

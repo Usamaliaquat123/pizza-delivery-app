@@ -9,6 +9,7 @@ import LottieView from 'lottie-react-native';
 import Modal from 'react-native-modalbox';
 import jsons from './../../../theme/Json';
 import {AsyncStorage} from 'react-native';
+import { connect } from 'react-redux';
 const  base = 'http://pizza.softcob.com/img/menu_pic/'; 
 class ProductDetail extends Component {
   constructor(props) {
@@ -418,4 +419,19 @@ class ProductDetail extends Component {
   }
 }
 
-export default ProductDetail;
+// export default Dashboard
+function mapStateToProps(state){
+  return {
+    getCartItem : state.products.featuredProducts,
+  }
+}
+
+export default connect(mapStateToProps, {
+    setCartItem,
+  })(ProductDetail)
+
+
+
+
+
+

@@ -16,7 +16,7 @@ class ProductDetail extends Component {
     this.state = {
       product: this.props.navigation.getParam('product'),
       productItem: [],
-      cart : [],
+      // cart : [],
       selectedIndex: 2,
       orignalPrice: 0,
     };
@@ -24,44 +24,42 @@ class ProductDetail extends Component {
   }
 
   componentDidMount() {
-    const prmCart = this.props.navigation.getParam('cartItem')
-    console.log(prmCart);
+    // const prmCart = this.props.navigation.getParam('cartItem')
+    // console.log(prmCart);
     
-    if(prmCart.length != 0){
-      this.state.cart.push(this.props.navigation.getParam('cartItem'))
-    }
+    // if(prmCart.length != 0){
+    //   this.state.cart.push(this.props.navigation.getParam('cartItem'))
+    // }
     // this.refs.addCartConfirm.open()
     console.log(this.state.product.items);
     const spc = this.state.product.items.trim(' ');
     const ArrItem = spc.split(',');
     // const ArrItem = this.state.product.items
     console.log(ArrItem);
-    this.state.product['quantity'] = 1;
-    this.state.product['orignalPrice'] = this.state.product['price'];
+
 
     //  this.state.orignalPrice = this.state.product['price']
-    console.log(this.state.product['price']);
     this.setState({productItem: ArrItem});
     console.log(this.state.product);
     
   }
   decreamentItem(id) {
-    if (this.state.product['quantity'] == 1) {
+    if (this.props.navigation.getParam('product')['quantity'] == 1) {
       return null;
     }
     this.setState({});
-    this.state.product['quantity'] -= 1;
-    this.state.product['price'] -= this.state.product['orignalPrice'];
+   this.props.navigation.getParam('product')['quantity'] -= 1;
+   this.props.navigation.getParam('product')['price'] -= this.props.navigation.getParam('product')['orignalPrice'];
   }
   increamentItem(id) {
     console.log(id);
     this.setState({});
-    this.state.product['quantity'] += 1;
-    console.log(parseInt(this.state.product['price']));
-    var iniPrice = parseInt(this.state.product['price']);
-    var orignalPrice = parseInt(this.state.product['orignalPrice']);
+    this.props.navigation.getParam('product')['quantity'] += 1;
+    // console.log(parseInt(this.state.product['price']));
+    var iniPrice = parseInt(this.props.navigation.getParam('product')['price']);
+    var orignalPrice = parseInt(this.props.navigation.getParam('product')['orignalPrice']);
     iniPrice += orignalPrice;
-    this.state.product['price'] = iniPrice;
+    this.props.navigation.getParam('product')['price'] = iniPrice;
   }
   addCart(product) {
     // this.state.cart.push(product)

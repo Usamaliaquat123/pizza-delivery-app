@@ -1,7 +1,7 @@
 
 import { SET_CART_ITEM } from './../actions/types';
 const INITIAL_STATE = {
-  cartItem: [],
+  cartItem: ['asdsa'],
 };
 
 export default (state = INITIAL_STATE, action) => {

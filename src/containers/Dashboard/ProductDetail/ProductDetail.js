@@ -18,7 +18,8 @@ class ProductDetail extends Component {
     this.state = {
       // product: this.props.navigation.getParam('product'),
       productItem: [],
-      // cart : [],
+      
+      cart : [],
       selectedIndex: 2,
       orignalPrice: 0,
     };
@@ -64,18 +65,8 @@ class ProductDetail extends Component {
     iniPrice += orignalPrice;
     this.props.navigation.getParam('product')['price'] = iniPrice;
   }
-  addCart(product) {
-    // console.log(prop);
-    
-      this.props.getCartItem.filter(crtItem => {
-        if(crtItem.id == product.id){
-          crtItem['quantity'] += 1
-        }
-        if(crtItem != product){
-         this.props.setCartItem(product)
-         this.props.navigation.navigate('Cart')
-        }
-      })
+  addCart(product, getCartItem) {
+      //  this.props.setCartItem(product)
   }
   
 
@@ -395,7 +386,7 @@ class ProductDetail extends Component {
                     marginLeft: 10,
                     flexDirection: 'row',
                   }}
-                  onPress={() => this.addCart(products)}>
+                  onPress={() => this.addCart(products, getCartItem)}>
                   <Text style={{color: '#fff', fontSize: 13, marginRight: 3}}>
                     cart
                   </Text>

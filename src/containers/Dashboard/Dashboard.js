@@ -109,8 +109,8 @@ productDetailItem(dishes){
   render() {
     const {featuredProducts, normProducts,getCartItem } = this.props
     console.log(featuredProducts)
+    console.log(featuredProducts)
     console.log(normProducts)
-    console.log(getCartItem)
     return (
       <>
         <Header
@@ -275,111 +275,197 @@ productDetailItem(dishes){
                 <FlatList
                   data={normProducts}
                   numColumns={2}
-                  style={{ width: SCREEN_WIDTH -20 }}
+                  // style={{ width: SCREEN_WIDTH - 200 }}
                   renderItem={({item}) => (
-                    <TouchableOpacity
-                      onPress={() =>this.productDetailItem(item)}
-                      style={{margin: 5}}>
-                      <LinearGradient
-                        colors={['#E5E5E5', '#E5E5E5', '#E5E5E5']}
-                        start={{x: 0, y: 1}}
-                        end={{x: 1, y: 0}}
-                        style={{
-                          height: 215,
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          width: SCREEN_WIDTH - 230,
-                          // borderRadius: 18,
-                        }}>
+
+                      
+                     <TouchableOpacity
+                  style={{margin: 5}}
+                  onPress={() => this.productDetailItem(item)
+                  }>
+                  <LinearGradient
+                    colors={['#E5E5E5', '#E5E5E5', '#E5E5E5']}
+                    start={{x: 0, y: 1}}
+                    end={{x: 1, y: 0}}
+                    style={{
+                      height: 215,
+                      // alignItems: 'flex-end',
+                      justifyContent: 'center',
+                      width: 150,
+                      borderRadius: 18,
+                    }}>
+                    <View
+                      style={{
+                        marginTop: -15,
+                        flexDirection: 'row',
+                      }}>
+                      {item.offer != '' && (
                         <View
                           style={{
+                            alignContent: 'flex-start',
                             flexDirection: 'row',
-                            height: 30,
-                            justifyContent: 'center',
-                            alignItems: 'center',
+                            padding: 5,
+                            backgroundColor: "#FE4A00",
+                            marginLeft: 10,
+                            marginTop: -18,
+                            borderRadius: 10,
+                            // paddingBottom: -
                           }}>
-                          <View style={{marginLeft: 35, marginRight: 35}}>
-                            {item.offer != '' && (
-                              <View
-                                style={{
-                                  backgroundColor: '#FE4A00',
-                                  padding: 5,
-                                  alignSelf: 'center',
-                                  marginTop: -20,
-                                  marginBottom: 15,
-                                  borderRadius: 4,
-                                }}>
-                                <Text
-                                  style={{
-                                    textAlign: 'center',
-                                    fontWeight: 'bold',
-                                    color: '#fff',
-                                  }}>
-                                  {item.offer}% off
-                                </Text>
-                              </View>
-                            )}
-                          </View>
-                          {/* Styling diff */}
-                          {item.offer == '' && (
-                            <View style={{marginRight: -60}}>
-                              <View style={{marginTop: -20}}>
-                              {item.cart == false && (
-                                <TouchableOpacity
-                                  onPress={() => this.addCart(item)}>
-                                  <Icon
-                                    name="shoppingcart"
-                                    type="antdesign"
-                                    color="#FC8C00"
-                                  />
-                                </TouchableOpacity>
-                              )}
-                              {item.cart == true && (
-                                <TouchableOpacity
-                                  onPress={() => this.removeCart(item)}>
-                                  <Icon
-                                    name="shopping-cart"
-                                    type="entypo"
-                                    color="#FC8C00"
-                                  />
-                                </TouchableOpacity>
-                              )}
-                              </View>
-                            </View>
-                          )}
-
-                          {/* Styling diff */}
-                          {item.offer != '' && (
-                            <View style={{marginTop: -20}}>
-                             {item.cart == false && (
-                                <TouchableOpacity
-                                  onPress={() => this.addCart(item)}>
-                                  <Icon
-                                    name="shoppingcart"
-                                    type="antdesign"
-                                    color="#FC8C00"
-                                  />
-                                </TouchableOpacity>
-                               )} 
-                             {item.cart == true && (
-                                <TouchableOpacity
-                                  onPress={() => this.removeCart(item)}>
-                                  <Icon
-                                    name="shopping-cart"
-                                    type="entypo"
-                                    color="#FC8C00"
-                                  />
-                                </TouchableOpacity>
-                               )} 
-                              
-                            </View>
-                          )}
+                          <Icon
+                            name="tags"
+                            type="antdesign"
+                            color="#fff"
+                            size={30}
+                          />
+                          <Text
+                            style={{
+                              color: '#fff',
+                              fontWeight: 'bold',
+                              fontSize: 12,
+                              marginTop: 10,
+                            }}>
+                            {item.offer}% off
+                          </Text>
                         </View>
-                        <Image
-                          source={{uri:base+item.picture  }} style={{ width: 146, height: 146 }}
-                        />
-                      </LinearGradient>
-                    </TouchableOpacity>
+                      )}
+                      <View
+                        style={{
+                          marginLeft: 'auto',
+                        }}>
+                        {item.cart == true && (
+                        <TouchableOpacity
+                          style={{marginRight: 15}}
+                          onPress={() => this.removeCart(item)}>
+                          <Icon
+                            name="shopping-cart"
+                            type="entypo"
+                            color="#fff"
+                          />
+                        </TouchableOpacity>
+                        )} 
+                        {item.cart == false && (
+                        <TouchableOpacity
+                          style={{marginRight: 15}}
+                          onPress={() => this.addCart(item)}>
+                          <Icon
+                            name="shoppingcart"
+                            type="antdesign"
+                            color="#fff"
+                          />
+                        </TouchableOpacity>
+                        )}
+                       
+                      </View>
+                    </View>
+                    <Image
+                       source={{uri:base+item.picture  }} style={{ width: 140, height: 140 ,marginLeft: 5  }}
+                    />
+                  </LinearGradient>
+                </TouchableOpacity>
+                    // <TouchableOpacity
+                    //   onPress={() =>this.productDetailItem(item)}
+                    //   style={{margin: 5}}>
+                    //   <LinearGradient
+                    //     colors={['#E5E5E5', '#E5E5E5', '#E5E5E5']}
+                    //     start={{x: 0, y: 1}}
+                    //     end={{x: 1, y: 0}}
+                    //     style={{
+                    //       height: 215,
+                    //       alignItems: 'center',
+                    //       // padding: 10,
+                    //       justifyContent: 'center',
+                    //       width: SCREEN_WIDTH - 150,
+                    //       // borderRadius: 18,
+                    //     }}>
+                    //     <View
+                    //       style={{
+                    //         flexDirection: 'row',
+                    //         height: 30,
+                    //         justifyContent: 'center',
+                    //         alignItems: 'center',
+                    //       }}>
+                    //       <View style={{marginLeft: 35, marginRight: 35}}>
+                    //         {item.offer != '' && (
+                    //           <View
+                    //             style={{
+                    //               backgroundColor: '#FE4A00',
+                    //               padding: 5,
+                    //               alignSelf: 'center',
+                    //               marginTop: -20,
+                    //               marginBottom: 15,
+                    //               borderRadius: 4,
+                    //             }}>
+                    //             <Text
+                    //               style={{
+                    //                 textAlign: 'center',
+                    //                 fontWeight: 'bold',
+                    //                 color: '#fff',
+                    //               }}>
+                    //               {item.offer}% off
+                    //             </Text>
+                    //           </View>
+                    //         )}
+                    //       </View>
+                    //       {/* Styling diff */}
+                    //       {item.offer == '' && (
+                    //         <View style={{marginRight: -60}}>
+                    //           <View style={{marginTop: -20}}>
+                    //           {item.cart == false && (
+                    //             <TouchableOpacity
+                    //               onPress={() => this.addCart(item)}>
+                    //               <Icon
+                    //                 name="shoppingcart"
+                    //                 type="antdesign"
+                    //                 color="#FC8C00"
+                    //               />
+                    //             </TouchableOpacity>
+                    //           )}
+                    //           {item.cart == true && (
+                    //             <TouchableOpacity
+                    //               onPress={() => this.removeCart(item)}>
+                    //               <Icon
+                    //                 name="shopping-cart"
+                    //                 type="entypo"
+                    //                 color="#FC8C00"
+                    //               />
+                    //             </TouchableOpacity>
+                    //           )}
+                    //           </View>
+                    //         </View>
+                    //       )}
+
+                    //       {/* Styling diff */}
+                    //       {item.offer != '' && (
+                    //         <View style={{marginTop: -20}}>
+                    //          {item.cart == false && (
+                    //             <TouchableOpacity
+                    //               onPress={() => this.addCart(item)}>
+                    //               <Icon
+                    //                 name="shoppingcart"
+                    //                 type="antdesign"
+                    //                 color="#FC8C00"
+                    //               />
+                    //             </TouchableOpacity>
+                    //            )} 
+                    //          {item.cart == true && (
+                    //             <TouchableOpacity
+                    //               onPress={() => this.removeCart(item)}>
+                    //               <Icon
+                    //                 name="shopping-cart"
+                    //                 type="entypo"
+                    //                 color="#FC8C00"
+                    //               />
+                    //             </TouchableOpacity>
+                    //            )} 
+                              
+                    //         </View>
+                    //       )}
+                    //     </View>
+                    //     <Image
+                    //       source={{uri:base+item.picture  }} style={{ width: 146, height: 146 }}
+                    //     />
+                    //   </LinearGradient>
+                    // </TouchableOpacity>
                   )}
                   keyExtractor={item => item.id}
                 />

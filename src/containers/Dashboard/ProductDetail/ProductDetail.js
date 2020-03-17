@@ -9,7 +9,7 @@ import LottieView from 'lottie-react-native';
 import Modal from 'react-native-modalbox';
 import jsons from './../../../theme/Json';
 import {AsyncStorage} from 'react-native';
-
+const  base = 'http://pizza.softcob.com/img/menu_pic/'; 
 class ProductDetail extends Component {
   constructor(props) {
     super(props);
@@ -42,6 +42,8 @@ class ProductDetail extends Component {
     //  this.state.orignalPrice = this.state.product['price']
     console.log(this.state.product['price']);
     this.setState({productItem: ArrItem});
+    console.log(this.state.product);
+    
   }
   decreamentItem(id) {
     if (this.state.product['quantity'] == 1) {
@@ -124,7 +126,10 @@ class ProductDetail extends Component {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <Image source={Img.hd_dish} />
+              <Image
+                       source={{uri:base+this.state.product.picture  }} style={{ width: 170, height: 170 ,marginLeft: 5  }}
+                    />
+            {/* <Image source={{ uri:base+this.state.product.picture }} width={100} height={100} /> */}
             {this.state.product.offer != '' && (
               <View
                 style={{

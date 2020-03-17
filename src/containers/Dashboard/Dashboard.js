@@ -27,13 +27,9 @@ class Dashboard extends Component {
       featured: [],
       food: [],
       cart: [],
-      // totalCart: 0
     };
   }
   componentDidMount() {
-    // AsyncStorage.getItem('cart').then(r => console.log(r))
-    // for (let i = 0; i < data.length; i++) {
-    // }
     Api.products()
       .then(res => {
         console.log(res.data);
@@ -50,14 +46,7 @@ class Dashboard extends Component {
           food: res.data.filter(data => data.featured == 0),
         });
 
-
-    //     console.log(this.state.featured)
-    //     console.log(this.state.food)
-    //   })
-    //   .catch(err => console.log(err));
-
     this.props.setAllFeaturedProducts()
-    // this.props.setAllNormalProducts()
   })
   AsyncStorage.getItem('username').then(res => {
     console.log(res)

@@ -10,11 +10,11 @@ export default (state = INITIAL_STATE, action) => {
               ...state,
               featuredProducts : action.payload
             };
-        // case ADD_NORMAL_PRODUCTS: 
-        //     return {
-        //         ...state,
-        //         normalProd: action.payload
-        //     }
+        case ADD_NORMAL_PRODUCTS: 
+            return {
+                ...state,
+                normalProd: action.payload
+            }
     
         default:
             return state;

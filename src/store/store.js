@@ -6,6 +6,7 @@ import reducers from "../reducers";
 const Store = createStore(
     reducers,
     {},
+    compose(applyMiddleware(thunk)),
     //  compose(applyMiddleware(thuck), offline(offlineConfig)),     
 )
 

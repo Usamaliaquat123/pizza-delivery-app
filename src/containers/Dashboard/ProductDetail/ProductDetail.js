@@ -66,10 +66,26 @@ class ProductDetail extends Component {
     this.props.navigation.getParam('product')['price'] = iniPrice;
   }
   addCart(product) {
-
+    if(this.props.getCartItem.length == 0){
  this.props.getCartItem.push(product);
    this.refs.addCartConfirm.close();
 this.props.navigation.navigate('Cart') 
+    }else{
+this.props.getCartItem.filter((prodct, index) => {
+      if(prodct.id == product.id){
+        this.props.getCartItem[index]['quantity'] += product.quantity
+        this.props.getCartItem[index]['price'] += product.price
+           this.refs.addCartConfirm.close();
+this.props.navigation.navigate('Cart') 
+      }else{
+ this.props.getCartItem.push(product);
+   this.refs.addCartConfirm.close();
+this.props.navigation.navigate('Cart') 
+      }
+    })
+    }
+    
+
    
   }  
 

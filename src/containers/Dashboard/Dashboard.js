@@ -43,7 +43,6 @@ class Dashboard extends Component {
        
   if(this.props.getCartItem.length == 0){
    for (let i = 0; i < this.props.featuredProducts.length; i++) {
-     console.log('asd');
      
      this.props.featuredProducts[i]['cart'] = false
           this.setState({  })
@@ -53,7 +52,6 @@ class Dashboard extends Component {
           this.setState({  })
    }
   }else{
-         console.log('exx');
    for (let i = 0; i < this.props.featuredProducts.length; i++) {
     for (let c = 0; c < this.props.getCartItem.length; c++) {
         if(this.props.getCartItem[c].id == this.props.featuredProducts[i].id){

@@ -27,11 +27,11 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    if(this.state.products != null ){
+    if(this.props.getCartItem != null ){
 
     for (let i = 0; i < this.props.getCartItem.length; i++) {
       // this.state.products[i]['quantity'] = 1
-      this.props.getCartItem[i][price]
+      this.props.getCartItem[i]['price']
       // this.state.products[i]['orignalPrice'] =  parseInt(this.state.products[i]['price']) 
       this.state.total += this.props.getCartItem[i]['orignalPrice']
       this.props.getCartItem[i]['price'] = parseInt(this.props.getCartItem[i]['price'])
@@ -44,7 +44,7 @@ class Cart extends Component {
  
   decreamentItem(id) {
    for (let i = 0; i < this.props.getCartItem.length; i++) {
-        if (this.props.getCartItem[i]._id == id) {
+        if (this.props.getCartItem[i].id == id) {
           if(this.props.getCartItem[i]['quantity'] == 1){
             return null
           }
@@ -58,9 +58,9 @@ class Cart extends Component {
         }
       }
   }
-  increamentItem(id) {
+  increamentItem(id) {  
       for (let i = 0; i < this.props.getCartItem.length; i++) {
-        if (this.props.getCartItem[i]._id == id) {
+        if (this.props.getCartItem[i].id == id) {
           this.setState({
             
           })
@@ -78,6 +78,7 @@ class Cart extends Component {
   delProductToCart(products){
   for (let i = 0; i < this.props.getCartItem.length; i++) {
     if(this.props.getCartItem[i].id == products.id){
+      // this.state.total -= this.props.getCartItem[i]['price']
       this.props.getCartItem.splice(i,1);
       this.setState({ })
     }    
@@ -88,7 +89,7 @@ class Cart extends Component {
     
     const totalPrice = data;
     for (let i = 0; i < this.state.products.length; i++) {
-        this.state.productIds.push(this.state.products[i]._id)    
+        this.state.productIds.push(this.state.products[i].id)    
         this.state.quantity.push(this.state.products[i].quantity)    
     }
     const params = {
@@ -199,10 +200,10 @@ class Cart extends Component {
             <Text style={{ color: "#FE4A00", fontWeight: "bold", fontSize: 12, textAlign: "center" }}>{products.overview}</Text>
             {/* quantity */}
             <View style={{ flexDirection: "row", marginTop: 15, alignSelf: 'center', }}>
-                <Icon name="left" type="antdesign" color="#FE4A00" size={30} iconStyle={{ marginTop: 1 }} onPress={() => this.decreamentItem(products._id)} />
+                <Icon name="left" type="antdesign" color="#FE4A00" size={30} iconStyle={{ marginTop: 1 }} onPress={() => this.decreamentItem(products.id)} />
 
                 <Text style={{ color: "#FE4A00", fontSize: 18, fontWeight: "bold", marginLeft: 20, marginRight: 20 }}>{products.quantity}</Text>
-                <Icon name="right" type="antdesign" color="#FE4A00" size={30} iconStyle={{ marginTop: 1, }} onPress={() => this.increamentItem(products._id)} />
+                <Icon name="right" type="antdesign" color="#FE4A00" size={30} iconStyle={{ marginTop: 1, }} onPress={() => this.increamentItem(products.id)} />
             </View>
 
             <View style={{ padding: 10, backgroundColor: "#FE4A00", color: "#fff", alignSelf: "center", borderRadius: 10, marginTop: 10 }}>

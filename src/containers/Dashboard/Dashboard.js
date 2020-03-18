@@ -34,6 +34,17 @@ class Dashboard extends Component {
     this.props.setAllFeaturedProducts()
     this.props.setAllNormalProducts()
 
+    this.props.getCartItem
+  if(this.props.getCartItem.length != 0){
+     for (let i = 0; i < this.props.featuredProducts.length; i++) {
+    for (let c = 0; c < this.props.getCartItem.length; c++) {
+        if(this.props.getCartItem[c].id == this.props.featuredProducts[i].id){
+          this.props.featuredProducts[i]['cart'] = true
+        }
+    }
+  }
+   
+  }
 
   }
 
@@ -93,37 +104,14 @@ class Dashboard extends Component {
 
   }
 productDetailItem(dishes){
-   for (const food of this.state.food) {
-      if(food.cart == true){
-        this.state.cart.push(food)
-      }
-    }
-     for (const featured of this.state.featured) {
-      if(featured.cart == true){
-        this.state.cart.push(featured)
-      }
-    }
-    console.log(this.state.cart);
-    
+  
    this.props.navigation.navigate('ProductDetail', {
       product: dishes,
-      cartItem : this.state.cart 
    })
 }
-  goToCart(){
-    for (const food of this.state.food) {
-      if(food.cart == true){
-      
-        this.state.cart.push(food)
-      }
-    }
-     for (const featured of this.state.featured) {
-      if(featured.cart == true){
-        this.state.cart.push(featured)
-      }
-    }
+goToCart(){
     
-    this.props.navigation.navigate('Cart', {cartItem : this.state.cart })
+    this.props.navigation.navigate('Cart')
   }
 
   render() {
@@ -132,9 +120,7 @@ productDetailItem(dishes){
     console.log(featuredProducts)
     console.log(getCartItem)
     
-    if(this.props.getCartItem.length == 0){
-
-    }
+ 
     return (
       <>
         <Header
@@ -204,7 +190,7 @@ productDetailItem(dishes){
                 <TouchableOpacity
                   style={{margin: 5}}
                   onPress={() => this.productDetailItem(dishes)
-                  }>
+                  }>  
                   <LinearGradient
                     colors={['#FE4A00', '#F84D00', '#FC8C00']}
                     start={{x: 0, y: 1}}

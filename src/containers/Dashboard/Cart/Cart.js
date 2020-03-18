@@ -27,16 +27,6 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    // console.log(this.props.navigation.getParam('cartItem'))
-    // AsyncStorage.getItem('cart')
-    //   .then(res => {
-    //     console.log(res);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    console.log()
-    //   });
-    // this.refs.modal3.open()
     if(this.state.products != null ){
 
     for (let i = 0; i < this.state.products.length; i++) {
@@ -151,9 +141,9 @@ class Cart extends Component {
         <ScrollView>
 
 
-          {this.state.products != null && (
+          {getCartItem != null && (
             <View>
-              {this.state.products.map(products => (
+              {getCartItem.map(products => (
   <View
             style={{
               backgroundColor: '#E5E5E5',

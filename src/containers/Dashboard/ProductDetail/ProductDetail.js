@@ -44,7 +44,7 @@ class ProductDetail extends Component {
     //  this.state.orignalPrice = this.state.product['price']
     this.setState({productItem: ArrItem});
     console.log(this.props.navigation.getParam('product'));
-    this.props.setCartItem()
+    // this.props.setCartItem()
     
   }
   decreamentItem(id) {
@@ -65,10 +65,13 @@ class ProductDetail extends Component {
     iniPrice += orignalPrice;
     this.props.navigation.getParam('product')['price'] = iniPrice;
   }
-  addCart(product, getCartItem) {
-      //  this.props.setCartItem(product)
-  }
-  
+  addCart(product) {
+
+ this.props.getCartItem.push(product);
+   this.refs.addCartConfirm.close();
+this.props.navigation.navigate('Cart') 
+   
+  }  
 
   pizzaSizes(selectedIndex) {
     this.setState({selectedIndex: selectedIndex});
@@ -78,6 +81,7 @@ class ProductDetail extends Component {
   render() {
     const { getCartItem } = this.props
     console.log(getCartItem);
+
     const products = this.props.navigation.getParam('product')
     const buttons = ['Hello', 'World', 'Buttons'];
     const {selectedIndex} = this.state;
@@ -386,7 +390,7 @@ class ProductDetail extends Component {
                     marginLeft: 10,
                     flexDirection: 'row',
                   }}
-                  onPress={() => this.addCart(products, getCartItem)}>
+                  onPress={() => this.addCart(products)}>
                   <Text style={{color: '#fff', fontSize: 13, marginRight: 3}}>
                     cart
                   </Text>
@@ -413,9 +417,7 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, {
-    setCartItem,
-  })(ProductDetail)
+export default connect(mapStateToProps)(ProductDetail)
 
 
 

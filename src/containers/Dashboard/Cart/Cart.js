@@ -29,10 +29,12 @@ class Cart extends Component {
   componentDidMount() {
     if(this.state.products != null ){
 
-    for (let i = 0; i < this.state.products.length; i++) {
-      this.state.products[i]['quantity'] = 1
-      this.state.products[i]['orignal_price'] =  parseInt(this.state.products[i]['price']) 
-      this.state.total += this.state.products[i]['orignal_price']
+    for (let i = 0; i < this.props.getCartItem.length; i++) {
+      // this.state.products[i]['quantity'] = 1
+      this.props.getCartItem[i][price]
+      // this.state.products[i]['orignalPrice'] =  parseInt(this.state.products[i]['price']) 
+      this.state.total += this.props.getCartItem[i]['orignalPrice']
+      this.props.getCartItem[i]['price'] = parseInt(this.props.getCartItem[i]['price'])
       this.setState({ })
      }
     }
@@ -41,32 +43,33 @@ class Cart extends Component {
 
  
   decreamentItem(id) {
-   for (let i = 0; i < this.state.products.length; i++) {
-        if (this.state.products[i]._id == id) {
-          if(this.state.products[i]['quantity'] == 1){
+   for (let i = 0; i < this.props.getCartItem.length; i++) {
+        if (this.props.getCartItem[i]._id == id) {
+          if(this.props.getCartItem[i]['quantity'] == 1){
             return null
           }
           this.setState({
             
           })
-          this.state.products[i]['quantity'] -= 1
-          console.log(this.state.products[i]['price']);
-          this.state.products[i]['price'] -= parseInt(this.state.products[i]['orignal_price'])
-          this.state.total -= parseInt(this.state.products[i]['orignal_price'])
+          this.props.getCartItem[i]['quantity'] -= 1
+          console.log(this.props.getCartItem[i]['price']);
+          this.props.getCartItem[i]['price'] -= parseInt(this.props.getCartItem[i]['orignalPrice'])
+          this.state.total -= parseInt(this.props.getCartItem[i]['orignalPrice'])
         }
       }
   }
   increamentItem(id) {
-      for (let i = 0; i < this.state.products.length; i++) {
-        if (this.state.products[i]._id == id) {
+      for (let i = 0; i < this.props.getCartItem.length; i++) {
+        if (this.props.getCartItem[i]._id == id) {
           this.setState({
             
           })
-          this.state.products[i]['quantity'] += 1
-          console.log(this.state.products[i]['price']);
-          let orgnalPrce = parseInt(this.state.products[i]['orignal_price'])
+          this.props.getCartItem[i]['quantity'] += 1
+          let orgnalPrce = parseInt(this.props.getCartItem[i]['orignalPrice'])
+          console.log(orgnalPrce);
+          
           this.state.total +=  orgnalPrce
-          this.state.products[i]['price'] +=  orgnalPrce
+          this.props.getCartItem[i]['price'] +=  orgnalPrce
         }
       }
   }

@@ -106,14 +106,12 @@ class Dashboard extends Component {
 
   }
 productDetailItem(dishes){
-  
    this.props.navigation.navigate('ProductDetail', {
       product: dishes,
    })
 }
 goToCart(){
-    
-    this.props.navigation.navigate('Cart',{updateParent : this.updateParent()})
+    this.props.navigation.navigate('Cart',{updateParent : this.updateParent})
   }
 
   render() {

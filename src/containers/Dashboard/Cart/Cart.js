@@ -79,7 +79,6 @@ class Cart extends Component {
       this.setState({ })
     }    
   }
-    
   }
   paymentProceed(data) {
     console.log(data);
@@ -127,8 +126,8 @@ class Cart extends Component {
             <TouchableOpacity onPress={() => 
             {
               // this.props.navigation.state.params.updateDate('sd')
-              this.props.updateParent
-              this.props.navigation.pop()}}>
+              this.props.navigation.state.params.updateParent()              
+              this.props.navigation.goBack()}}>
               <Icon
                 name="restaurant-menu"
                 type="material"

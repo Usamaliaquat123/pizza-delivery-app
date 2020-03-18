@@ -18,8 +18,8 @@ import { connect } from "react-redux";
 import data from './../mockdb/data';
 import Api from './../../Services/Api';
 import AsyncStorage from '@react-native-community/async-storage';
-import { setAllFeaturedProducts,setAllNormalProducts } from './../../actions';
-// import { setAllFeaturedProducts } from './../../actions/productsAction';
+import { setAllFeaturedProducts,setAllNormalProducts,setCartItem } from './../../actions';
+// import { setAllFeaturedProducts, setCartItem } from './../../actions/productsAction';
 const  base = 'http://pizza.softcob.com/img/menu_pic/'; 
 class Dashboard extends Component {
   constructor(props) {
@@ -37,6 +37,8 @@ class Dashboard extends Component {
 
   addCart(dish, type) {
     if(type == "featured"){
+        // this.props.setCartItem(dish)
+           this.props.getCartItem.push(dish)
       for (let i = 0; i < this.props.featuredProducts.length; i++) {
           if(this.props.featuredProducts[i].id == dish.id){
             this.props.featuredProducts[i]['cart'] = true
@@ -44,6 +46,8 @@ class Dashboard extends Component {
           }
       }
     }else{
+      //  this.props.setCartItem(dish)
+       this.props.getCartItem.push(dish)
       for (let i = 0; i < this.props.normProducts.length; i++) {
           if(this.props.normProducts[i].id == dish.id){
             this.props.normProducts[i]['cart'] = true
@@ -58,9 +62,15 @@ class Dashboard extends Component {
     if (type == "featured") {
       for (let i = 0; i < this.props.featuredProducts.length; i++) {
           if(this.props.featuredProducts[i].id == dishes.id){
+          
             this.props.featuredProducts[i]['cart'] = false
             this.setState({ })
           }
+      }
+      for (let i = 0; i < this.props.getCartItem.length; i++) {
+          if(this.props.getCartItem[i].id == dishes.id){
+              this.props.getCartItem.slice(i, 1)
+          }        
       }
     }else{
       for (let i = 0; i < this.props.normProducts.length; i++) {
@@ -68,6 +78,11 @@ class Dashboard extends Component {
             this.props.normProducts[i]['cart'] = false
             this.setState({ })
           }
+      }
+      for (let i = 0; i < this.props.getCartItem.length; i++) {
+          if(this.props.getCartItem[i].id == dishes.id){
+              this.props.getCartItem.slice(i, 1)
+          }        
       }
     }
 
@@ -110,7 +125,7 @@ productDetailItem(dishes){
     const {featuredProducts, normProducts,getCartItem } = this.props
     console.log(featuredProducts)
     console.log(featuredProducts)
-    console.log(normProducts)
+    console.log(getCartItem)
     return (
       <>
         <Header
@@ -495,7 +510,8 @@ function mapStateToProps(state){
 
 export default connect(mapStateToProps, {
     setAllFeaturedProducts,
-    setAllNormalProducts
+    setAllNormalProducts,
+    setCartItem
   })(Dashboard)
 
 

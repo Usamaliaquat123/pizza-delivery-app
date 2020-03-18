@@ -78,7 +78,7 @@ class Cart extends Component {
   delProductToCart(products){
   for (let i = 0; i < this.props.getCartItem.length; i++) {
     if(this.props.getCartItem[i].id == products.id){
-      // this.state.total -= this.props.getCartItem[i]['price']
+      this.state.total -= this.props.getCartItem[i]['price']
       this.props.getCartItem.splice(i,1);
       this.setState({ })
     }    

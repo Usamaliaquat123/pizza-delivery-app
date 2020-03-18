@@ -8,7 +8,6 @@ import {
   Alert ,
   TouchableOpacity,
   FlatList,
-
 } from 'react-native';
 import {styles} from './Dashboard.styles';
 import {Colors, Img} from './../../theme';
@@ -29,24 +28,27 @@ class Dashboard extends Component {
       food: [],
       cart: [],
     };
+    this.updateParent = this.updateParent.bind(this)
   }
   componentDidMount() {
     this.props.setAllFeaturedProducts()
     this.props.setAllNormalProducts()
 
     this.props.getCartItem
-  if(this.props.getCartItem.length != 0){
-     for (let i = 0; i < this.props.featuredProducts.length; i++) {
-    for (let c = 0; c < this.props.getCartItem.length; c++) {
-        if(this.props.getCartItem[c].id == this.props.featuredProducts[i].id){
-          this.props.featuredProducts[i]['cart'] = true
-        }
-    }
-  }
-   
-  }
+ 
 
   }
+
+
+  updateParent() {
+     this.render()
+  }
+  
+
+  // componentWillReceiveProps(nextProps) {
+  //   this.render()
+  // }
+  
 
   addCart(dish, type) {
     if(type == "featured"){
@@ -111,7 +113,7 @@ productDetailItem(dishes){
 }
 goToCart(){
     
-    this.props.navigation.navigate('Cart')
+    this.props.navigation.navigate('Cart',{updateParent : this.updateParent()})
   }
 
   render() {
@@ -120,6 +122,16 @@ goToCart(){
     console.log(featuredProducts)
     console.log(getCartItem)
     
+    
+     if(this.props.getCartItem.length != 0){
+     for (let i = 0; i < this.props.featuredProducts.length; i++) {
+    for (let c = 0; c < this.props.getCartItem.length; c++) {
+        if(this.props.getCartItem[c].id == this.props.featuredProducts[i].id){
+          this.props.featuredProducts[i]['cart'] = true
+        }
+    }
+  }
+  }
  
     return (
       <>

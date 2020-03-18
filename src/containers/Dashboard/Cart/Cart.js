@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView, Image, BackHandler} from 'react-native';
 import {Header, Icon} from 'react-native-elements';
 import {styles} from './Cart.styles';
 import {Colors, Img} from './../../../theme';
@@ -36,10 +36,10 @@ class Cart extends Component {
       this.setState({ })
      }
     }
-      
+    
   }
 
-
+ 
   decreamentItem(id) {
    for (let i = 0; i < this.state.products.length; i++) {
         if (this.state.products[i]._id == id) {
@@ -73,7 +73,12 @@ class Cart extends Component {
 
 
   delProductToCart(products){
-    console.log(products);
+  for (let i = 0; i < this.props.getCartItem.length; i++) {
+    if(this.props.getCartItem[i].id == products.id){
+      this.props.getCartItem.splice(i,1);
+      this.setState({ })
+    }    
+  }
     
   }
   paymentProceed(data) {
@@ -119,7 +124,11 @@ class Cart extends Component {
           backgroundColor="#E5E5E5"
           placement="center"
           leftComponent={
-            <TouchableOpacity onPress={() => this.props.navigation.pop()}>
+            <TouchableOpacity onPress={() => 
+            {
+              // this.props.navigation.state.params.updateDate('sd')
+              this.props.updateParent
+              this.props.navigation.pop()}}>
               <Icon
                 name="restaurant-menu"
                 type="material"

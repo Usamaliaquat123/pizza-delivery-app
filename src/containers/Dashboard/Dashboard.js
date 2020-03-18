@@ -33,6 +33,8 @@ class Dashboard extends Component {
   componentDidMount() {
     this.props.setAllFeaturedProducts()
     this.props.setAllNormalProducts()
+
+
   }
 
   addCart(dish, type) {
@@ -59,18 +61,26 @@ class Dashboard extends Component {
   }
 
   removeCart(dishes,type){
+    // this.props.getCartItem.find((prod, index) => {
+    //   console.log(prod);
+      
+    //   if(prod.id == dishes.id){
+    //     this.props.getCartItem.splice(index,1)
+    //   }
+    // })
+
+
+  for (let i = 0; i < this.props.getCartItem.length; i++) {
+      if(this.props.getCartItem[i].id == dishes.id){
+        this.props.getCartItem.splice(i,1)
+      } 
+  }
     if (type == "featured") {
       for (let i = 0; i < this.props.featuredProducts.length; i++) {
           if(this.props.featuredProducts[i].id == dishes.id){
-          
             this.props.featuredProducts[i]['cart'] = false
             this.setState({ })
           }
-      }
-      for (let i = 0; i < this.props.getCartItem.length; i++) {
-          if(this.props.getCartItem[i].id == dishes.id){
-              this.props.getCartItem.slice(i, 1)
-          }        
       }
     }else{
       for (let i = 0; i < this.props.normProducts.length; i++) {
@@ -78,11 +88,6 @@ class Dashboard extends Component {
             this.props.normProducts[i]['cart'] = false
             this.setState({ })
           }
-      }
-      for (let i = 0; i < this.props.getCartItem.length; i++) {
-          if(this.props.getCartItem[i].id == dishes.id){
-              this.props.getCartItem.slice(i, 1)
-          }        
       }
     }
 
@@ -126,6 +131,14 @@ productDetailItem(dishes){
     console.log(featuredProducts)
     console.log(featuredProducts)
     console.log(getCartItem)
+    
+    if(this.props.getCartItem.length == 0){
+
+    }else{
+      for (let i = 0; i < getCartItem.length; i++) {
+        
+      }
+    }
     return (
       <>
         <Header

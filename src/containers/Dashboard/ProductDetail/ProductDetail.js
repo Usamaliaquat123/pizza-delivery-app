@@ -26,6 +26,10 @@ class ProductDetail extends Component {
     this.pizzaSizes = this.pizzaSizes.bind(this);
   }
 
+
+
+
+
   componentDidMount() {
     // const prmCart = this.props.navigation.getParam('cartItem')
     // console.log(prmCart);
@@ -110,7 +114,9 @@ this.props.navigation.navigate('Cart')
           backgroundColor="#E5E5E5"
           placement="center"
           leftComponent={
-            <TouchableOpacity onPress={() => this.props.navigation.pop()}>
+            <TouchableOpacity onPress={() => {
+              this.props.navigation.state.params.onGoBack();
+              this.props.navigation.pop()}}>
               <Icon name="left" type="antdesign" color="#372611" />
             </TouchableOpacity>
           }

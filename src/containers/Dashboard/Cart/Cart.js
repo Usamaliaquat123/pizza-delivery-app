@@ -80,6 +80,7 @@ class Cart extends Component {
 
 
   delProductToCart(products){
+ 
   for (let i = 0; i < this.props.getCartItem.length; i++) {
     if(this.props.getCartItem[i].id == products.id){
       this.state.total -= this.props.getCartItem[i]['price']
@@ -119,7 +120,7 @@ class Cart extends Component {
     
   }
   render() {
-      const {getCartItem } = this.props
+        const {featuredProducts, normProducts,getCartItem } = this.props
         console.log(getCartItem);
         
     return (
@@ -134,7 +135,7 @@ class Cart extends Component {
             <TouchableOpacity onPress={() => 
             {
               // this.props.navigation.state.params.updateDate('sd')
-              this.props.navigation.state.params.updateParent()              
+              this.props.navigation.state.params.onGoBack()              
               this.props.navigation.goBack()}}>
               <Icon
                 name="restaurant-menu"
@@ -337,6 +338,8 @@ class Cart extends Component {
 // export default Dashboard
 function mapStateToProps(state){
   return {
+      featuredProducts : state.products.featuredProducts,
+    normProducts : state.products.normalProd,
     getCartItem : state.cart.cartItem,
   }
 }

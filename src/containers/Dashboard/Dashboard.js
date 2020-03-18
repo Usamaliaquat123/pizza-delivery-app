@@ -134,10 +134,6 @@ productDetailItem(dishes){
     
     if(this.props.getCartItem.length == 0){
 
-    }else{
-      for (let i = 0; i < getCartItem.length; i++) {
-        
-      }
     }
     return (
       <>

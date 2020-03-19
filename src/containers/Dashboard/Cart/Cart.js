@@ -112,7 +112,7 @@ class Cart extends Component {
             this.props.getCartItem.splice(0, this.props.getCartItem.length)
             this.setState({ total : 0 })
             this.setState({ })
-
+            this.props.navigation.navigate('OrderSubmit')
         }
     }).catch(err =>  console.log(err))
   

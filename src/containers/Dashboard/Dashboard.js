@@ -272,6 +272,8 @@ goToCart(){
                         style={{
                           marginLeft: 'auto',
                         }}>
+
+        
                         {dishes.cart == true && (
                         <TouchableOpacity
                           style={{marginRight: 15}}
@@ -295,6 +297,10 @@ goToCart(){
                         </TouchableOpacity>
                         )}
                        
+
+
+
+
                       </View>
                     </View>
                     <Image

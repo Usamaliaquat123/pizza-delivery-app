@@ -7,7 +7,7 @@ import  OrderCompleted  from './../containers/Dashboard/ProductStatus/OrderCompl
 import OrderSubmit  from './../containers/Dashboard/ProductStatus/OrderSubmit';
 import  OrderProcessing  from './../containers/Dashboard/ProductStatus/OrderProcessing';
 import  OrderRejected  from './../containers/Dashboard/ProductStatus/OrderRejected';
-
+import MainTab from "./../containers/Dashboard/ProductStatus/MainTab";
 const HomeNav = createStackNavigator(
   {
     Dashboard: {screen: Dashboard},
@@ -16,11 +16,12 @@ const HomeNav = createStackNavigator(
     OrdrCompleted: { screen: OrderCompleted },
     OrdrSubmit:  { screen : OrderSubmit },
     OrdrProcessing: { screen : OrderProcessing },
-    OrdrRejected: { screen : OrderRejected }
+    OrdrRejected: { screen : OrderRejected },
+    MainTab: { screen: MainTab }
   },
   {
     headerMode: 'none',
-    initialRouteName: 'OrdrSubmit',
+    initialRouteName: 'Dashboard',
   },
 );
 

@@ -17,7 +17,7 @@ export function setAllProcessOrder() {
     return dispatch => {
         Api.PreviousOrders().then(order => {
             dispatch({
-                type: SET_ORDER_SUBMIT,
+                type: SET_PROCESSING_ORDERS,
                 payload: order.data.filter(prd => prd.status == "order_processing")
             })
         })
@@ -27,7 +27,7 @@ export function setAllRejectOrders() {
     return dispatch => {
         Api.PreviousOrders().then(order => {
             dispatch({
-                type: SET_ORDER_SUBMIT,
+                type: SET_REJECTED_ORDERS,
                 payload: order.data.filter(prd => prd.status == "order_rejected")
             })
         })
@@ -37,7 +37,7 @@ export function setAllCompletedOrders() {
     return dispatch => {
         Api.PreviousOrders().then(order => {
             dispatch({
-                type: SET_ORDER_SUBMIT,
+                type: SET_COMPLETED_ORDERS,
                 payload: order.data.filter(prd => prd.status == "order_completed")
             })
         })

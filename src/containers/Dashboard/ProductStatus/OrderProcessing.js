@@ -46,7 +46,7 @@ class OrderProcessing extends Component {
               />
             </TouchableOpacity>
           }
-          centerComponent={{ text: 'Submited Orders', style: { color: '#372715', fontWeight: 'bold' } }}
+          centerComponent={{ text: 'Processing Orders', style: { color: '#372715', fontWeight: 'bold' } }}
           rightComponent={
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('Cart')}>
@@ -83,6 +83,7 @@ class OrderProcessing extends Component {
               
               <Text style={{ fontSize: 12, opacity: .3,fontWeight: 'bold',marginLeft: 5 }}>Quantity {prod.quantity} </Text>
               <Text style={{ fontSize: 12, opacity: .6,fontWeight: 'bold',marginLeft: 5, alignSelf: 'flex-end' }}>Rs:  {prod.total_price}</Text>
+              <Text style={{fontSize: 12, opacity: .8,fontWeight: 'bold',marginLeft:10, alignSelf: 'flex-end'}}>We are processing this order</Text>
               </View>
               </View>
                     </View>

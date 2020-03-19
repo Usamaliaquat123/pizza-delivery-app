@@ -4,6 +4,7 @@ import {Header, Icon} from 'react-native-elements';
 import {styles} from './Cart.styles';
 import {Colors, Img} from './../../../theme';
 import {STATUS_BAR_HEIGHT, SCREEN_WIDTH} from './../../../utils/constants';
+
 import AsyncStorage from '@react-native-community/async-storage';
 import  LinearGradient  from 'react-native-linear-gradient';
 import data from './../../mockdb/data';
@@ -17,12 +18,11 @@ class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      products : this.props.navigation.getParam('cartItem'),
+      // products : this.props.navigation.getParam('cartItem'),
       count: 1,
       total: 0,
       user_id : 12,
-      productIds: [],
-      quantity: [],
+      // quantity: [],
       errMsg: "",
       finalizeItems: []
     };
@@ -146,10 +146,10 @@ class Cart extends Component {
           }
           rightComponent={
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Cart')}>
+              onPress={() => this.props.navigation.navigate('MainTab')}>
               <Icon
-                name="shopping-cart"
-                type="entypo"
+                name="barchart"
+                type="antdesign"
                 color={'#382715'}
               />
             </TouchableOpacity>

@@ -1,15 +1,29 @@
-import React, { Component } from 'react'
-import { Text, View,TouchableOpacity,Icon } from 'react-native'
-import { Header } from 'react-native-elements'
+import React, { Component, } from 'react'
+import { Text, View,TouchableOpacity,Platform,ScrollView } from 'react-native'
+import { Header,Icon } from 'react-native-elements'
+import { connect } from 'react-redux';
+import { setAllSubmitOrders } from './../../../actions';
+import { STATUS_BAR_HEIGHT } from './../../../utils/constants';
 
-export class OrderSubmit extends Component {
+class OrderSubmit extends Component {
     constructor(props) {
         super(props)
         this.state = {
 
         }
     }
+
+
+    componentDidMount() {
+        this.props.setAllSubmitOrders()
+    }
+    
     render() {
+
+        const { prevOrderSubmit } = this.props
+
+        console.log(prevOrderSubmit);
+        
         return (
           <>
            <Header
@@ -22,8 +36,10 @@ export class OrderSubmit extends Component {
             <TouchableOpacity onPress={() => 
             {
               // this.props.navigation.state.params.updateDate('sd')
-              this.props.navigation.state.params.onGoBack()              
-              this.props.navigation.goBack()}}>
+            //   this.props.navigation.state.params.onGoBack()              
+            //   this.props.navigation.goBack()
+              }}
+              >
               <Icon
                 name="restaurant-menu"
                 type="material"
@@ -31,6 +47,7 @@ export class OrderSubmit extends Component {
               />
             </TouchableOpacity>
           }
+          centerComponent={{ text: 'Submited Orders', style: { color: '#372715', fontWeight: 'bold' } }}
           rightComponent={
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('Cart')}>
@@ -42,9 +59,26 @@ export class OrderSubmit extends Component {
             </TouchableOpacity>
           }
         />
+
+        <ScrollView>
+        </ScrollView>
           </>
         )
     }
 }
+
+
+// export default Dashboard
+function mapStateToProps(state){
+  return {
+    prevOrderSubmit : state.prevOrders.prevOrderSubmit,
+  }
+}
+
+
+
+export default connect(mapStateToProps, {
+    setAllSubmitOrders
+  })(OrderSubmit)
 
 

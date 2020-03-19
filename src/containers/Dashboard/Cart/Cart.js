@@ -22,7 +22,8 @@ class Cart extends Component {
       user_id : 12,
       productIds: [],
       quantity: [],
-      errMsg: ""
+      errMsg: "",
+      finalizeItems: []
     };
   }
 
@@ -97,30 +98,29 @@ class Cart extends Component {
   }
   paymentProceed(data) {
     console.log(data);
-    
-    const totalPrice = data;
-    for (let i = 0; i < this.state.products.length; i++) {
-        this.state.productIds.push(this.state.products[i].id)    
-        this.state.quantity.push(this.state.products[i].quantity)    
-    }
-    const params = {
-      user_id: this.state.user_id,
-      item_id: this.state.productIds.toString(),
-      quantity: this.state.quantity.toString()
-    }
-    console.log(params);
-    Api.cart(params).then(res => {
-      if(res.status == "Ok"){
-      this.refs.modal3.close()
-  this.state.productIds = []
-    this.state.quantity = []
-    console.log(res)
-      }else{
-        this.refs.errModal.open()
-        this.setState({
-           errMsg: "looks like you are not connected to Internet..."
+
+    for (let i = 0; i < this.props.getCartItem.length; i++) {
+        this.state.finalizeItems.push({
+          menu_id : this.props.getCartItem[i].id,
+          price: this.props.getCartItem[i].price,
+          quantity: this.props.getCartItem[i].quantity
         })
-      }
+    }
+
+
+console.log(this.state.finalizeItems);
+
+
+   const params  = {
+      customer_id: "8",
+      customer_address: "Mirpur Azad Kashmir",
+      order_items: this.state.finalizeItems
+   }
+
+
+   console.log(params)
+    Api.cart(params).then(res => {
+  
     }).catch(err =>  console.log(err))
   
     
@@ -181,7 +181,7 @@ class Cart extends Component {
             <Icon name="cross" type="entypo" size={30} color="#382715" />
             </TouchableOpacity>
             <View style={{ alignItems: 'center',}}>
-            <Image source={{uri:base+products.picture  }} style={{ width: 200, height: 200 }} />
+            <Image source={{uri:base+products.picture}} style={{ width: 200, height: 200 }} />
             </View>
             {/* {this.state.product.offer != "" && ( */}
 

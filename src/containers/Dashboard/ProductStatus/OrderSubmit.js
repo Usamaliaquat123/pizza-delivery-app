@@ -18,9 +18,7 @@ class OrderSubmit extends Component {
     componentDidMount() {
         this.props.setAllSubmitOrders()
     }
-    
     render() {
-
         const { prevOrderSubmit } = this.props
 
         console.log(prevOrderSubmit);

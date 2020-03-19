@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 
-export class OrderPlaced extends Component {
+export class OrderSubmit extends Component {
     render() {
         return (
             <View>
@@ -11,4 +11,4 @@ export class OrderPlaced extends Component {
     }
 }
 
-export default OrderPlaced
+export default OrderSubmit

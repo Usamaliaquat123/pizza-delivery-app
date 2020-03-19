@@ -20,7 +20,7 @@ const HomeNav = createStackNavigator(
   },
   {
     headerMode: 'none',
-    initialRouteName: 'Dashboard',
+    initialRouteName: 'OrdrSubmit',
   },
 );
 

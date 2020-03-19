@@ -8,7 +8,7 @@ import moment from 'moment';
 
 class OrderSubmit extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
 
         }
@@ -16,7 +16,7 @@ class OrderSubmit extends Component {
 
 
     componentDidMount() {
-        // this.props.setAllSubmitOrders()
+        this.props.setAllSubmitOrders()
     }
     
     render() {
@@ -24,7 +24,7 @@ class OrderSubmit extends Component {
         const { prevOrderSubmit } = this.props
 
         console.log(prevOrderSubmit);
-        
+    
         return (
           <>
            <Header
@@ -62,7 +62,7 @@ class OrderSubmit extends Component {
         />
 
         <ScrollView>
-        {prevOrderSubmit.map(prod => {
+        {prevOrderSubmit.map(prod => (
 
             <TouchableOpacity style={{alignSelf: 'center', backgroundColor: "#E5E5E5",marginTop: 8, borderRadius: 15, width: SCREEN_WIDTH - 12, padding: 20 }}>
                     <View style={{ flexDirection : 'row' }}>
@@ -88,9 +88,8 @@ class OrderSubmit extends Component {
               </View>
               </View>
                     </View>
-            
             </TouchableOpacity>
-        })}
+        ))}
 
         </ScrollView>
           </>
@@ -109,7 +108,7 @@ function mapStateToProps(state){
 
 
 export default connect(mapStateToProps, {
-    // setAllSubmitOrders
+    setAllSubmitOrders
   })(OrderSubmit)
 
 

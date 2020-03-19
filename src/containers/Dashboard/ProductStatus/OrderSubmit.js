@@ -16,7 +16,7 @@ class OrderSubmit extends Component {
 
 
     componentDidMount() {
-        this.props.setAllSubmitOrders()
+        // this.props.setAllSubmitOrders()
     }
     
     render() {
@@ -109,7 +109,7 @@ function mapStateToProps(state){
 
 
 export default connect(mapStateToProps, {
-    setAllSubmitOrders
+    // setAllSubmitOrders
   })(OrderSubmit)
 
 

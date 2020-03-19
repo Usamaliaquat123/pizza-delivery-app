@@ -9,7 +9,7 @@ import  LinearGradient  from 'react-native-linear-gradient';
 import data from './../../mockdb/data';
 import Api from './../../../Services/Api';
 import Modal from "react-native-modalbox";
-import { setCartItem } from './../../../actions';
+import { setCartItem ,setAllSubmitOrders} from './../../../actions';
 import { connect } from 'react-redux';
 // import { setCartItem } from './../../../actions/productsAction';
 const  base = 'http://pizza.softcob.com/img/menu_pic/'; 
@@ -112,7 +112,8 @@ class Cart extends Component {
             this.props.getCartItem.splice(0, this.props.getCartItem.length)
             this.setState({ total : 0 })
             this.setState({ })
-            this.props.navigation.navigate('OrderSubmit')
+            this.props.setAllSubmitOrders()
+            this.props.navigation.navigate('OrdrSubmit')
         }
     }).catch(err =>  console.log(err))
   
@@ -376,6 +377,7 @@ function mapStateToProps(state){
 
 export default connect(mapStateToProps, {
     setCartItem,
+    setAllSubmitOrders
   })(Cart)
 
 

@@ -100,11 +100,7 @@ class Cart extends Component {
     console.log(data);
 
     for (let i = 0; i < this.props.getCartItem.length; i++) {
-        this.state.finalizeItems.push({
-          menu_id : this.props.getCartItem[i].id,
-          price: this.props.getCartItem[i].price,
-          quantity: this.props.getCartItem[i].quantity
-        })
+        this.state.finalizeItems.push(`{"menu_id":${ this.props.getCartItem[i].id},"price":${this.props.getCartItem[i].price},"quantity":${this.props.getCartItem[i].quantity}}`)
     }
 
 

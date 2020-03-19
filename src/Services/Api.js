@@ -44,7 +44,10 @@ cart: params => {
     //     quantity: params.quantity,
     // }
     
-  const prm = `user_id=${params.customer_id}&customer_address=${params.customer_address}&order_status=order_submitted&order_items=${params.order_items}`
+  const prm = `user_id=${params.customer_id}&customer_address=${params.customer_address}&order_status=order_submitted&order_items=[${params.order_items}]`
+    console.log(prm);
+    
+    
     return Api.post('insert_orders.php', prm);
 console.log(parm.order_items);
   },

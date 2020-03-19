@@ -34,24 +34,10 @@ updateParent(){
 
 
   componentDidMount() {
-    // const prmCart = this.props.navigation.getParam('cartItem')
-    // console.log(prmCart);
-    
-    // if(prmCart.length != 0){
-    //   this.state.cart.push(this.props.navigation.getParam('cartItem'))
-    // }
-    // this.refs.addCartConfirm.open()
-    // console.log(this.state.product.items);
     const spc = this.props.navigation.getParam('product').items.trim(' ');
     const ArrItem = spc.split(',');
-    // const ArrItem = this.state.product.items
-    // console.log(ArrItem);
-
-
-    //  this.state.orignalPrice = this.state.product['price']
     this.setState({productItem: ArrItem});
     console.log(this.props.navigation.getParam('product'));
-    // this.props.setCartItem()
     
   }
   decreamentItem(id) {
@@ -66,7 +52,6 @@ updateParent(){
     console.log(id);
     this.setState({});
     this.props.navigation.getParam('product')['quantity'] += 1;
-    // console.log(parseInt(this.state.product['price']));
     var iniPrice = parseInt(this.props.navigation.getParam('product')['price']);
     var orignalPrice = parseInt(this.props.navigation.getParam('product')['orignalPrice']);
     iniPrice += orignalPrice;

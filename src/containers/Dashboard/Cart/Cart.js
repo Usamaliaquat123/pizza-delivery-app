@@ -30,15 +30,8 @@ class Cart extends Component {
     if(this.props.getCartItem != null ){
     
     for (let i = 0; i < this.props.getCartItem.length; i++) {
-      // this.state.products[i]['quantity'] = 1
-      
-      // const asss = [...new Set(this.props.getCartItem.map(a => a.))];
-      // console.log(asss);
-      
       this.props.getCartItem[i]['price']
-      // this.state.products[i]['orignalPrice'] =  parseInt(this.state.products[i]['price']) 
       this.state.total += this.props.getCartItem[i]['price']
-      // this.props.getCartItem[i]['price'] = parseInt(this.props.getCartItem[i]['price'])
       this.setState({ })
      }
     }

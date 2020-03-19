@@ -113,7 +113,7 @@ class Cart extends Component {
             this.setState({ total : 0 })
             this.setState({ })
             this.props.setAllSubmitOrders()
-            this.props.navigation.navigate('OrdrSubmit')
+            this.props.navigation.navigate('MainTab')
         }
     }).catch(err =>  console.log(err))
   

@@ -32,7 +32,7 @@ class OrderSubmit extends Component {
           backgroundColor="#E5E5E5"
           placement="center"
           leftComponent={
-            <TouchableOpacity onPress={() => 
+            <TouchableOpacity  onPress={() => 
             {
               // this.props.navigation.state.params.updateDate('sd')
             //   this.props.navigation.state.params.onGoBack()              
@@ -49,7 +49,7 @@ class OrderSubmit extends Component {
           centerComponent={{ text: 'Submited Orders', style: { color: '#372715', fontWeight: 'bold' } }}
           rightComponent={
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Cart')}>
+              onPress={() => this.props.navigation.pop()}>
               <Icon
                 name="shopping-cart"
                 type="entypo"
@@ -83,6 +83,7 @@ class OrderSubmit extends Component {
               
               <Text style={{ fontSize: 12, opacity: .3,fontWeight: 'bold',marginLeft: 5 }}>Quantity {prod.quantity} </Text>
               <Text style={{ fontSize: 12, opacity: .6,fontWeight: 'bold',marginLeft: 5, alignSelf: 'flex-end' }}>Rs:  {prod.total_price}</Text>
+              <Text style={{fontSize: 12, opacity: .8,fontWeight: 'bold',marginLeft:20, alignSelf: 'flex-end'}}>Placed</Text>
               </View>
               </View>
                     </View>

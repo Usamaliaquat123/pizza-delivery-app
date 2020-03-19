@@ -11,6 +11,7 @@ import Api from './../../../Services/Api';
 import Modal from "react-native-modalbox";
 import { setCartItem } from './../../../actions';
 import { connect } from 'react-redux';
+// import { setCartItem } from './../../../actions/productsAction';
 const  base = 'http://pizza.softcob.com/img/menu_pic/'; 
 class Cart extends Component {
   constructor(props) {
@@ -97,26 +98,22 @@ class Cart extends Component {
   }
   }
   paymentProceed(data) {
-    console.log(data);
-
     for (let i = 0; i < this.props.getCartItem.length; i++) {
         this.state.finalizeItems.push(`{"menu_id":${ this.props.getCartItem[i].id},"price":${this.props.getCartItem[i].price},"quantity":${this.props.getCartItem[i].quantity}}`)
     }
-
-
-console.log(this.state.finalizeItems);
-
-
    const params  = {
       customer_id: "8",
       customer_address: "Mirpur Azad Kashmir",
       order_items: this.state.finalizeItems
    }
-
-
-   console.log(params)
     Api.cart(params).then(res => {
-  
+      console.log(res);
+        if(res.status == 'Ok'){
+            this.props.getCartItem.splice(0, this.props.getCartItem.length)
+            this.setState({ total : 0 })
+            this.setState({ })
+
+        }
     }).catch(err =>  console.log(err))
   
     
@@ -291,6 +288,37 @@ console.log(this.state.finalizeItems);
                 }}>
                   <Text style={{ color:"#fff", fontSize: 13 }}>Place Now..!</Text>
                 </TouchableOpacity>
+              </View>
+           </View>
+           
+          </Modal>
+
+          <Modal style={{    
+    alignItems: 'center',
+       marginTop : 30,
+    height: 200,
+    width: 300,
+    borderRadius: 30,
+    backgroundColor : '#fff' }} position={"center"} ref={"orderPlaced"} backdrop={true} isDisabled={this.state.isDisabled} coverScreen={true} backdropPressToClose={true}>
+           
+           <View style={{ margin: 20 }}>
+           
+            <Icon
+                name="restaurant-menu"
+                type="material"
+                size={50}
+                color={'#312717'}
+              />
+              <Text style={{marginTop: 15, textAlign: "center", fontSize: 15, fontWeight: 'bold', color: "#FD5D00" }}>Are you sure you want to place your order...!</Text>
+              <View style={{  alignSelf: 'center', marginTop: 10 }}>
+                <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#372715", justifyContent: 'center', padding: 12}} onPress={() => this.refs.orderPlaced.close()}>
+                  <Text style={{ color:"#fff", fontSize: 13 }}>Review Your Order...</Text>
+                </TouchableOpacity>
+                {/* <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#FD5D00", justifyContent: 'center', padding: 12, marginLeft: 10 }} onPress={() => {this.paymentProceed(this.state.total)
+                this.refs.modal3.close()
+                }}>
+                  <Text style={{ color:"#fff", fontSize: 13 }}>Place Now..!</Text>
+                </TouchableOpacity> */}
               </View>
            </View>
            

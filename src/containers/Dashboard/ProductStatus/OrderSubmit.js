@@ -3,7 +3,8 @@ import { Text, View,TouchableOpacity,Platform,ScrollView } from 'react-native'
 import { Header,Icon } from 'react-native-elements'
 import { connect } from 'react-redux';
 import { setAllSubmitOrders } from './../../../actions';
-import { STATUS_BAR_HEIGHT } from './../../../utils/constants';
+import { STATUS_BAR_HEIGHT, SCREEN_WIDTH } from './../../../utils/constants';
+import moment from 'moment';
 
 class OrderSubmit extends Component {
     constructor(props) {
@@ -61,6 +62,36 @@ class OrderSubmit extends Component {
         />
 
         <ScrollView>
+        {prevOrderSubmit.map(prod => {
+
+            <TouchableOpacity style={{alignSelf: 'center', backgroundColor: "#E5E5E5",marginTop: 8, borderRadius: 15, width: SCREEN_WIDTH - 12, padding: 20 }}>
+                    <View style={{ flexDirection : 'row' }}>
+                         <Icon
+                name="clipboard"
+                type="entypo"
+                size={60}
+                color={'#AEAEAE'}
+              />
+
+              <Text></Text>
+              <View>
+              
+              <View style={{  flexDirection : 'row', marginTop: 8, marginLeft: 5 }}>
+              <Text style={{ fontSize: 13, fontWeight: 'bold',opacity: .5 }}>Your order has been placed on {moment(prod.time_stamp).format("MMM Do YY ") }at </Text>
+              </View>
+              <Text style={{fontSize: 13, fontWeight: 'bold',marginLeft: 5,opacity: .5}}>{moment(prod.time_stamp).format('h:mm a')}</Text>
+              
+              <View style={{ flexDirection: 'row' }}>
+              
+              <Text style={{ fontSize: 12, opacity: .3,fontWeight: 'bold',marginLeft: 5 }}>Quantity {prod.quantity} </Text>
+              <Text style={{ fontSize: 12, opacity: .6,fontWeight: 'bold',marginLeft: 5, alignSelf: 'flex-end' }}>Rs:  {prod.total_price}</Text>
+              </View>
+              </View>
+                    </View>
+            
+            </TouchableOpacity>
+        })}
+
         </ScrollView>
           </>
         )

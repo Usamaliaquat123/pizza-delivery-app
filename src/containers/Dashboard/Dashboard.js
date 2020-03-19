@@ -41,44 +41,48 @@ class Dashboard extends Component {
 
   updateParent() {
        
-  if(this.props.getCartItem.length == 0){
-   for (let i = 0; i < this.props.featuredProducts.length; i++) {
+  // if(this.props.getCartItem.length == 0){
+  //  for (let i = 0; i < this.props.featuredProducts.length; i++) {
      
-     this.props.featuredProducts[i]['cart'] = false
-          this.setState({  })
-   }
-    for (let i = 0; i < this.props.normProducts.length; i++) {
-     this.props.normProducts[i]['cart'] = false
-          this.setState({  })
-   }
-  }else{
-   for (let i = 0; i < this.props.featuredProducts.length; i++) {
-    for (let c = 0; c < this.props.getCartItem.length; c++) {
-        if(this.props.getCartItem[c].id == this.props.featuredProducts[i].id){
-          this.props.featuredProducts[i]['cart'] = true
-          this.setState({  })
-        }else{
-          this.props.featuredProducts[i]['cart'] = false
-          this.setState({  })
+  //    this.props.featuredProducts[i]['cart'] = false
+  //         this.setState({  })
+  //  }
+  //   for (let i = 0; i < this.props.normProducts.length; i++) {
+  //    this.props.normProducts[i]['cart'] = false
+  //         this.setState({  })
+  //  }
+  // }else{
+  //   this.props.featuredProducts.filter(prod => {
+  //     this.props.getCartItem.filter(crt  => {
+  //        if(prod.id != crt.id){
+  //           //  prod['cart'] = true
+  //         // this.setState({  })
+  //         prod['cart'] = false
+  //       // }else{
+  //         this.setState({  })
 
-        }
-    }
+  //       }
+  //       // if(prod.id != crt.id){
+  //       //      prod['cart'] = false
+  //       // // }else{
+  //       //   this.setState({  })
+  //       // }
+  //     })
+  //   })
+  // for (let i = 0; i < this.props.normProducts.length; i++) {
+  //   for (let c = 0; c < this.props.getCartItem.length; c++) {
+  //       if(this.props.getCartItem[c].id == this.props.normProducts[i].id){
+  //         this.props.normProducts[i]['cart'] = true
+  //          this.setState({  })
+  //       }
+  //       if(this.props.getCartItem[c].id != this.props.normProducts[i].id){
+  //          this.props.normProducts[i]['cart'] = false
+  //          this.setState({  })
+  //       }
+  //   }
     
-  }
-  for (let i = 0; i < this.props.normProducts.length; i++) {
-    for (let c = 0; c < this.props.getCartItem.length; c++) {
-        if(this.props.getCartItem[c].id == this.props.normProducts[i].id){
-          this.setState({  })
-          this.props.normProducts[i]['cart'] = true
-        }else{
-          this.setState({  })
-          this.props.normProducts[i]['cart'] = false
-
-        }
-    }
-    
-  }
-  }
+  // }
+  // }
   // this.setState({ })
      this.render()
   }
@@ -138,7 +142,7 @@ productDetailItem(dishes){
    })
 }
 goToCart(){
-    this.props.navigation.navigate('Cart',{onGoBack: () => this.updateParent(),})
+    this.props.navigation.navigate('Cart',{onGoBack: () => this.updateParent()})
   }
 
   render() {

@@ -9,7 +9,7 @@ import  LinearGradient  from 'react-native-linear-gradient';
 import data from './../../mockdb/data';
 import Api from './../../../Services/Api';
 import Modal from "react-native-modalbox";
-import { setCartItem,setAllFeaturedProducts } from './../../../actions';
+import { setCartItem } from './../../../actions';
 import { connect } from 'react-redux';
 const  base = 'http://pizza.softcob.com/img/menu_pic/'; 
 class Cart extends Component {
@@ -82,17 +82,17 @@ class Cart extends Component {
   delProductToCart(products){
  
 
- for (let p = 0; p < this.props.featuredProducts.length; p++) {
-    if(this.props.featuredProducts[p] == products.id){
-     this.props.featuredProducts[p]['cart'] = false
-    }
- }
- for (let p = 0; p < this.props.normProducts.length; p++) {
-    if(this.props.normProducts[p] == products.id){
-     this.props.normProducts[p]['cart'] = false
-    }
- }
-//  this.props.setAllFeaturedProducts()
+//  for (let p = 0; p < this.props.featuredProducts.length; p++) {
+//     if(this.props.featuredProducts[p] == products.id){
+//      this.props.featuredProducts[p]['cart'] = false
+//     }
+//  }
+//  for (let p = 0; p < this.props.normProducts.length; p++) {
+//     if(this.props.normProducts[p] == products.id){
+//      this.props.normProducts[p]['cart'] = false
+//     }
+//  }
+
 
   for (let i = 0; i < this.props.getCartItem.length; i++) {
     if(this.props.getCartItem[i].id == products.id){

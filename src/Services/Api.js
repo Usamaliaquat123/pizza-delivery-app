@@ -9,7 +9,6 @@ const Api = {
         .then(res => resolve(res.json()))
         .catch(err => reject(err));
       }else{
-
       fetch(Api.base + '/' + method)
         .then(res => resolve(res.json()))
         .catch(err => reject(err));
@@ -35,22 +34,18 @@ const Api = {
 
 cart: params => {
   const prm = `user_id=${params.customer_id}&customer_address=${params.customer_address}&order_status=order_submitted&order_items=[${params.order_items}]`
-    console.log(prm);
-    
-    
     return Api.post('insert_orders.php', prm);
-console.log(parm.order_items);
   },
-  createUser: params => {
-
+createUser: params => {
     const prm = `username=${params.username}&phone=${params.phone}&adress=${params.address}&password=${params.password}`
     return Api.post('user_insert.php', params);
   },
-
-  fetchUser : params => {
-
+fetchUser : params => {
     return Api.call('fetch_user.php', "auth")
-  }
+  },
+PreviousOrders : params => {
+  return Api.call('fetch_orders.php')
+}
 };
 
 export default Api;

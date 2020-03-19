@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Header, Card, Button, Icon} from 'react-native-elements';
+import {Header, Card, Button, Icon,Badge} from 'react-native-elements';
 import {
   View,
   Text,
@@ -168,7 +168,13 @@ goToCart(){
               />
             </TouchableOpacity>
           }
-          rightComponent={
+          rightComponent={ <View>
+
+            {this.props.getCartItem.length != 0 && (
+
+            <Badge value={this.props.getCartItem.length} containerStyle={{ position: 'absolute', top: -10,fontSize: 5, left: 10  , zIndex: 2,}} badgeStyle={{borderColor: 'transparent', fontSize: 5,backgroundColor: '#35250A' }} status="error" />
+            )}
+          
             <TouchableOpacity
               onPress={() => this.goToCart()}>
               <Icon
@@ -177,6 +183,7 @@ goToCart(){
                 color={Colors.theme_color.orange}
               />
             </TouchableOpacity>
+          </View>
           }
         />
         <ScrollView>
@@ -315,7 +322,8 @@ goToCart(){
                 <FlatList
                   data={normProducts}
                   numColumns={2}
-                  // style={{ width: SCREEN_WIDTH - 200 }}
+                  contentContainerStyle={{alignItems: 'center'  }}
+                  // style={{ alignItems: 'center' }}
                   renderItem={({item}) => (
 
                       
@@ -331,7 +339,7 @@ goToCart(){
                       height: 215,
                       // alignItems: 'flex-end',
                       justifyContent: 'center',
-                      width: 150,
+                      width: SCREEN_WIDTH - 200,
                       borderRadius: 18,
                     }}>
                     <View

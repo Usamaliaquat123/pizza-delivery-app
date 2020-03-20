@@ -37,7 +37,7 @@ class OrderRejected extends Component {
               // this.props.navigation.state.params.updateDate('sd')
             //   this.props.navigation.state.params.onGoBack()              
             //   this.props.navigation.goBack()
-             this.props.navigation.navigate('Cart')
+             this.props.navigation.navigate('Dashboard')
               }}
               >
               <Icon

@@ -34,7 +34,7 @@ class OrderSubmit extends Component {
           leftComponent={
             <TouchableOpacity  onPress={() => 
             {
-               this.props.navigation.navigate('')
+               this.props.navigation.navigate('Dashboard')
               // this.props.navigation.state.params.updateDate('sd')
             //   this.props.navigation.state.params.onGoBack()              
             //   this.props.navigation.goBack()
@@ -48,16 +48,7 @@ class OrderSubmit extends Component {
             </TouchableOpacity>
           }
           centerComponent={{ text: 'Submited Orders', style: { color: '#372715', fontWeight: 'bold' } }}
-          rightComponent={
-            <TouchableOpacity
-              onPress={() => this.props.navigation.pop()}>
-              <Icon
-                name="shopping-cart"
-                type="entypo"
-                color={'#382715'}
-              />
-            </TouchableOpacity>
-          }
+         
         />
 
         <ScrollView>

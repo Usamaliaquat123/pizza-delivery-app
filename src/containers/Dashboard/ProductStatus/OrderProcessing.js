@@ -34,7 +34,7 @@ class OrderProcessing extends Component {
           leftComponent={
             <TouchableOpacity onPress={() => 
             {
-               this.props.navigation.navigate('')
+               this.props.navigation.navigate('Dashboard')
               // this.props.navigation.state.params.updateDate('sd')
             //   this.props.navigation.state.params.onGoBack()              
             //   this.props.navigation.goBack()

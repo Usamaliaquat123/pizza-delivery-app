@@ -34,6 +34,7 @@ class OrderProcessing extends Component {
           leftComponent={
             <TouchableOpacity onPress={() => 
             {
+               this.props.navigation.navigate('')
               // this.props.navigation.state.params.updateDate('sd')
             //   this.props.navigation.state.params.onGoBack()              
             //   this.props.navigation.goBack()
@@ -47,16 +48,7 @@ class OrderProcessing extends Component {
             </TouchableOpacity>
           }
           centerComponent={{ text: 'Processing Orders', style: { color: '#372715', fontWeight: 'bold' } }}
-          rightComponent={
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Cart')}>
-              <Icon
-                name="shopping-cart"
-                type="entypo"
-                color={'#382715'}
-              />
-            </TouchableOpacity>
-          }
+         
         />
 
         <ScrollView>

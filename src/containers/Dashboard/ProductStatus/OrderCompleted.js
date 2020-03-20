@@ -37,6 +37,7 @@ class OrderCompleted extends Component {
               // this.props.navigation.state.params.updateDate('sd')
             //   this.props.navigation.state.params.onGoBack()              
             //   this.props.navigation.goBack()
+            this.props.navigation.navigate('Cart')
               }}
               >
               <Icon
@@ -47,16 +48,16 @@ class OrderCompleted extends Component {
             </TouchableOpacity>
           }
           centerComponent={{ text: 'Completed Orders', style: { color: '#372715', fontWeight: 'bold' } }}
-          rightComponent={
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Cart')}>
-              <Icon
-                name="shopping-cart"
-                type="entypo"
-                color={'#382715'}
-              />
-            </TouchableOpacity>
-          }
+          // rightComponent={
+          //   <TouchableOpacity
+          //     onPress={() => this.props.navigation.navigate('Cart')}>
+          //     <Icon
+          //       name="shopping-cart"
+          //       type="entypo"
+          //       color={'#382715'}
+          //     />
+          //   </TouchableOpacity>
+          // }
         />
 
         <ScrollView>

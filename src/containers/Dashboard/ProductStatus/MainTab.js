@@ -85,8 +85,8 @@ export default createBottomTabNavigator(
     },
       tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
-
-    animationEnabled: true,
-    swipeEnabled: true,
+// animationEnabled: true,
+    // animationEnabled: true,
+    // swipeEnabled: true,
     }
 )

@@ -15,6 +15,7 @@ import {Colors, Img} from './../../theme';
 import LinearGradient from 'react-native-linear-gradient';
 import {SCREEN_WIDTH, STATUS_BAR_HEIGHT} from './../../utils/constants';
 import { connect } from "react-redux";
+import Modal from "react-native-modalbox";
 import data from './../mockdb/data';
 import Api from './../../Services/Api';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -35,14 +36,11 @@ class Dashboard extends Component {
   componentDidMount() {
     this.props.setAllFeaturedProducts()
     this.props.setAllNormalProducts()
-
- 
-
+    // this.refs.aboutUs.open()
   }
 
 
   updateParent() {
-       
   if(this.props.getCartItem.length == 0){
    for (let i = 0; i < this.props.featuredProducts.length; i++) {
      
@@ -207,7 +205,7 @@ goToCart(){
           backgroundColor="transparent"
           placement="center"
           leftComponent={
-            <TouchableOpacity >
+            <TouchableOpacity onPress={() => this.refs.aboutUs.open()}>
               <Icon
                 name="restaurant-menu"
                 type="material"
@@ -599,6 +597,93 @@ goToCart(){
               </ScrollView>
             </View>
           </View>
+
+            <Modal style={{    
+    alignItems: 'center',
+       marginTop : 30,
+    height: 250,
+    width: 300,
+    borderRadius: 30,
+    backgroundColor : '#fff' }} position={"center"} ref={"aboutUs"} backdrop={true} isDisabled={this.state.isDisabled} coverScreen={true} backdropPressToClose={true}>
+           
+           <View style={{ margin: 20, alignItems: 'center' }}>
+           
+            <Icon
+                name="flow-tree"
+                type="entypo"
+                size={50}
+                color={'#F54B00'}
+              />
+              <Text style={{marginTop: 5, textAlign: "center", fontSize: 20, fontWeight: 'bold', color: "#372715" }}>About us</Text>
+             {/* App devloper */}
+                <Text>Credits</Text>
+              <View style={{ flexDirection: 'row', marginTop:10 }}>
+             
+              <TouchableOpacity onPress={() => this.openLink('https://www.linkedin.com/in/usamaliaquat/')}>
+                <Text style={{ color: "#F54B00", fontWeight: 'bold', fontSize: 12 }}>Usama liaquat</Text>
+              
+              </TouchableOpacity>
+            <Icon
+                name="mobile1"
+                type="antdesign"
+                size={20}
+                color={'#F54B00'}
+              />
+                <Text>App Developer</Text>
+                </View>
+              <View style={{ flexDirection: 'row', marginTop:10 }}>
+              <TouchableOpacity onPress={() => this.openLink('https://www.facebook.com/profile.php?id=100005580167356') }>
+              
+                <Text style={{ color: "#F54B00", fontWeight: 'bold', fontSize: 12 }}>Arsalan Ahmed</Text>
+              </TouchableOpacity>
+            <Icon
+                name="fork"
+                type="antdesign"
+                size={20}
+                color={'#F54B00'}
+              />
+                <Text>Backend</Text>
+                </View>
+  <View style={{ alignSelf: 'center', marginTop: 10 , flexDirection: 'row'}} >
+      <Text style={{ fontSize: 10, color: '#372715', fontWeight: 'bold' }}>This product is developed by the </Text>
+
+<TouchableOpacity onPress={() => this.openLink('https://softcob.com/')} >
+      <Text style={{ fontSize: 10, color: '#F54B00', fontWeight: 'bold' }}>SoftCob Team</Text>
+</TouchableOpacity>
+
+    </View>
+
+    <View style={{ alignSelf: 'center', marginBottom: 10 , flexDirection: 'row'}} >
+      <Text style={{ fontSize: 10, color: '#372715', fontWeight: 'bold' }}>Read the </Text>
+    <TouchableOpacity onPress={() => this.openLink('http://pizza.softcob.com/privacy_policy.html')}  >
+    
+      <Text style={{ fontSize: 10, color: '#F54B00', fontWeight: 'bold' }}>Privacy and Policy </Text>
+    </TouchableOpacity>
+      <Text style={{ fontSize: 10, color: '#372715', fontWeight: 'bold' }}>and </Text>
+
+<TouchableOpacity onPress={() => this.openLink('http://pizza.softcob.com/terms_and_conditions.html')} >
+      <Text style={{ fontSize: 10, color: '#F54B00', fontWeight: 'bold' }}>Terms and Condition</Text>
+</TouchableOpacity>
+
+    </View>
+             
+
+
+             
+             
+              {/* <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}> */}
+                {/* <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#FD5D00", justifyContent: 'center', padding: 12, marginRight: 10 }} onPress={() => this.refs.aboutUs.close()}>
+                  <Text style={{ color:"#fff", fontSize: 13 }}>No i don't</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#FD5D00", justifyContent: 'center', padding: 12, marginLeft: 10 }} onPress={() => {this.paymentProceed(this.state.total)
+                this.refs.modal3.close()
+                }}>
+                  <Text style={{ color:"#fff", fontSize: 13 }}>Place Now..!</Text>
+                </TouchableOpacity> */}
+              {/* </View> */}
+           </View>
+           
+          </Modal>
         </ScrollView>
       </>
     );

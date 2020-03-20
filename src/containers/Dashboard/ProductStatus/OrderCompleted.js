@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { setAllCompletedOrders } from './../../../actions';
 import { STATUS_BAR_HEIGHT, SCREEN_WIDTH } from './../../../utils/constants';
 import moment from 'moment';
-
+import LottieView from 'lottie-react-native';
+import jsons from './../../../theme/Json';
 class OrderCompleted extends Component {
     constructor(props) {
         super(props);
@@ -34,9 +35,6 @@ class OrderCompleted extends Component {
           leftComponent={
             <TouchableOpacity onPress={() => 
             {
-              // this.props.navigation.state.params.updateDate('sd')
-            //   this.props.navigation.state.params.onGoBack()              
-            //   this.props.navigation.goBack()
             this.props.navigation.navigate('Dashboard')
               }}
               >
@@ -48,19 +46,26 @@ class OrderCompleted extends Component {
             </TouchableOpacity>
           }
           centerComponent={{ text: 'Completed Orders', style: { color: '#372715', fontWeight: 'bold' } }}
-          // rightComponent={
-          //   <TouchableOpacity
-          //     onPress={() => this.props.navigation.navigate('Cart')}>
-          //     <Icon
-          //       name="shopping-cart"
-          //       type="entypo"
-          //       color={'#382715'}
-          //     />
-          //   </TouchableOpacity>
-          // }
         />
 
         <ScrollView>
+
+        {prevOrderCompleted.length == 0 && (
+           
+          <View style={{ opacity: .5 }}>
+           <LottieView
+                autoPlay
+                source={jsons.cart}
+                style={{ alignSelf: 'center',
+    width: 700,
+    height: 700, }}
+              />
+              <Text style={{ alignSelf: 'center', color: '#372715',  marginTop: -300, fontWeight: 'bold', fontSize: 12}}>Please place your order...</Text>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('Dashboard')}><Text style={{ alignSelf: 'center', color: '#F54B00', marginTop: 5, fontWeight: 'bold', fontSize: 15}}>Shop Now!</Text></TouchableOpacity>
+          </View>
+      
+        )}
+
         {prevOrderCompleted.map(prod => (
 
             <TouchableOpacity style={{paddingTop: 20, paddingBottom: 20,alignSelf: 'center', backgroundColor: "#E5E5E5",marginTop: 8, borderRadius: 15, width: SCREEN_WIDTH - 12}}>

@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { setAllRejectOrders } from './../../../actions';
 import { STATUS_BAR_HEIGHT, SCREEN_WIDTH } from './../../../utils/constants';
 import moment from 'moment';
-
+import LottieView from 'lottie-react-native';
+import jsons from './../../../theme/Json';
 class OrderRejected extends Component {
     constructor(props) {
         super(props);
@@ -50,8 +51,24 @@ class OrderRejected extends Component {
           centerComponent={{ text: 'Rejected Orders', style: { color: '#372715', fontWeight: 'bold' } }}
          
         />
+        
 
         <ScrollView>
+        {prevOrderRejected.length == 0 && (
+
+
+        <View style={{ opacity: .5 }}>
+           <LottieView
+                autoPlay
+                source={jsons.cart}
+                style={{ alignSelf: 'center',
+    width: 700,
+    height: 700, }}
+              />
+              <Text style={{ alignSelf: 'center', color: '#372715',  marginTop: -300, fontWeight: 'bold', fontSize: 12}}>Please place your order...</Text>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('Dashboard')}><Text style={{ alignSelf: 'center', color: '#F54B00', marginTop: 5, fontWeight: 'bold', fontSize: 15}}>Shop Now!</Text></TouchableOpacity>
+          </View>
+        )}
         {prevOrderRejected.map(prod => (
 
             <TouchableOpacity style={{ backgroundColor: "#E5E5E5",marginTop: 8, borderRadius: 15, width: SCREEN_WIDTH - 12, paddingTop: 20, paddingBottom: 20 }}>

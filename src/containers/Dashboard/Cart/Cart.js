@@ -18,7 +18,7 @@ class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // products : this.props.navigation.getParam('cartItem'),
+      products : [] = this.props.getCartItem,
       count: 1,
       total: 0,
       user_id : 12,
@@ -29,46 +29,47 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    if(this.props.getCartItem != null ){
-    
-    for (let i = 0; i < this.props.getCartItem.length; i++) {
-      this.props.getCartItem[i]['price']
-      this.state.total += this.props.getCartItem[i]['price']
-      this.setState({ })
-     }
-    }
+    // if(this.state.products != null ){
+    //   console.log(this.state.product);
+      
+    // // for (let i = 0; i < this.state.product.length; i++) {
+    // //   this.state.product[i]['price']
+    // //   this.state.total += this.state.product[i]['price']
+    // //   this.setState({ })
+    // //  }
+    // }
     
   }
 
  
   decreamentItem(id) {
-   for (let i = 0; i < this.props.getCartItem.length; i++) {
-        if (this.props.getCartItem[i].id == id) {
-          if(this.props.getCartItem[i]['quantity'] == 1){
+   for (let i = 0; i < this.state.product.length; i++) {
+        if (this.state.product[i].id == id) {
+          if(this.state.product[i]['quantity'] == 1){
             return null
           }
           this.setState({
             
           })
-          this.props.getCartItem[i]['quantity'] -= 1
-          console.log(this.props.getCartItem[i]['price']);
-          this.props.getCartItem[i]['price'] -= parseInt(this.props.getCartItem[i]['orignalPrice'])
-          this.state.total -= parseInt(this.props.getCartItem[i]['orignalPrice'])
+          this.state.product[i]['quantity'] -= 1
+          console.log(this.state.product[i]['price']);
+          this.state.product[i]['price'] -= parseInt(this.state.product[i]['orignalPrice'])
+          this.state.total -= parseInt(this.state.product[i]['orignalPrice'])
         }
       }
   }
   increamentItem(id) {  
-      for (let i = 0; i < this.props.getCartItem.length; i++) {
-        if (this.props.getCartItem[i].id == id) {
+      for (let i = 0; i < this.state.product.length; i++) {
+        if (this.state.product[i].id == id) {
           this.setState({
             
           })
-          this.props.getCartItem[i]['quantity'] += 1
-          let orgnalPrce = parseInt(this.props.getCartItem[i]['orignalPrice'])
+          this.state.product[i]['quantity'] += 1
+          let orgnalPrce = parseInt(this.state.product[i]['orignalPrice'])
           console.log(orgnalPrce);
           
           this.state.total +=  orgnalPrce
-          this.props.getCartItem[i]['price'] +=  orgnalPrce
+          this.state.product[i]['price'] +=  orgnalPrce
         }
       }
   }
@@ -89,17 +90,17 @@ class Cart extends Component {
 //  }
 
 
-  for (let i = 0; i < this.props.getCartItem.length; i++) {
-    if(this.props.getCartItem[i].id == products.id){
-      this.state.total -= this.props.getCartItem[i]['price']
-      this.props.getCartItem.splice(i,1);
+  for (let i = 0; i < this.state.product.length; i++) {
+    if(this.state.product[i].id == products.id){
+      this.state.total -= this.state.product[i]['price']
+      this.state.product.splice(i,1);
       this.setState({ })
     }    
   }
   }
   paymentProceed(data) {
-    for (let i = 0; i < this.props.getCartItem.length; i++) {
-        this.state.finalizeItems.push(`{"menu_id":${ this.props.getCartItem[i].id},"price":${this.props.getCartItem[i].price},"quantity":${this.props.getCartItem[i].quantity}}`)
+    for (let i = 0; i < this.state.product.length; i++) {
+        this.state.finalizeItems.push(`{"menu_id":${ this.state.product[i].id},"price":${this.state.product[i].price},"quantity":${this.state.product[i].quantity}}`)
     }
    const params  = {
       customer_id: "8",
@@ -109,7 +110,7 @@ class Cart extends Component {
     Api.cart(params).then(res => {
       console.log(res);
         if(res.status == 'Ok'){
-            this.props.getCartItem.splice(0, this.props.getCartItem.length)
+            this.state.product.splice(0, this.state.product.length)
             this.setState({ total : 0 })
             this.setState({ })
             this.props.setAllSubmitOrders()
@@ -122,7 +123,15 @@ class Cart extends Component {
   render() {
         const {featuredProducts, normProducts,getCartItem } = this.props
         console.log(getCartItem);
-        
+  //  if(this.state.products.length != 0 ){
+  //     console.log(this.state.product);
+      
+  //   for (let i = 0; i < this.state.product.length; i++) {
+  //     this.state.product[i]['price']
+  //     this.state.total += this.state.product[i]['price']
+  //     this.setState({ })
+  //    }
+  //   }
     return (
       <>
         <Header

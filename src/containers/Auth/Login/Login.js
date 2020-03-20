@@ -32,20 +32,28 @@ componentDidMount() {
   Api.fetchUser().then(res => this.setState({ users: res.data }))
 }
 authenticate(){
+
+  
   if(this.state.phonenumber == "" && this.state.password == ""){
     this.setState({errMsg : "Please check your credientials" })
     this.refs.errModal.open()
     
   }else{
-    this.state.users.map(res => {
-      if(res.phone  == this.state.phonenumber && res.password == this.state.password){
-        AsyncStorage.setItem('username',res.username)
-          this.props.navigation.navigate('HomeNav')
-      }else{
-         this.setState({errMsg : "Please check your credientials" })
-    this.refs.errModal.open()
-      }
-    })
+    const params = {
+      phone : this.state.phone,
+      password: this.state.password
+    }
+   Api.login(params).then(res => {
+     if(res.status == 200){
+       this.props.navigation.navigate('Dashboard')
+     }else{
+        this.setState({errMsg : "Please check your credientials" })
+          this.refs.errModal.open()
+     }
+    }).catch(err => {
+   this.setState({errMsg : "Please check your credientials" })
+          this.refs.errModal.open()
+      })
   }
 }
 
@@ -144,6 +152,7 @@ authenticate(){
                 placeholderTextColor={'#F94D03'}
                 autoCapitalize={'none'}
                 autoCorrect={false}
+                  secureTextEntry={true}
                 value={this.state.password}
                 keyboardType="text"
                 inputStyle={styles.textInput}

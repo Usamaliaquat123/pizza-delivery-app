@@ -16,7 +16,7 @@ class ProductDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // product: this.props.navigation.getParam('product'),
+      product: this.props.navigation.getParam('product'),
       productItem: [],
       
       cart : [],
@@ -34,48 +34,53 @@ updateParent(){
 
 
   componentDidMount() {
-    const spc = this.props.navigation.getParam('product').items.trim(' ');
+    const spc = this.state.product.items.trim(' ');
     const ArrItem = spc.split(',');
     this.setState({productItem: ArrItem});
-    console.log(this.props.navigation.getParam('product'));
+    console.log(this.state.product);
     
   }
   decreamentItem(id) {
-    if (this.props.navigation.getParam('product')['quantity'] == 1) {
+    if (this.state.product['quantity'] == 1) {
       return null;
     }
     this.setState({});
-   this.props.navigation.getParam('product')['quantity'] -= 1;
-   this.props.navigation.getParam('product')['price'] -= this.props.navigation.getParam('product')['orignalPrice'];
+   this.state.product['quantity'] -= 1;
+   this.state.product['price'] -= this.state.product['orignalPrice'];
   }
   increamentItem(id) {
     console.log(id);
     this.setState({});
-    this.props.navigation.getParam('product')['quantity'] += 1;
-    var iniPrice = parseInt(this.props.navigation.getParam('product')['price']);
-    var orignalPrice = parseInt(this.props.navigation.getParam('product')['orignalPrice']);
+    this.state.product['quantity'] += 1;
+    var iniPrice = parseInt(this.state.product['price']);
+    var orignalPrice = parseInt(this.state.product['orignalPrice']);
     iniPrice += orignalPrice;
-    this.props.navigation.getParam('product')['price'] = iniPrice;
+    this.state.product['price'] = iniPrice;
   }
   addCart(product) {
-    if(this.props.getCartItem.length == 0){
- this.props.getCartItem.push(product);
+//     if(this.props.getCartItem.length == 0){
+//  this.props.getCartItem.push(product);
+//    this.refs.addCartConfirm.close();
+// this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) 
+//     }else{
+// this.props.getCartItem.filter((prodct, index) => {
+//       if(prodct.id == product.id){
+//         this.props.getCartItem[index]['quantity'] += product.quantity
+//         this.props.getCartItem[index]['price'] += product.price
+//            this.refs.addCartConfirm.close();
+// this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) 
+//       }else{
+//  this.props.getCartItem.push(product);
+//    this.refs.addCartConfirm.close();
+// this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) 
+//       }
+//     })
+//     }
+
+const prod = product
+  this.props.getCartItem.push(prod)
    this.refs.addCartConfirm.close();
 this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) 
-    }else{
-this.props.getCartItem.filter((prodct, index) => {
-      if(prodct.id == product.id){
-        this.props.getCartItem[index]['quantity'] += product.quantity
-        this.props.getCartItem[index]['price'] += product.price
-           this.refs.addCartConfirm.close();
-this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) 
-      }else{
- this.props.getCartItem.push(product);
-   this.refs.addCartConfirm.close();
-this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) 
-      }
-    })
-    }
     
 
    
@@ -90,7 +95,7 @@ this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),})
     const { getCartItem } = this.props
     console.log(getCartItem);
 
-    const products = this.props.navigation.getParam('product')
+    const products = this.state.product
     const buttons = ['Hello', 'World', 'Buttons'];
     const {selectedIndex} = this.state;
     return (
@@ -135,7 +140,7 @@ this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),})
               justifyContent: 'center',
             }}>
               <Image
-                       source={{uri:base+this.props.navigation.getParam('product').picture  }} style={{ width: 170, height: 170 ,marginLeft: 5  }}
+                       source={{uri:base+this.state.product.picture  }} style={{ width: 170, height: 170 ,marginLeft: 5  }}
                     />
             {/* <Image source={{ uri:base+this.state.product.picture }} width={100} height={100} /> */}
             {products.offer != '' && (

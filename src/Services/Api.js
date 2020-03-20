@@ -45,6 +45,10 @@ fetchUser : params => {
   },
 PreviousOrders : params => {
   return Api.call('fetch_orders.php')
+},
+login : params => {
+  const prm  = `phone=${params.phone}&password=${params.password}`
+  return Api.post('login_api.php',prm)
 }
 };
 

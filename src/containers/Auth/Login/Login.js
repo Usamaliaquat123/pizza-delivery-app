@@ -10,6 +10,7 @@ import Modal from 'react-native-modalbox'
 import { Bars  } from 'react-native-loader'
 import Api from './../../../Services/Api';
 import  AsyncStorage  from '@react-native-community/async-storage';
+import InAppBrowser from 'react-native-inappbrowser-reborn'
 class Login extends Component {
   constructor(props) {
     console.log(Img);
@@ -47,6 +48,50 @@ authenticate(){
     })
   }
 }
+
+
+
+ async openLink(url) {
+    try {
+      // const url = 'https://www.google.com'
+      if (await InAppBrowser.isAvailable()) {
+        const result = await InAppBrowser.open(url, {
+          // iOS Properties
+          dismissButtonStyle: 'cancel',
+          preferredBarTintColor: '#453AA4',
+          preferredControlTintColor: 'white',
+          readerMode: false,
+          animated: true,
+          modalPresentationStyle: 'overFullScreen',
+          modalTransitionStyle: 'partialCurl',
+          modalEnabled: true,
+          enableBarCollapsing: false,
+          // Android Properties
+          showTitle: true,
+          toolbarColor: '#F54B00',
+          secondaryToolbarColor: 'black',
+          enableUrlBarHiding: true,
+          enableDefaultShare: true,
+          forceCloseOnRedirection: false,
+          // Specify full animation resource identifier(package:anim/name)
+          // or only resource name(in case of animation bundled with app).
+          animations: {
+            startEnter: 'slide_in_right',
+            startExit: 'slide_out_left',
+            endEnter: 'slide_in_left',
+            endExit: 'slide_out_right'
+          },
+          headers: {
+            'my-custom-header': 'my custom header value'
+          }
+        })
+        // Alert.alert(JSON.stringify(result))
+      }
+      else Linking.openURL(url)
+    } catch (error) {
+      Alert.alert(error.message)
+    }
+  }
   render() {
     return (
       <ScrollView>
@@ -140,9 +185,34 @@ authenticate(){
                 </Text>
               </Text>
             </View>
+               <View style={{ alignSelf: 'center', marginTop: 30 , flexDirection: 'row'}} >
+      <Text style={{ fontSize: 12, color: '#372715', fontWeight: 'bold' }}>This product is developed by the </Text>
+
+<TouchableOpacity onPress={() => this.openLink('https://softcob.com/')} >
+      <Text style={{ fontSize: 12, color: '#F54B00', fontWeight: 'bold' }}>SoftCob Team</Text>
+</TouchableOpacity>
+
+    </View>
+
+    <View style={{ alignSelf: 'center', marginBottom: 10 , flexDirection: 'row'}} >
+      <Text style={{ fontSize: 12, color: '#372715', fontWeight: 'bold' }}>Read the </Text>
+    <TouchableOpacity onPress={() => this.openLink('http://pizza.softcob.com/privacy_policy.html')}  >
+    
+      <Text style={{ fontSize: 12, color: '#F54B00', fontWeight: 'bold' }}>Privacy and Policy </Text>
+    </TouchableOpacity>
+      <Text style={{ fontSize: 12, color: '#372715', fontWeight: 'bold' }}>and </Text>
+
+<TouchableOpacity onPress={() => this.openLink('http://pizza.softcob.com/terms_and_conditions.html')} >
+      <Text style={{ fontSize: 12, color: '#F54B00', fontWeight: 'bold' }}>Terms and Condition</Text>
+</TouchableOpacity>
+
+    </View>
           </View>
+          
         </KeyboardAwareScrollView>
       )}
+
+    
       {this.state.loading == true && (
 
 
@@ -188,6 +258,9 @@ authenticate(){
            </View>
            
           </Modal>
+
+
+           
       </ScrollView>
     );
   }

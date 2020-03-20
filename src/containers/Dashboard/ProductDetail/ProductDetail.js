@@ -115,7 +115,9 @@ this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),})
             <Badge value={this.props.getCartItem.length} containerStyle={{ position: 'absolute', top: -10,fontSize: 5, left: 10  , zIndex: 2, }} badgeStyle={{ borderColor: 'transparent',fontSize: 5,backgroundColor: '#FE4A00' }} status="error" />
             )}
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('cart')}>
+              onPress={() => {
+                
+                this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),})}}>
               <Icon name="shopping-cart" type="entypo" color="#372611" />
             </TouchableOpacity>
             </View>

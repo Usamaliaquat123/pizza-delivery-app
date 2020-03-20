@@ -62,7 +62,7 @@ class OrderSubmit extends Component {
         <ScrollView>
         {prevOrderSubmit.map(prod => (
 
-            <TouchableOpacity style={{alignSelf: 'center', backgroundColor: "#E5E5E5",marginTop: 8, borderRadius: 15, width: SCREEN_WIDTH - 12, padding: 20 }}>
+            <TouchableOpacity style={{paddingTop: 20, paddingBottom: 20,alignSelf: 'center', backgroundColor: "#E5E5E5",marginTop: 8, borderRadius: 15, width: SCREEN_WIDTH - 12 }}>
                     <View style={{ flexDirection : 'row' }}>
                          <Icon
                 name="clipboard"

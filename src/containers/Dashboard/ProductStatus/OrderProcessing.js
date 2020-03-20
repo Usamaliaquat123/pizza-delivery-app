@@ -62,7 +62,7 @@ class OrderProcessing extends Component {
         <ScrollView>
         {prevProcessingOrders.map(prod => (
 
-            <TouchableOpacity style={{alignSelf: 'center', backgroundColor: "#E5E5E5",marginTop: 8, borderRadius: 15, width: SCREEN_WIDTH - 12, padding: 20 }}>
+            <TouchableOpacity style={{paddingTop: 20, paddingBottom: 20,alignSelf: 'center', backgroundColor: "#E5E5E5",marginTop: 8, borderRadius: 15, width: SCREEN_WIDTH - 12 }}>
                     <View style={{ flexDirection : 'row' }}>
                          <Icon
                 name="clipboard"
@@ -83,7 +83,7 @@ class OrderProcessing extends Component {
               
               <Text style={{ fontSize: 12, opacity: .3,fontWeight: 'bold',marginLeft: 5 }}>Quantity {prod.quantity} </Text>
               <Text style={{ fontSize: 12, opacity: .6,fontWeight: 'bold',marginLeft: 5, alignSelf: 'flex-end' }}>Rs:  {prod.total_price}</Text>
-              <Text style={{fontSize: 12, opacity: .8,fontWeight: 'bold',marginLeft:10, alignSelf: 'flex-end'}}>We are processing this order</Text>
+              <Text style={{fontSize: 10, opacity: .8,fontWeight: 'bold',marginLeft:10, alignSelf: 'flex-end'}}>We are processing this order</Text>
               </View>
               </View>
                     </View>

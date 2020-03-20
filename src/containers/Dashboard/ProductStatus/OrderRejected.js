@@ -62,7 +62,7 @@ class OrderRejected extends Component {
         <ScrollView>
         {prevOrderRejected.map(prod => (
 
-            <TouchableOpacity style={{alignSelf: 'center', backgroundColor: "#E5E5E5",marginTop: 8, borderRadius: 15, width: SCREEN_WIDTH - 12, padding: 20 }}>
+            <TouchableOpacity style={{ backgroundColor: "#E5E5E5",marginTop: 8, borderRadius: 15, width: SCREEN_WIDTH - 12, paddingTop: 20, paddingBottom: 20 }}>
                     <View style={{ flexDirection : 'row' }}>
                          <Icon
                 name="clipboard"

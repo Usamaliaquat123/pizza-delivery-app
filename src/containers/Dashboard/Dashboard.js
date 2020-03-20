@@ -5,6 +5,7 @@ import {
   Text,
   ScrollView,
   Image,
+  Linking ,
   Alert ,
   TouchableOpacity,
   FlatList,
@@ -18,6 +19,7 @@ import data from './../mockdb/data';
 import Api from './../../Services/Api';
 import AsyncStorage from '@react-native-community/async-storage';
 import { setAllFeaturedProducts,setAllNormalProducts,setCartItem } from './../../actions';
+import InAppBrowser from 'react-native-inappbrowser-reborn'
 // import { setAllFeaturedProducts, setCartItem } from './../../actions/productsAction';
 const  base = 'http://pizza.softcob.com/img/menu_pic/'; 
 class Dashboard extends Component {
@@ -142,6 +144,51 @@ productDetailItem(dishes){
 goToCart(){
     this.props.navigation.navigate('Cart',{onGoBack: () => this.updateParent()})
   }
+
+
+
+ async openLink(url) {
+    try {
+      // const url = 'https://www.google.com'
+      if (await InAppBrowser.isAvailable()) {
+        const result = await InAppBrowser.open(url, {
+          // iOS Properties
+          dismissButtonStyle: 'cancel',
+          preferredBarTintColor: '#453AA4',
+          preferredControlTintColor: 'white',
+          readerMode: false,
+          animated: true,
+          modalPresentationStyle: 'overFullScreen',
+          modalTransitionStyle: 'partialCurl',
+          modalEnabled: true,
+          enableBarCollapsing: false,
+          // Android Properties
+          showTitle: true,
+          toolbarColor: '#F54B00',
+          secondaryToolbarColor: 'black',
+          enableUrlBarHiding: true,
+          enableDefaultShare: true,
+          forceCloseOnRedirection: false,
+          // Specify full animation resource identifier(package:anim/name)
+          // or only resource name(in case of animation bundled with app).
+          animations: {
+            startEnter: 'slide_in_right',
+            startExit: 'slide_out_left',
+            endEnter: 'slide_in_left',
+            endExit: 'slide_out_right'
+          },
+          headers: {
+            'my-custom-header': 'my custom header value'
+          }
+        })
+        // Alert.alert(JSON.stringify(result))
+      }
+      else Linking.openURL(url)
+    } catch (error) {
+      Alert.alert(error.message)
+    }
+  }
+
 
   render() {
     const {featuredProducts, normProducts,getCartItem } = this.props
@@ -524,9 +571,31 @@ goToCart(){
                   keyExtractor={item => item.id}
                 />
 
-                <View style={{flexDirection: 'row'}}>
-                
-                </View>
+
+
+    <View style={{ alignSelf: 'center', marginTop: 10 , flexDirection: 'row'}} >
+      <Text style={{ fontSize: 12, color: '#372715', fontWeight: 'bold' }}>This product is developed by the </Text>
+
+<TouchableOpacity onPress={() => this.openLink('https://softcob.com/')} >
+      <Text style={{ fontSize: 12, color: '#F54B00', fontWeight: 'bold' }}>SoftCob Team</Text>
+</TouchableOpacity>
+
+    </View>
+
+    <View style={{ alignSelf: 'center', marginBottom: 10 , flexDirection: 'row'}} >
+      <Text style={{ fontSize: 12, color: '#372715', fontWeight: 'bold' }}>Read the </Text>
+    <TouchableOpacity onPress={() => this.openLink('http://pizza.softcob.com/privacy_policy.html')}  >
+    
+      <Text style={{ fontSize: 12, color: '#F54B00', fontWeight: 'bold' }}>Privacy and Policy </Text>
+    </TouchableOpacity>
+      <Text style={{ fontSize: 12, color: '#372715', fontWeight: 'bold' }}>and </Text>
+
+<TouchableOpacity onPress={() => this.openLink('http://pizza.softcob.com/terms_and_conditions.html')} >
+      <Text style={{ fontSize: 12, color: '#F54B00', fontWeight: 'bold' }}>Terms and Condition</Text>
+</TouchableOpacity>
+
+    </View>
+
               </ScrollView>
             </View>
           </View>

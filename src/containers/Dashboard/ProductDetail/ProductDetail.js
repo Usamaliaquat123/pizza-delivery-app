@@ -30,15 +30,13 @@ class ProductDetail extends Component {
 updateParent(){
   this.props.navigation.state.params.onGoBack();
   this.render()
+  this.setState({  })
 }
-
-
   componentDidMount() {
     const spc = this.state.product.items.trim(' ');
     const ArrItem = spc.split(',');
     this.setState({productItem: ArrItem});
     console.log(this.state.product);
-    
   }
   decreamentItem(id) {
     if (this.state.product['quantity'] == 1) {

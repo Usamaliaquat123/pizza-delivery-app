@@ -40,10 +40,12 @@ authenticate(){
     
   }else{
     const params = {
-      phone : this.state.phone,
+      phone : this.state.phonenumber,
       password: this.state.password
     }
+    
    Api.login(params).then(res => {
+    
      if(res.status == 200){
        this.props.navigation.navigate('Dashboard')
      }else{

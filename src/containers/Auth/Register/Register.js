@@ -27,6 +27,10 @@ class Register extends Component {
   }
   
 registerNow(){
+  if(this.state.username == "" && this.state.address == "" && this.state.phone == "" && this.state.password == ""){
+      this.refs.errModal.open()
+      this.setState({ errMsg : "Type you valid credientials" })
+  }else{
   const param = {
     username: this.state.username,
     address: this.state.address,
@@ -34,11 +38,14 @@ registerNow(){
     password: this.state.pass
   }
   console.log(param)
-  if(this.state.username == "" && this.state.address == "" && this.state.phone == "" && this.state.password == ""){
+  Api.register(param).then(res => {
+    if(res.status == 101){
       this.refs.errModal.open()
-      this.setState({ errMsg : "Type you valid credientials" })
-  }else{
-  Api.createUser(param).then(res => console.log(res)).catch(err => console.log(err))
+      this.setState({ errMsg : res.message })
+    }else{  
+      this.props.navigation.navigate('Dashboard')
+    }
+  }).catch(err => console.log(err))
 
   }
 }
@@ -175,12 +182,12 @@ registerNow(){
                 autoCapitalize={'none'}
                 autoCorrect={false}
                 value={this.state.address}
-                keyboardType="numeric"
+                // keyboardType="numeric"
                 inputStyle={styles.textInput}
                 onChangeText={text => this.setState({address: text})}
                 leftIcon={
                   <Icon
-                    name={'phone'}
+                    name={'location-pin'}
                     underlayColor={'transparent'}
                     color={'#FE5D03'}
                     type={'entypo'}
@@ -202,13 +209,15 @@ registerNow(){
                 placeholderTextColor={'#30270E'}
                 autoCapitalize={'none'}
                 autoCorrect={false}
+                  secureTextEntry={true}
                 value={this.state.pass}
                 keyboardType="text"
                 inputStyle={styles.textInput}
                 onChangeText={text => this.setState({pass: text})}
                 leftIcon={
                   <Icon
-                    name={'email'}
+                    name={'unlock'}
+                    type={'antdesign'}
                     underlayColor={'transparent'}
                     color={'#FE5D03'}
                   />
@@ -264,7 +273,7 @@ registerNow(){
               <Text style={{marginTop: 15, textAlign: "center", fontSize: 15, fontWeight: 'bold', color: "#FD5D00" }}>{this.state.errMsg}</Text>
               <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}>
                 <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#FD5D00", justifyContent: 'center', padding: 12, marginRight: 10 }} onPress={() => this.refs.errModal.close()}>
-                  <Text style={{ color:"#fff", fontSize: 13 }}>Retry internety connection...</Text>
+                  <Text style={{ color:"#fff", fontSize: 13 }}>Want to register again...!</Text>
                 </TouchableOpacity>
                 {/* <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#FD5D00", justifyContent: 'center', padding: 12, marginLeft: 10 }} onPress={() => {this.paymentProceed(this.state.total)
                 this.refs.modal3.close()

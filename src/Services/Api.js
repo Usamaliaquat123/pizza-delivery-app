@@ -36,9 +36,9 @@ cart: params => {
   const prm = `user_id=${params.customer_id}&customer_address=${params.customer_address}&order_status=order_submitted&order_items=[${params.order_items}]`
     return Api.post('insert_orders.php', prm);
   },
-createUser: params => {
+register: params => {
     const prm = `username=${params.username}&phone=${params.phone}&adress=${params.address}&password=${params.password}`
-    return Api.post('user_insert.php', params);
+    return Api.post('user_insert.php', prm);
   },
 fetchUser : params => {
     return Api.call('fetch_user.php', "auth")
@@ -47,7 +47,7 @@ PreviousOrders : params => {
   return Api.call('fetch_orders.php')
 },
 login : params => {
-  const prm  = `phone=${params.phone}&password=${params.password}`
+  const prm  = `phone=${params.phone}&password=${params.password}`  
   return Api.post('login_api.php',prm)
 }
 };

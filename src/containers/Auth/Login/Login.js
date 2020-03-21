@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, ScrollView, Image,TouchableOpacity} from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import styles from './Login.styles';
 import {Img, jsons} from './../../../theme';
@@ -9,7 +9,7 @@ import LottieView from 'lottie-react-native';
 import Modal from 'react-native-modalbox'
 import { Bars  } from 'react-native-loader'
 import Api from './../../../Services/Api';
-import  AsyncStorage  from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 import InAppBrowser from 'react-native-inappbrowser-reborn'
 class Login extends Component {
   constructor(props) {
@@ -26,10 +26,10 @@ class Login extends Component {
 
 
 componentDidMount() {
-  AsyncStorage.getItem('username').then(res => {
-    console.log(res)
-  })
-  Api.fetchUser().then(res => this.setState({ users: res.data }))
+  // AsyncStorage.getItem('username').then(res => {
+  //   console.log(res)
+  // })
+  // Api.fetchUser().then(res => this.setState({ users: res.data }))
 }
 authenticate(){
 
@@ -45,7 +45,9 @@ authenticate(){
     }
    Api.login(params).then(res => {
      if(res.status == 200){
-       this.props.navigation.navigate('Dashboard')
+       AsyncStorage.setItem('phone',this.state.phone).then(res => {
+         this.props.navigation.navigate('Dashboard')
+       })
      }else{
         this.setState({errMsg : "Please check your credientials" })
           this.refs.errModal.open()

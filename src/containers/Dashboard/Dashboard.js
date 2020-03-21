@@ -41,50 +41,34 @@ class Dashboard extends Component {
 
 
   updateParent() {
+
   if(this.props.getCartItem.length == 0){
    for (let i = 0; i < this.props.featuredProducts.length; i++) {
-     
      this.props.featuredProducts[i]['cart'] = false
           this.setState({  })
    }
-    for (let i = 0; i < this.props.normProducts.length; i++) {
+  for(let i = 0; i < this.props.normProducts.length; i++) {
      this.props.normProducts[i]['cart'] = false
           this.setState({  })
    }
-  }else{
- 
-   for (let i = 0; i < this.props.featuredProducts.length; i++) {
-    for (let c = 0; c < this.props.getCartItem.length; c++) {
-        if(this.props.getCartItem[c].id == this.props.featuredProducts[i].id){
-           this.props.featuredProducts[i]['cart'] = true
-          this.setState({  })
-        }else{
-          this.props.featuredProducts[i]['cart'] = false
-          this.setState({  })
-
+  }
+  else{
+    // console.log('sd');
+    this.render()
+  this.setState({ })
+    for (const prod of this.props.getCartItem) {
+        for (const featProd of this.props.featuredProducts) {
+          if(prod.id == featProd) return  featProd['cart'] = true
+          if(prod.id != featProd) return  featProd['cart'] = false
         }
     }
-    
-  // }
-  for (let i = 0; i < this.props.normProducts.length; i++) {
-    for (let c = 0; c < this.props.getCartItem.length; c++) {
-        if(this.props.getCartItem[c].id == this.props.normProducts[i].id){
-          this.props.normProducts[i]['cart'] = true
-          this.setState({  })
-        }else{
-          this.props.normProducts[i]['cart'] = false
-          this.setState({  })
 
-        }
-    }
-    
+
   }
+
+
+
   }
-  // this.setState({ })
-     this.render()
-  }
-  }
-  
 
   addCart(dish, type) {
     if(type == "featured"){

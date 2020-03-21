@@ -43,9 +43,7 @@ authenticate(){
       phone : this.state.phonenumber,
       password: this.state.password
     }
-    
    Api.login(params).then(res => {
-    
      if(res.status == 200){
        this.props.navigation.navigate('Dashboard')
      }else{
@@ -63,7 +61,6 @@ authenticate(){
 
  async openLink(url) {
     try {
-      // const url = 'https://www.google.com'
       if (await InAppBrowser.isAvailable()) {
         const result = await InAppBrowser.open(url, {
           // iOS Properties

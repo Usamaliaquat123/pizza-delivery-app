@@ -3,6 +3,8 @@ import {SCREEN_WIDTH, SCREEN_HEIGHT} from './../../../utils/constants';
 import {Colors} from './../../../theme';
 const styles = StyleSheet.create({
   logo: {
+    marginTop: -15,
+    marginBottom: -40,
     alignSelf: 'center',
     width: 200,
     height: 200,

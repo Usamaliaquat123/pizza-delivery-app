@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Img, jsons} from './../../../theme';
+import { Bars  } from 'react-native-loader'
 import LinearGradient from 'react-native-linear-gradient';
 import {Input, Icon, Button} from 'react-native-elements';
 import LottieView from 'lottie-react-native';
@@ -18,7 +19,8 @@ class Register extends Component {
       username: '',
       address: '',
       email : '',
-      contact: ''
+      contact: '',
+      loading: false
     };
   }
 
@@ -27,7 +29,9 @@ class Register extends Component {
   }
   
 registerNow(){
+  this.setState({ loading: true })
   if(this.state.username == "" && this.state.address == "" && this.state.phone == "" && this.state.password == ""){
+  this.setState({ loading: false })
       this.refs.errModal.open()
       this.setState({ errMsg : "Type you valid credientials" })
   }else{
@@ -39,11 +43,13 @@ registerNow(){
   }
   console.log(param)
   Api.register(param).then(res => {
+  this.setState({ loading: false })
     if(res.status == 101){
       this.refs.errModal.open()
       this.setState({ errMsg : res.message })
     }else{  
-      this.props.navigation.navigate('Dashboard')
+  // this.setState({ loading: false })
+      // this.props.navigation.navigate('Dashboard')
     }
   }).catch(err => console.log(err))
 
@@ -97,7 +103,7 @@ registerNow(){
     return (
       <ScrollView>
         <KeyboardAwareScrollView>
-          {/* <View style={styles.container}> */}
+        {this.state.loading == false && (
           <View>
             <LottieView
               autoPlay
@@ -253,6 +259,9 @@ registerNow(){
               </Text>
             </View>
           </View>
+        )}
+          {/* <View style={styles.container}> */}
+          
           
            <Modal style={{    
     alignItems: 'center',
@@ -286,7 +295,9 @@ registerNow(){
           </Modal>
 
         </KeyboardAwareScrollView>
-
+      {this.state.loading == false && (
+        <View>
+        
          <View style={{ alignSelf: 'center', marginTop: 20 , flexDirection: 'row'}} >
       <Text style={{ fontSize: 12, color: '#372715', fontWeight: 'bold' }}>This product is developed by the </Text>
 
@@ -309,6 +320,22 @@ registerNow(){
 </TouchableOpacity>
 
     </View>
+        </View>
+      )}
+
+
+        {this.state.loading == true && (
+
+
+    <View style={{flex: 1, justifyContent: 'center'}}>
+      <LottieView
+        autoPlay
+        source={jsons.loading}
+        // overlayColor="white"
+        style={{alignSelf: 'center', width: 100, height: 100}}
+      />
+    </View>
+      )}
       </ScrollView>
     );
   }

@@ -374,12 +374,13 @@ goToCart(){
                       height: 215,
                       // alignItems: 'flex-end',
                       justifyContent: 'center',
-                      width: SCREEN_WIDTH - 200,
+                      // width: SCREEN_WIDTH - 200,
                       borderRadius: 18,
                     }}>
                     <View
                       style={{
                         marginTop: -15,
+                        width: SCREEN_WIDTH - 200,
                         flexDirection: 'row',
                       }}>
                       {item.offer != '' && (

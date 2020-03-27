@@ -26,9 +26,13 @@ class Login extends Component {
 
 
 componentDidMount() {
-  // AsyncStorage.getItem('username').then(res => {
-  //   console.log(res)
-  // })
+  AsyncStorage.getItem('phone').then(res => { 
+    if(res == undefined){
+      return null
+    }else{
+      this.props.navigation.navigate('Dashboard')
+    }
+  })
   // Api.fetchUser().then(res => this.setState({ users: res.data }))
 }
 authenticate(){
@@ -45,7 +49,7 @@ authenticate(){
     }
    Api.login(params).then(res => {
      if(res.status == 200){
-       AsyncStorage.setItem('phone',this.state.phone).then(res => {
+       AsyncStorage.setItem('phone',this.state.phonenumber).then(res => {
          this.props.navigation.navigate('Dashboard')
        })
      }else{
@@ -103,7 +107,7 @@ authenticate(){
   }
   render() {
     return (
-      <ScrollView>
+      <>
       {this.state.loading == false && (
 <KeyboardAwareScrollView>
           <View style={styles.container}>
@@ -271,7 +275,7 @@ authenticate(){
 
 
            
-      </ScrollView>
+      </>
     );
   }
 }

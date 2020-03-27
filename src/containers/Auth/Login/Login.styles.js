@@ -4,9 +4,11 @@ import {Colors} from './../../../theme';
 
 const styles = StyleSheet.create({
   logo: {
+    marginTop: -30,
     alignSelf: 'center',
     width: 350,
     height: 350,
+    marginBottom: -80
   },
   container: {
     backgroundColor: Colors.background,

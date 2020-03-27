@@ -10,17 +10,6 @@ class Splash extends Component {
   }
 componentDidMount() {
   
-  AsyncStorage.getItem('phone').then(res => {
-    console.log(res);
-    
-    if(phone == undefined){
-      // not loggedin
-
-    }else{
-      //  loggedin 
-
-    }
-  }) 
 }
 
   render() {

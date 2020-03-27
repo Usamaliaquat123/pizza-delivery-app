@@ -103,8 +103,12 @@ const prod = products
     for (let i = 0; i < this.props.getCartItem.length; i++) {
         this.state.finalizeItems.push(`{"menu_id":${ this.props.getCartItem[i].id},"price":${this.props.getCartItem[i].price},"quantity":${this.props.getCartItem[i].quantity}}`)
     }
+
+
+  AsyncStorage.getItem('userId').then(userId => {
+
    const params  = {
-      customer_id: "8",
+      customer_id: userId,
       customer_address: "Mirpur Azad Kashmir",
       order_items: this.state.finalizeItems
    }
@@ -115,9 +119,11 @@ const prod = products
             this.setState({ total : 0 })
             this.setState({ })
             this.props.setAllSubmitOrders()
+            // this.props.
             this.props.navigation.navigate('MainTab')
         }
     }).catch(err =>  console.log(err))
+  })
   
     
   }

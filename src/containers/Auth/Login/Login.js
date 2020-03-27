@@ -52,6 +52,8 @@ authenticate(){
      if(dta.status == 200){
        AsyncStorage.setItem('phone',this.state.phonenumber).then(res => {
          AsyncStorage.setItem('userId', dta.id)
+        this.setState({errMsg : `${dta.id}` })
+          this.refs.errModal.open()
     this.setState({ loading: false })
          this.props.navigation.navigate('Dashboard')
        })
@@ -163,7 +165,7 @@ authenticate(){
                 autoCorrect={false}
                   secureTextEntry={true}
                 value={this.state.password}
-                keyboardType="text"
+                // keyboardType="text"
                 inputStyle={styles.textInput}
                 onChangeText={text => this.setState({password: text})}
                 leftIcon={

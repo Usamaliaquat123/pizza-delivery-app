@@ -1,6 +1,6 @@
 
 
-import Img from './Images';
+import Img from './images';
 import Colors from './Colors';
 import jsons from './Json';
 

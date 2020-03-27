@@ -49,7 +49,7 @@ registerNow(){
       this.setState({ errMsg : res.message })
     }else{  
   // this.setState({ loading: false })
-      // this.props.navigation.navigate('Dashboard')
+      this.props.navigation.navigate('Dashboard')
     }
   }).catch(err => console.log(err))
 
@@ -261,7 +261,16 @@ registerNow(){
           </View>
         )}
           {/* <View style={styles.container}> */}
-          
+          {this.state.loading == true && (
+    <View style={{flex: 1, justifyContent: 'center'}}>
+      <LottieView
+        autoPlay
+        source={jsons.loading}
+        // overlayColor="white"
+        style={{alignSelf: 'center', width: 100, height: 100}}
+      />
+    </View>
+      )}
           
            <Modal style={{    
     alignItems: 'center',
@@ -324,18 +333,8 @@ registerNow(){
       )}
 
 
-        {this.state.loading == true && (
+        
 
-
-    <View style={{flex: 1, justifyContent: 'center'}}>
-      <LottieView
-        autoPlay
-        source={jsons.loading}
-        // overlayColor="white"
-        style={{alignSelf: 'center', width: 100, height: 100}}
-      />
-    </View>
-      )}
       </ScrollView>
     );
   }

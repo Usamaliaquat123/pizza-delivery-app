@@ -50,8 +50,8 @@ authenticate(){
     }
    Api.login(params).then(res => {
      if(res.status == 200){
-       this.setState({ loading: false })
        AsyncStorage.setItem('phone',this.state.phonenumber).then(res => {
+       this.setState({ loading: false })
          this.props.navigation.navigate('Dashboard')
        })
      }else{
@@ -176,7 +176,6 @@ authenticate(){
             </LinearGradient>
             <View style={{alignSelf: 'center'}}>
             <TouchableOpacity onPress={() => this.authenticate()}>
-            
             
               <LinearGradient
                 colors={['#FE5D03', '#F94D03', '#F94D03']}

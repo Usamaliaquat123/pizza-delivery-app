@@ -37,8 +37,9 @@ componentDidMount() {
 }
 authenticate(){
 
-  
+  this.setState({ loading : true})
   if(this.state.phonenumber == "" && this.state.password == ""){
+       this.setState({ loading: false })
     this.setState({errMsg : "Please check your credientials" })
     this.refs.errModal.open()
     
@@ -49,10 +50,12 @@ authenticate(){
     }
    Api.login(params).then(res => {
      if(res.status == 200){
+       this.setState({ loading: false })
        AsyncStorage.setItem('phone',this.state.phonenumber).then(res => {
          this.props.navigation.navigate('Dashboard')
        })
      }else{
+       this.setState({ loading: false })
         this.setState({errMsg : "Please check your credientials" })
           this.refs.errModal.open()
      }

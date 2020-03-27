@@ -48,10 +48,11 @@ authenticate(){
       phone : this.state.phonenumber,
       password: this.state.password
     }
-   Api.login(params).then(res => {
-     if(res.status == 200){
+   Api.login(params).then(dta => {
+     if(dta.status == 200){
        AsyncStorage.setItem('phone',this.state.phonenumber).then(res => {
-       this.setState({ loading: false })
+         AsyncStorage.setItem('userId', dta.id)
+    this.setState({ loading: false })
          this.props.navigation.navigate('Dashboard')
        })
      }else{

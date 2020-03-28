@@ -11,7 +11,7 @@ export function setAllSubmitOrders() {
             const ord = order.data.filter(prd => prd.user_id == id)
             dispatch({
                 type: SET_ORDER_SUBMIT,
-                payload: ord.data.filter(prd => prd.status == "order_submitted")
+                payload: ord.filter(prd => prd.status == "order_submitted")
             })
             })
         })
@@ -25,7 +25,7 @@ export function setAllProcessOrder() {
 
             dispatch({
                 type: SET_PROCESSING_ORDERS,
-                payload: ord.data.filter(prd => prd.status == "order_processing")
+                payload: ord.filter(prd => prd.status == "order_processing")
             })
            })
         })
@@ -39,7 +39,7 @@ export function setAllRejectOrders() {
 
             dispatch({
                 type: SET_REJECTED_ORDERS,
-                payload: ord.data.filter(prd => prd.status == "order_rejected")
+                payload: ord.filter(prd => prd.status == "order_rejected")
             })
             })
         })
@@ -53,7 +53,7 @@ export function setAllCompletedOrders() {
 
             dispatch({
                 type: SET_COMPLETED_ORDERS,
-                payload: ord.data.filter(prd => prd.status == "order_completed")
+                payload: ord.filter(prd => prd.status == "order_completed")
             })
             })
         })

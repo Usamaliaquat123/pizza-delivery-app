@@ -119,7 +119,6 @@ const prod = products
             this.setState({ total : 0 })
             this.setState({ })
             this.props.setAllSubmitOrders()
-            // this.props.
             this.props.navigation.navigate('MainTab')
         }
     }).catch(err =>  console.log(err))

@@ -52,8 +52,8 @@ authenticate(){
      if(dta.status == 200){
        AsyncStorage.setItem('phone',this.state.phonenumber).then(res => {
          AsyncStorage.setItem('userId', dta.id)
-        this.setState({errMsg : `${dta.id}` })
-          this.refs.errModal.open()
+        // this.setState({errMsg : `${dta.id}` })
+          // this.refs.errModal.open()
     this.setState({ loading: false })
          this.props.navigation.navigate('Dashboard')
        })

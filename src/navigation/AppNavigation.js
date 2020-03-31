@@ -10,14 +10,14 @@ import HomeNav from './HomeNav';
  const Auth = createStackNavigator(
   {
     Splash: {screen: Splash},
-    Login: {screen: Login},
+  Login: {screen: Login},
     Register: {screen: Register},
     Offline: {screen: Offline},
     HomeNav : { screen: HomeNav }
   },
   {
     headerMode: 'none',
-    initialRouteName: 'Login',
+    initialRouteName: 'Splash',
   },
 );
 

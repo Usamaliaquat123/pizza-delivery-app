@@ -92,13 +92,7 @@ this.props.getCartItem.filter((product, index) => {
   }
 })
 
-//  this.props.getCartItem.push(product);
-//    this.refs.addCartConfirm.close();
-// this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) 
-//       }
-//     })
-    }
-
+      }
 //   this.props.getCartItem.push(prod)
 //    this.refs.addCartConfirm.close();
 // this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) 

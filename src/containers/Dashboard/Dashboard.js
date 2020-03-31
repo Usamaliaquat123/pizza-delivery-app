@@ -54,12 +54,18 @@ class Dashboard extends Component {
   }
   else{
     // console.log('sd');
-    this.render()
   this.setState({ })
+    this.render()
     for (const prod of this.props.getCartItem) {
+      console.log(prod)
         for (const featProd of this.props.featuredProducts) {
-          if(prod.id == featProd) return  featProd['cart'] = true
-          if(prod.id != featProd) return  featProd['cart'] = false
+          if(prod.id == featProd.id) return  featProd['cart'] = true
+          if(prod.id != featProd.id) return  featProd['cart'] = false
+        }
+
+        for (const normProducts of this.props.normProducts) {
+          if(prod == normProducts) return  normProducts['cart'] = true
+          if(prod != normProducts) return  normProducts['cart'] = false
         }
     }
 
@@ -201,7 +207,7 @@ goToCart(){
 
             {this.props.getCartItem.length != 0 && (
 
-            <Badge value={this.props.getCartItem.length} containerStyle={{ position: 'absolute', top: -10,fontSize: 5, left: 10  , zIndex: 2,}} badgeStyle={{borderColor: 'transparent', fontSize: 5,backgroundColor: '#35250A' }} status="error" />
+            <Badge value={this.props.getCartItem.length} containerStyle={{ position: 'absolute', top: -10, left: 10  , zIndex: 2,}} badgeStyle={{borderColor: 'transparent', fontSize: 5,backgroundColor: '#35250A' }} status="error" />
             )}
           
             <TouchableOpacity

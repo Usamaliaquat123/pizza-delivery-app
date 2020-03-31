@@ -28,7 +28,7 @@ class ProductDetail extends Component {
 
 
 updateParent(){
-  this.props.setCartItem()
+  // this.props.setCartItem()
   this.props.navigation.state.params.onGoBack();
   this.render()
   this.setState({  })

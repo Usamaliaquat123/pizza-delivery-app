@@ -41,7 +41,7 @@ class Dashboard extends Component {
 
 
   updateParent() {
-    this.props.setCartItem()
+    // this.props.setCartItem()
   if(this.props.getCartItem.length == 0){
    for (let i = 0; i < this.props.featuredProducts.length; i++) {
      this.props.featuredProducts[i]['cart'] = false
@@ -59,6 +59,11 @@ class Dashboard extends Component {
     for (const prod of this.props.getCartItem) {
         for (const featProd of this.props.featuredProducts) {
           if(prod.id == featProd) return  featProd['cart'] = true
+          // if(prod.id != featProd) return  featProd['cart'] = false
+        }
+    }
+    for (const prod of this.props.getCartItem) {
+        for (const featProd of this.props.featuredProducts) {
           if(prod.id != featProd) return  featProd['cart'] = false
         }
     }
@@ -92,7 +97,6 @@ class Dashboard extends Component {
   }
 
   removeCart(dishes,type){
-
   for (let i = 0; i < this.props.getCartItem.length; i++) {
       if(this.props.getCartItem[i].id == dishes.id){
         this.props.getCartItem.splice(i,1)

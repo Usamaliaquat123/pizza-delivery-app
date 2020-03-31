@@ -55,7 +55,7 @@ updateParent(){
     iniPrice += orignalPrice;
     this.state.product['price'] = iniPrice;
   }
-  addCart(product) {
+addCart(product) {
 
 const prod = product
 
@@ -65,17 +65,33 @@ const prod = product
 //    this.refs.addCartConfirm.close();
 // this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) 
 //     }else{
-this.props.getCartItem.filter((prodct, index) => {
-  if(prod.id == prodct.id){
-   return this.props.navigation.navigate('Cart')
-  }
-})
+
 //       if(prodct.id == product.id){
 //         this.props.getCartItem[index]['quantity'] += product.quantity
 //         this.props.getCartItem[index]['price'] += product.price
 //            this.refs.addCartConfirm.close();
 // this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) 
+     
+           this.props.getCartItem.push(prod)
+   this.refs.addCartConfirm.close();
+  
+this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) 
+     
       }else{
+        this.props.getCartItem.filter((prodct, index) => {
+  if(prod == prodct){
+      this.refs.addCartConfirm.close();
+    return this.refs.popupError.open()
+  }
+})
+
+this.props.getCartItem.filter((product, index) => {
+  if (prod != product) {
+     this.props.getCartItem.push(prod)
+      this.refs.addCartConfirm.close()
+  }
+})
+
 //  this.props.getCartItem.push(product);
 //    this.refs.addCartConfirm.close();
 // this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) 
@@ -83,9 +99,10 @@ this.props.getCartItem.filter((prodct, index) => {
 //     })
     }
 
-  this.props.getCartItem.push(prod)
-   this.refs.addCartConfirm.close();
-this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) 
+//   this.props.getCartItem.push(prod)
+//    this.refs.addCartConfirm.close();
+// this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) 
+    this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) 
     
 
    
@@ -419,6 +436,95 @@ this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),})
                     flexDirection: 'row',
                   }}
                   onPress={() => this.addCart(products)}>
+                  <Text style={{color: '#fff', fontSize: 13, marginRight: 3}}>
+                    cart
+                  </Text>
+                  <Icon
+                    name="shopping-bag"
+                    type="entypo"
+                    size={20}
+                    color="#fff"
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
+          <Modal
+            style={{
+              alignItems: 'center',
+              marginTop: 30,
+              height: 200,
+              width: 340,
+              borderRadius: 30,
+              backgroundColor: '#fff',
+            }}
+            position={'center'}
+            ref={'popupError'}
+            backdrop={true}
+            isDisabled={this.state.isDisabled}
+            coverScreen={true}
+            backdropPressToClose={true}>
+            <View style={{margin: 20}}>
+              <LottieView
+                autoPlay
+                source={jsons.cart}
+                style={{
+                  width: 400,
+                  marginTop: -78,
+                  height: 400,
+                }}
+              />
+              <Text
+                style={{
+                  marginTop: -250,
+                  textAlign: 'center',
+                  fontSize: 15,
+                  fontWeight: 'bold',
+                  color: '#312717',
+                }}>
+                This product is already available in your cart
+              </Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignSelf: 'center',
+                  marginTop: 10,
+                }}>
+                <TouchableOpacity
+                  style={{
+                    borderRadius: 15,
+                    backgroundColor: '#312717',
+                    justifyContent: 'center',
+                    padding: 12,
+                    marginRight: 10,
+                    flexDirection: 'row',
+                  }}
+                  onPress={() => {
+                    this.refs.popupError.close();
+                    this.props.navigation.pop();
+                  }}>
+                  <Text style={{color: '#fff', fontSize: 13, marginRight: 3}}>
+                    Continue shopping
+                  </Text>
+                  <Icon
+                    name="shoppingcart"
+                    type="antdesign"
+                    size={20}
+                    color="#fff"
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    borderRadius: 15,
+                    backgroundColor: '#312717',
+                    justifyContent: 'center',
+                    padding: 12,
+                    marginLeft: 10,
+                    flexDirection: 'row',
+                  }}
+                  onPress={() =>{
+                     this.refs.popupError.close()
+                     this.props.navigation.navigate('Cart',{ onGoBack: () => this.updateParent(),}) }}>
                   <Text style={{color: '#fff', fontSize: 13, marginRight: 3}}>
                     cart
                   </Text>

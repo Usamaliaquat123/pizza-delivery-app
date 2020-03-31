@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "pizza-tvOS.app"
-               BlueprintName = "pizza-tvOS"
-               ReferencedContainer = "container:pizza.xcodeproj">
+               BuildableName = "2020pizza-tvOS.app"
+               BlueprintName = "2020pizza-tvOS"
+               ReferencedContainer = "container:2020pizza.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "pizza-tvOSTests.xctest"
-               BlueprintName = "pizza-tvOSTests"
-               ReferencedContainer = "container:pizza.xcodeproj">
+               BuildableName = "2020pizza-tvOSTests.xctest"
+               BlueprintName = "2020pizza-tvOSTests"
+               ReferencedContainer = "container:2020pizza.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "pizza-tvOSTests.xctest"
-               BlueprintName = "pizza-tvOSTests"
-               ReferencedContainer = "container:pizza.xcodeproj">
+               BuildableName = "2020pizza-tvOSTests.xctest"
+               BlueprintName = "2020pizza-tvOSTests"
+               ReferencedContainer = "container:2020pizza.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "pizza-tvOS.app"
-            BlueprintName = "pizza-tvOS"
-            ReferencedContainer = "container:pizza.xcodeproj">
+            BuildableName = "2020pizza-tvOS.app"
+            BlueprintName = "2020pizza-tvOS"
+            ReferencedContainer = "container:2020pizza.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "pizza-tvOS.app"
-            BlueprintName = "pizza-tvOS"
-            ReferencedContainer = "container:pizza.xcodeproj">
+            BuildableName = "2020pizza-tvOS.app"
+            BlueprintName = "2020pizza-tvOS"
+            ReferencedContainer = "container:2020pizza.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "pizza-tvOS.app"
-            BlueprintName = "pizza-tvOS"
-            ReferencedContainer = "container:pizza.xcodeproj">
+            BuildableName = "2020pizza-tvOS.app"
+            BlueprintName = "2020pizza-tvOS"
+            ReferencedContainer = "container:2020pizza.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

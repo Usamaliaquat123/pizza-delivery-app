@@ -11,6 +11,7 @@ import { Bars  } from 'react-native-loader'
 import Api from './../../../Services/Api';
 import AsyncStorage from '@react-native-community/async-storage';
 import InAppBrowser from 'react-native-inappbrowser-reborn'
+import {NavigationActions} from 'react-navigation';
 class Login extends Component {
   constructor(props) {
     console.log(Img);
@@ -55,7 +56,13 @@ authenticate(){
         // this.setState({errMsg : `${dta.id}` })
           // this.refs.errModal.open()
     this.setState({ loading: false })
-         this.props.navigation.navigate('Dashboard')
+
+
+    this.props.navigation.reset(
+            [NavigationActions.navigate({routeName: 'HomeNav'})],
+            0,
+          );
+        //  this.props.navigation.navigate('Dashboard')
        })
      }else{
        this.setState({ loading: false })

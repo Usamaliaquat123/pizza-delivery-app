@@ -3,6 +3,7 @@ import { View, Text,Image } from 'react-native';
 import { styles } from "./Splash.styles";
 import  AsyncStorage  from '@react-native-community/async-storage';
 import {Img} from './../../theme';
+import {NavigationActions} from 'react-navigation';
 class Splash extends Component {
   constructor(props) {
     super(props);
@@ -12,9 +13,15 @@ class Splash extends Component {
 componentDidMount() {
   AsyncStorage.getItem('phone').then(res => { 
     if(res == undefined){
-         this.props.navigation.navigate('Login')
+       this.props.navigation.reset(
+            [NavigationActions.navigate({routeName: 'Login'})],
+            0,
+          );
     }else{
-      this.props.navigation.navigate('Dashboard')
+          this.props.navigation.reset(
+            [NavigationActions.navigate({routeName: 'HomeNav'})],
+            0,
+          );
     }
   })
 }

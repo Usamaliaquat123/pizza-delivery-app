@@ -9,6 +9,7 @@ import {
   Alert ,
   TouchableOpacity,
   FlatList,
+  BackHandler
 } from 'react-native';
 import {styles} from './Dashboard.styles';
 import {Colors, Img} from './../../theme';
@@ -32,11 +33,15 @@ class Dashboard extends Component {
       cart: [],
     };
     // this.updateParent = this.updateParent.bind(this)
+      BackHandler.addEventListener('hardwareBackPress', function() {
+      return false
+    })
   }
   componentDidMount() {
     this.props.setAllFeaturedProducts()
     this.props.setAllNormalProducts()
     // this.refs.aboutUs.open()
+  
   }
 
 

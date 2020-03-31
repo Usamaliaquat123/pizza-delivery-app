@@ -28,6 +28,7 @@ class ProductDetail extends Component {
 
 
 updateParent(){
+  this.props.setCartItem()
   this.props.navigation.state.params.onGoBack();
   this.render()
   this.setState({  })
@@ -545,7 +546,7 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps)(ProductDetail)
+export default connect(mapStateToProps,{setCartItem})(ProductDetail)
 
 
 

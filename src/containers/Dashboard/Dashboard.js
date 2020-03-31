@@ -41,7 +41,7 @@ class Dashboard extends Component {
 
 
   updateParent() {
-
+    this.props.setCartItem()
   if(this.props.getCartItem.length == 0){
    for (let i = 0; i < this.props.featuredProducts.length; i++) {
      this.props.featuredProducts[i]['cart'] = false
@@ -62,8 +62,6 @@ class Dashboard extends Component {
           if(prod.id != featProd) return  featProd['cart'] = false
         }
     }
-
-
   }
 
 

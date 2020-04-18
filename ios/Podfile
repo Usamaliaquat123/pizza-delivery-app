@@ -1,7 +1,7 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target '2020pizza' do
+target 'pizza' do
   # Pods for pizza
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
@@ -34,7 +34,7 @@ target '2020pizza' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target '2020pizzaTests' do
+  target 'pizzaTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -42,10 +42,10 @@ target '2020pizza' do
   use_native_modules!
 end
 
-target '2020pizza-tvOS' do
+target 'pizza-tvOS' do
   # Pods for pizza-tvOS
 
-  target '2020pizza-tvOSTests' do
+  target 'pizza-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

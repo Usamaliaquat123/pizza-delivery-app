@@ -1,6 +1,6 @@
 // const http = require('http')
 const Api = {
-  base: 'http://pizza.softcob.com/api/',
+  base: 'https://pizza.softcob.com/api/',
 
   call: (method, param) => {
     return new Promise((resolve, reject) => {

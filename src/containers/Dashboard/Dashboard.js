@@ -11,6 +11,8 @@ import {
   FlatList,
   BackHandler
 } from 'react-native';
+import {NavigationActions} from 'react-navigation';
+// import Logout from "./../../components/logout/Logout"
 import {styles} from './Dashboard.styles';
 import {Colors, Img} from './../../theme';
 import LinearGradient from 'react-native-linear-gradient';
@@ -23,7 +25,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { setAllFeaturedProducts,setAllNormalProducts,setCartItem } from './../../actions';
 import InAppBrowser from 'react-native-inappbrowser-reborn'
 // import { setAllFeaturedProducts, setCartItem } from './../../actions/productsAction';
-const  base = 'http://pizza.softcob.com/img/menu_pic/'; 
+const  base = 'https://pizza.softcob.com/img/menu_pic/'; 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -635,6 +637,11 @@ goToCart(){
               />
                 <Text>Backend</Text>
                 </View>
+               
+
+  {/* <Logout /> */}
+
+
   <View style={{ alignSelf: 'center', marginTop: 10 , flexDirection: 'row'}} >
       <Text style={{ fontSize: 10, color: '#372715', fontWeight: 'bold' }}>This product is developed by the </Text>
 

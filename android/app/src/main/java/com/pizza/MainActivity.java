@@ -1,4 +1,4 @@
-package com.pizza;
+package com.twentypizza;
 
 import com.facebook.react.ReactActivity;
 

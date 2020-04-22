@@ -1,4 +1,4 @@
-package com.pizza;
+package com.twentypizza;
 
 import android.app.Application;
 import android.content.Context;

@@ -10,6 +10,8 @@ import {Input, Icon, Button} from 'react-native-elements';
 import LottieView from 'lottie-react-native';
 import Api from './../../../Services/Api';
 import Modal from "react-native-modalbox";
+import {NavigationActions} from 'react-navigation';
+import AsyncStorage from '@react-native-community/async-storage';
 import InAppBrowser from 'react-native-inappbrowser-reborn'
 class Register extends Component {
   constructor(props) {
@@ -30,10 +32,10 @@ class Register extends Component {
   
 registerNow(){
   this.setState({ loading: true })
-  if(this.state.username == "" && this.state.address == "" && this.state.phone == "" && this.state.password == ""){
+  if(this.state.username == "" || this.state.address == "" || this.state.contact == "" || this.state.password == ""){
   this.setState({ loading: false })
       this.refs.errModal.open()
-      this.setState({ errMsg : "Type you valid credientials" })
+      this.setState({ errMsg : "Type your valid credientials" })
   }else{
   const param = {
     username: this.state.username,
@@ -48,8 +50,18 @@ registerNow(){
       this.refs.errModal.open()
       this.setState({ errMsg : res.message })
     }else{  
+      console.log(res.id)
+      AsyncStorage.setItem('phone',this.state.contact).then(cont => {
+        AsyncStorage.setItem('userId', res.id)
+        // this.props.navigation.reset(
+        //     [NavigationActions.navigate({routeName: 'HomeNav'})], 
+        //     0,
+        //   );
+        this.props.navigation.navigate('Login')
+      })
   // this.setState({ loading: false })
-      this.props.navigation.navigate('Dashboard')
+        //  this.props.navigation.navigate('Dashboard')
+      
     }
   }).catch(err => console.log(err))
 

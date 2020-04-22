@@ -39,7 +39,7 @@ componentDidMount() {
 authenticate(){
 
   this.setState({ loading : true})
-  if(this.state.phonenumber == "" && this.state.password == ""){
+  if(this.state.phonenumber == "" || this.state.password == ""){
        this.setState({ loading: false })
     this.setState({errMsg : "Please check your credientials" })
     this.refs.errModal.open()
@@ -59,7 +59,7 @@ authenticate(){
 
 
     this.props.navigation.reset(
-            [NavigationActions.navigate({routeName: 'HomeNav'})],
+            [NavigationActions.navigate({routeName: 'HomeNav'})], 
             0,
           );
         //  this.props.navigation.navigate('Dashboard')

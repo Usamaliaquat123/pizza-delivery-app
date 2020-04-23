@@ -57,11 +57,11 @@ authenticate(){
           // this.refs.errModal.open()
     this.setState({ loading: false })
 
-
-    this.props.navigation.reset(
-            [NavigationActions.navigate({routeName: 'HomeNav'})], 
-            0,
-          );
+  this.props.navigation.navigate('HomeNav')
+    // this.props.navigation.reset(
+    //         [NavigationActions.navigate({routeName: 'HomeNav'})], 
+    //         0,
+    //       );
         //  this.props.navigation.navigate('Dashboard')
        })
      }else{

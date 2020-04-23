@@ -5,6 +5,7 @@ import {
   Text,
   ScrollView,
   Image,
+  RefreshControl,
   Linking ,
   Alert ,
   TouchableOpacity,
@@ -30,6 +31,7 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      refreshing: false,
       featured: [],
       food: [],
       cart: [],
@@ -43,9 +45,15 @@ class Dashboard extends Component {
     this.props.setAllFeaturedProducts()
     this.props.setAllNormalProducts()
     // this.refs.aboutUs.open()
-  
+   BackHandler.addEventListener('hardwareBackPress', () => {
+      return BackHandler.exitApp();
+    });
   }
-
+  _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.componentDidMount(this);
+    this.setState({refreshing: false});
+  };
 
   updateParent() {
     // this.props.setCartItem()
@@ -224,7 +232,12 @@ goToCart(){
           </View>
           }
         />
-        <ScrollView>
+        <ScrollView refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+            />
+          }>
           <View style={{backgroundColor: '#fff'}}>
             <View>
               <Text
@@ -594,7 +607,7 @@ goToCart(){
             <Modal style={{    
     alignItems: 'center',
        marginTop : 30,
-    height: 250,
+    height: 300,
     width: 300,
     borderRadius: 30,
     backgroundColor : '#fff' }} position={"center"} ref={"aboutUs"} backdrop={true} isDisabled={this.state.isDisabled} coverScreen={true} backdropPressToClose={true}>
@@ -641,7 +654,15 @@ goToCart(){
 
   {/* <Logout /> */}
 
-
+<View style={{ marginTop: 10}}>
+                  <TouchableOpacity onPress={() => {
+                    AsyncStorage.removeItem('phone')
+                    AsyncStorage.removeItem('userId')
+                    this.refs.aboutUs.close()
+                     this.props.navigation.navigate('Login')
+                  }} style={{ backgroundColor: "#F54B00", padding: 10, borderRadius: 10 }}><Text style={{ color: "#fff", fontSize: 12, fontWeight:"bold" }}>Logout</Text></TouchableOpacity>
+                
+                </View>
   <View style={{ alignSelf: 'center', marginTop: 10 , flexDirection: 'row'}} >
       <Text style={{ fontSize: 10, color: '#372715', fontWeight: 'bold' }}>This product is developed by the </Text>
 

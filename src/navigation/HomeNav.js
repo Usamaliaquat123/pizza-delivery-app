@@ -8,7 +8,7 @@ import OrderSubmit  from './../containers/Dashboard/ProductStatus/OrderSubmit';
 import  OrderProcessing  from './../containers/Dashboard/ProductStatus/OrderProcessing';
 import  OrderRejected  from './../containers/Dashboard/ProductStatus/OrderRejected';
 import MainTab from "./../containers/Dashboard/ProductStatus/MainTab";
-import Login from './../containers/Auth/Login/Login';
+// import Auth from './AppNavigation';
 const HomeNav = createStackNavigator(
   {
     Dashboard: {screen: Dashboard},
@@ -18,8 +18,8 @@ const HomeNav = createStackNavigator(
     OrdrSubmit:  { screen : OrderSubmit },
     OrdrProcessing: { screen : OrderProcessing },
     OrdrRejected: { screen : OrderRejected },
-    MainTab: { screen: MainTab }
-    // Login : { screen: Login }
+    MainTab: { screen: MainTab },
+    // Login : { screen: Auth }
   },
   {
     headerMode: 'none',

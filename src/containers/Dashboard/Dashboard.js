@@ -218,7 +218,7 @@ goToCart(){
 
             {this.props.getCartItem.length != 0 && (
 
-            <Badge value={this.props.getCartItem.length} containerStyle={{ position: 'absolute', top: -10,fontSize: 5, left: 10  , zIndex: 2,}} badgeStyle={{borderColor: 'transparent', fontSize: 5,backgroundColor: '#35250A' }} status="error" />
+            <Badge value={this.props.getCartItem.length} containerStyle={{ position: 'absolute', top: -10, left: 10  , zIndex: 2,}} badgeStyle={{borderColor: 'transparent', backgroundColor: '#35250A' }} status="error" />
             )}
           
             <TouchableOpacity

@@ -1,5 +1,5 @@
 import React, { Component, } from 'react'
-import { Text, View,TouchableOpacity,Platform,ScrollView } from 'react-native'
+import { Text, View,TouchableOpacity,Platform,ScrollView,RefreshControl } from 'react-native'
 import { Header,Icon } from 'react-native-elements'
 import { connect } from 'react-redux';
 import { setAllCompletedOrders } from './../../../actions';
@@ -11,7 +11,7 @@ class OrderCompleted extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+refreshing : false
         }
     }
 
@@ -19,6 +19,13 @@ class OrderCompleted extends Component {
     componentDidMount() {
         this.props.setAllCompletedOrders()
     }
+
+      _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.componentDidMount(this);
+    this.setState({refreshing: false});
+  };
+
     render() {
         const { prevOrderCompleted} = this.props
 
@@ -48,7 +55,12 @@ class OrderCompleted extends Component {
           centerComponent={{ text: 'Completed Orders', style: { color: '#372715', fontWeight: 'bold' } }}
         />
 
-        <ScrollView>
+        <ScrollView refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+            />
+          }>
 
         {prevOrderCompleted.length == 0 && (
            

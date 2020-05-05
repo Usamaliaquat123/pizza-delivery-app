@@ -1,5 +1,5 @@
 import React, { Component, } from 'react'
-import { Text, View,TouchableOpacity,Platform,ScrollView } from 'react-native'
+import { Text, View,TouchableOpacity,Platform,ScrollView,RefreshControl } from 'react-native'
 import { Header,Icon } from 'react-native-elements'
 import { connect } from 'react-redux';
 import { setAllSubmitOrders } from './../../../actions';
@@ -11,7 +11,7 @@ class OrderSubmit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+refreshing : false
         }
     }
 
@@ -19,6 +19,11 @@ class OrderSubmit extends Component {
     componentDidMount() {
         this.props.setAllSubmitOrders()
     }
+        _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.componentDidMount(this);
+    this.setState({refreshing: false});
+  };
     render() {
         const { prevOrderSubmit } = this.props
 
@@ -52,7 +57,12 @@ class OrderSubmit extends Component {
          
         />
 
-        <ScrollView>
+        <ScrollView refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+            />
+          }>
 
          {prevOrderSubmit.length == 0 && (
           <View style={{ opacity: .5 }}>

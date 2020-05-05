@@ -1,5 +1,5 @@
 import React, { Component, } from 'react'
-import { Text, View,TouchableOpacity,Platform,ScrollView } from 'react-native'
+import { Text, View,TouchableOpacity,Platform,ScrollView,RefreshControl } from 'react-native'
 import { Header,Icon } from 'react-native-elements'
 import { connect } from 'react-redux';
 import { setAllProcessOrder } from './../../../actions';
@@ -11,7 +11,7 @@ class OrderProcessing extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+refreshing : false
         }
     }
 
@@ -19,6 +19,11 @@ class OrderProcessing extends Component {
     componentDidMount() {
         this.props.setAllProcessOrder()
     }
+       _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.componentDidMount(this);
+    this.setState({refreshing: false});
+  };
     render() {
         const { prevProcessingOrders} = this.props
 
@@ -52,7 +57,12 @@ class OrderProcessing extends Component {
          
         />
 
-        <ScrollView>
+        <ScrollView  refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+            />
+          }>
         
         
         {prevProcessingOrders.length == 0 && (

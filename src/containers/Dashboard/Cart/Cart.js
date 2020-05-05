@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, ScrollView, Image, BackHandler} from 'react-native';
-import {Header, Icon} from 'react-native-elements';
+import {Header, Icon,Input} from 'react-native-elements';
 import {styles} from './Cart.styles';
 import {Colors, Img} from './../../../theme';
 import {STATUS_BAR_HEIGHT, SCREEN_WIDTH} from './../../../utils/constants';
@@ -24,6 +24,7 @@ class Cart extends Component {
       user_id : 12,
       // quantity: [],
       errMsg: "",
+      newAddr: "",
       finalizeItems: []
     };
   }
@@ -37,6 +38,8 @@ class Cart extends Component {
       this.setState({ })
      }
     }
+
+    // this.refs.newAddress.open()
     
   }
 
@@ -109,7 +112,7 @@ const prod = products
 
    const params  = {
       customer_id: userId,
-      customer_address: "Mirpur Azad Kashmir",
+      user_address: this.state.newAddr,
       order_items: this.state.finalizeItems
    }
     Api.cart(params).then(res => {
@@ -291,8 +294,9 @@ const prod = products
                 <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#FD5D00", justifyContent: 'center', padding: 12, marginRight: 10 }} onPress={() => this.refs.modal3.close()}>
                   <Text style={{ color:"#fff", fontSize: 13 }}>No i don't</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#FD5D00", justifyContent: 'center', padding: 12, marginLeft: 10 }} onPress={() => {this.paymentProceed(this.state.total)
+                <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#FD5D00", justifyContent: 'center', padding: 12, marginLeft: 10 }} onPress={() => {
                 this.refs.modal3.close()
+                this.refs.newAddress.open()
                 }}>
                   <Text style={{ color:"#fff", fontSize: 13 }}>Place Now..!</Text>
                 </TouchableOpacity>
@@ -304,29 +308,51 @@ const prod = products
           <Modal style={{    
     alignItems: 'center',
        marginTop : 30,
-    height: 200,
+    height: 250,
     width: 300,
     borderRadius: 30,
-    backgroundColor : '#fff' }} position={"center"} ref={"orderPlaced"} backdrop={true} isDisabled={this.state.isDisabled} coverScreen={true} backdropPressToClose={true}>
+    backgroundColor : '#fff' }} position={"center"} ref={"newAddress"} backdrop={true} isDisabled={this.state.isDisabled} coverScreen={true} backdropPressToClose={true}>
            
            <View style={{ margin: 20 }}>
            
             <Icon
-                name="restaurant-menu"
-                type="material"
+              name={'location-arrow'}
+                  type={'font-awesome'}
                 size={50}
                 color={'#312717'}
+                
               />
-              <Text style={{marginTop: 15, textAlign: "center", fontSize: 15, fontWeight: 'bold', color: "#FD5D00" }}>Are you sure you want to place your order...!</Text>
+              <Text style={{marginTop: 15, textAlign: "center", fontSize: 15, fontWeight: 'bold', color: "#FD5D00" }}>Want to change Address</Text>
+              <View style={{ marginLeft: -30 }}>
+                  <Input
+                inputContainerStyle={{ borderWidth: 3,
+    backgroundColor: '#fff',
+    borderBottomWidth: 3,
+    borderColor: 'transparent'}}
+                placeholder="New Address"
+                placeholderTextColor={'#F94D03'}
+                autoCapitalize={'none'}
+                autoCorrect={false}
+                value={this.state.newAddr}
+                // keyboardType="numeric"
+                inputStyle={{  fontSize: 12,
+    fontWeight: '400',}}
+                onChangeText={text => this.setState({newAddr: text})}
+                leftIcon={
+                  <Icon
+                    name={'location-pin'}
+                    underlayColor={'transparent'}
+                    color={'#FE5D03'}
+                    type={'entypo'}
+                  />
+                }
+              />
+              </View>
               <View style={{  alignSelf: 'center', marginTop: 10 }}>
-                <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#372715", justifyContent: 'center', padding: 12}} onPress={() => this.refs.orderPlaced.close()}>
-                  <Text style={{ color:"#fff", fontSize: 13 }}>Review Your Order...</Text>
+                <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#372715", justifyContent: 'center', padding: 12}} onPress={() => {this.paymentProceed(this.state.total)
+                this.refs.newAddress.close()}}>
+                  <Text style={{ color:"#fff", fontSize: 13 }}>Place your order now</Text>
                 </TouchableOpacity>
-                {/* <TouchableOpacity style={{ borderRadius: 15 , backgroundColor: "#FD5D00", justifyContent: 'center', padding: 12, marginLeft: 10 }} onPress={() => {this.paymentProceed(this.state.total)
-                this.refs.modal3.close()
-                }}>
-                  <Text style={{ color:"#fff", fontSize: 13 }}>Place Now..!</Text>
-                </TouchableOpacity> */}
               </View>
            </View>
            
